@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alan Brechotteau — Chargé de Production Audiovisuelle</title>
+<meta name="description" content="Portfolio d'Alan Brechotteau, chargé de production audiovisuelle spécialisé formats web et YouTube à forte audience.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#ffffff;
+    --panel:#f6f5f3;
+    --panel-2:#eeece9;
+    --line:#e2e0db;
+    --parchment:#131211;
+    --parchment-dim:#565349;
+    --steel:#9c988e;
+    --gold:#131211;
+    --gold-dim:#6b6862;
+    --tally:#b5392f;
+    --radius:0px;
+    --display:'Inter', sans-serif;
+    --body:'Inter', sans-serif;
+    --mono:'Space Mono', monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--void);
+    color:var(--parchment);
+    font-family:var(--body);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--gold);color:var(--void);}
+
+  a{color:inherit;text-decoration:none;}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--gold);
+    display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;height:1px;
+    background:var(--gold-dim);
+  }
+  h1,h2,h3{font-family:var(--display);text-transform:uppercase;letter-spacing:0.01em;}
+  section{padding:120px 8vw;position:relative;}
+  @media(max-width:720px){ section{padding:80px 6vw;} }
+  .container{max-width:1180px;margin:0 auto;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:500;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:26px 8vw;
+    mix-blend-mode:difference;
+  }
+  .logo{
+    font-size:0.85rem;letter-spacing:0.14em;font-weight:600;color:#fff;
+    display:flex;align-items:center;gap:9px;text-transform:uppercase;
+  }
+  .rec-dot{
+    width:6px;height:6px;border-radius:50%;background:#fff;
+    animation:blink 2.4s infinite;
+  }
+  @keyframes blink{0%,100%{opacity:1;}50%{opacity:0.25;}}
+  nav.desktop-nav{display:flex;gap:34px;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;}
+  nav.desktop-nav a{color:#fff;transition:opacity .2s;position:relative;}
+  nav.desktop-nav a:hover{opacity:0.6;}
+  .nav-toggle{display:none;background:none;border:none;color:#fff;font-size:1.4rem;cursor:pointer;}
+  @media(max-width:860px){
+    nav.desktop-nav{display:none;}
+    .nav-toggle{display:block;}
+  }
+  .mobile-nav{
+    position:fixed;inset:0;background:var(--void);z-index:600;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;
+    transform:translateY(-100%);transition:transform .35s ease;
+  }
+  .mobile-nav.open{transform:translateY(0);}
+  .mobile-nav a{font-family:var(--display);font-size:1.4rem;text-transform:uppercase;}
+  .mobile-nav .close-btn{position:absolute;top:24px;right:8vw;background:none;border:none;color:var(--parchment);font-size:1.8rem;cursor:pointer;}
+
+  /* ---------- HERO (vidéo + écran de catégories) ---------- */
+  .hero{
+    height:100vh;
+    position:relative;
+    background:#000;
+    overflow:hidden;
+  }
+  .hero-video{
+    position:absolute;inset:0;z-index:0;
+    width:100%;height:100%;
+    object-fit:cover;
+  }
+  .hero-tint{
+    position:absolute;inset:0;z-index:1;
+    background:#000;opacity:0.58;
+    pointer-events:none;
+  }
+  .hero-categories{
+    position:absolute;inset:0;z-index:2;
+    display:flex;flex-direction:column;
+  }
+  .cat-links{display:flex;flex:1;}
+  .cat-link{
+    flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+    color:#fff;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;
+    font-size:clamp(1.1rem,2.6vw,2rem);
+    border-right:1px solid rgba(255,255,255,0.14);
+    transition:background .3s;
+    padding:20px;gap:10px;
+  }
+  .cat-link:last-child{border-right:none;}
+  .cat-link:hover{background:rgba(255,255,255,0.08);}
+  .cat-link small{
+    display:block;font-size:0.62rem;letter-spacing:0.16em;color:rgba(255,255,255,0.55);
+    font-weight:400;text-transform:uppercase;
+  }
+  @media(max-width:720px){
+    .cat-links{flex-direction:column;}
+    .cat-link{border-right:none;border-bottom:1px solid rgba(255,255,255,0.14);}
+    .cat-link:last-child{border-bottom:none;}
+  }
+  .btn{
+    font-family:var(--mono);font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;
+    padding:14px 26px;border:1px solid var(--gold-dim);
+    transition:all .25s;display:inline-flex;align-items:center;gap:10px;
+  }
+  .btn:hover{background:var(--gold);color:var(--void);border-color:var(--gold);}
+  .btn.ghost{border-color:var(--line);}
+  .btn.ghost:hover{background:var(--panel-2);color:var(--parchment);border-color:var(--steel);}
+
+  /* ---------- STATS LINE ---------- */
+  .stats-line-section{padding:34px 8vw;border-bottom:1px solid var(--line);}
+  .stats-line{
+    display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;gap:14px;
+    font-size:0.9rem;color:var(--parchment-dim);text-align:center;
+  }
+  .stats-line .role-tag{font-weight:600;color:var(--parchment);text-transform:uppercase;letter-spacing:0.06em;font-size:0.8rem;}
+  .stats-line strong{font-family:var(--mono);color:var(--parchment);}
+  .stats-line .sep{color:var(--steel);}
+
+  /* ---------- QUICK REEL (3 vidéos) ---------- */
+  #projets-reel{padding-top:70px;}
+  .reel-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  @media(max-width:860px){.reel-grid-3{grid-template-columns:1fr;}}
+  .reel-item{
+    position:relative;aspect-ratio:4/5;display:block;background:var(--panel);overflow:hidden;
+  }
+  .reel-item img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    filter:grayscale(100%) contrast(1.05);
+    transition:transform .6s ease, filter .4s ease;
+  }
+  .reel-item:hover img{transform:scale(1.04);filter:grayscale(40%) contrast(1.05);}
+  .reel-item::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(0,0,0,0.82) 100%);
+  }
+  .reel-overlay{position:absolute;left:0;right:0;bottom:0;padding:26px;z-index:2;}
+  .reel-stat{
+    font-family:var(--mono);font-size:0.7rem;color:#fff;opacity:0.85;letter-spacing:0.03em;
+    display:block;margin-bottom:8px;
+  }
+  .reel-overlay h3{color:#fff;font-size:1.1rem;font-weight:600;text-transform:none;letter-spacing:0;line-height:1.25;}
+
+  /* ---------- SECTION HEADS ---------- */
+  .section-head{margin-bottom:56px;}
+  .section-head h2{font-size:clamp(1.8rem,4vw,2.8rem);margin-top:14px;}
+
+  /* ---------- PROFIL ---------- */
+  .profil-grid{
+    display:grid;grid-template-columns:1.5fr 1fr;gap:70px;
+  }
+  @media(max-width:860px){.profil-grid{grid-template-columns:1fr;gap:40px;}}
+  .profil-text p{color:var(--parchment-dim);font-size:1.05rem;margin-bottom:18px;max-width:60ch;}
+  .facts{border-left:1px solid var(--line);padding-left:28px;}
+  .fact-row{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line);font-size:0.92rem;}
+  .fact-row .k{color:var(--steel);font-family:var(--mono);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;}
+  .chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px;}
+  .chip{
+    font-family:var(--mono);font-size:0.72rem;letter-spacing:0.03em;
+    padding:7px 13px;border:1px solid var(--line);color:var(--parchment-dim);
+  }
+
+  /* ---------- EXPERIENCE TIMELINE ---------- */
+  .timeline-ruler{
+    display:flex;align-items:center;gap:2px;margin-bottom:70px;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:10px 0;overflow-x:auto;
+  }
+  .ruler-seg{
+    font-family:var(--mono);font-size:0.65rem;color:var(--steel);white-space:nowrap;padding:4px 12px;border-right:1px solid var(--line);
+  }
+  .ruler-seg.active{color:var(--gold);}
+
+  .job-card{
+    display:grid;grid-template-columns:110px 1fr;gap:36px;
+    padding:40px 0;border-bottom:1px solid var(--line);
+    opacity:0;transform:translateY(24px);transition:opacity .6s ease, transform .6s ease;
+  }
+  .job-card.visible{opacity:1;transform:translateY(0);}
+  @media(max-width:720px){.job-card{grid-template-columns:1fr;gap:14px;}}
+  .job-slate{
+    font-family:var(--mono);color:var(--gold);font-size:0.85rem;
+  }
+  .job-slate .n{font-size:1.6rem;font-weight:700;display:block;color:var(--parchment);}
+  .job-body h3{font-size:1.3rem;margin-bottom:4px;}
+  .job-meta{
+    font-family:var(--mono);font-size:0.75rem;color:var(--steel);
+    display:flex;flex-wrap:wrap;gap:14px;margin:10px 0 18px;
+  }
+  .job-meta b{color:var(--gold-dim);}
+  .job-body ul{list-style:none;color:var(--parchment-dim);font-size:0.95rem;}
+  .job-body ul li{position:relative;padding-left:18px;margin-bottom:9px;}
+  .job-body ul li::before{content:"—";position:absolute;left:0;color:var(--steel);}
+  .job-stat{
+    display:inline-block;margin-top:14px;font-family:var(--mono);font-size:0.78rem;
+    color:var(--tally);border:1px solid var(--tally);padding:5px 11px;
+  }
+
+  /* ---------- CHIFFRES CLES ---------- */
+  .stats-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+    background:var(--line);border:1px solid var(--line);
+  }
+  @media(max-width:860px){.stats-grid{grid-template-columns:repeat(2,1fr);}}
+  .stat-cell{
+    background:var(--void);padding:44px 26px;text-align:center;
+  }
+  .stat-num{
+    font-family:var(--mono);font-weight:700;font-size:clamp(2rem,4vw,2.8rem);color:var(--gold);
+  }
+  .stat-label{
+    font-size:0.78rem;color:var(--parchment-dim);margin-top:10px;letter-spacing:0.02em;
+  }
+
+  /* ---------- PROJETS VIDEO ---------- */
+  .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border:1px solid var(--line);}
+  @media(max-width:960px){.proj-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:640px){.proj-grid{grid-template-columns:1fr;}}
+  @media(max-width:640px){ #projets .proj-card[style*="220px"]{grid-template-columns:1fr !important;} }
+  .proj-card{background:var(--panel);padding:0;display:flex;flex-direction:column;}
+  .proj-thumb{
+    aspect-ratio:16/9;position:relative;
+    background:linear-gradient(135deg,#efeeeb,#e2e0db);
+    display:flex;align-items:center;justify-content:center;
+    border-bottom:1px solid var(--line);
+  }
+  .proj-thumb.print{background:linear-gradient(135deg,#efe6e4,#e2e0db);}
+  .play-icon{
+    width:52px;height:52px;border-radius:50%;border:1px solid var(--gold-dim);
+    display:flex;align-items:center;justify-content:center;
+    transition:all .25s;
+  }
+  .proj-card:hover .play-icon{background:var(--gold);border-color:var(--gold);}
+  .play-icon svg{fill:var(--gold);transition:fill .25s;}
+  .proj-card:hover .play-icon svg{fill:var(--void);}
+  .proj-thumb .tag{
+    position:absolute;top:12px;left:12px;font-family:var(--mono);font-size:0.65rem;
+    color:var(--steel);letter-spacing:0.05em;text-transform:uppercase;
+    border:1px solid var(--line);padding:3px 9px;background:rgba(10,10,11,0.6);
+  }
+  .proj-info{padding:24px;flex:1;display:flex;flex-direction:column;}
+  .proj-info h3{font-size:1.05rem;margin-bottom:6px;}
+  .proj-role{font-family:var(--mono);font-size:0.72rem;color:var(--gold-dim);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:12px;}
+  .proj-info p{color:var(--parchment-dim);font-size:0.9rem;flex:1;margin-bottom:14px;}
+  .proj-link{font-family:var(--mono);font-size:0.72rem;color:var(--gold);letter-spacing:0.04em;border-bottom:1px solid var(--gold-dim);padding-bottom:2px;width:fit-content;}
+
+  /* ---------- BOBINE ETUDIANTE ---------- */
+  .reel-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+  @media(max-width:860px){.reel-grid{grid-template-columns:repeat(2,1fr);}}
+  .reel-phase{border-top:2px solid var(--gold-dim);padding-top:16px;}
+  .reel-phase h4{font-family:var(--mono);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--gold);margin-bottom:14px;}
+  .reel-phase ul{list-style:none;font-size:0.86rem;color:var(--parchment-dim);}
+  .reel-phase ul li{margin-bottom:8px;position:relative;padding-left:14px;}
+  .reel-phase ul li::before{content:"·";position:absolute;left:0;color:var(--steel);}
+  .reel-note{margin-top:40px;color:var(--parchment-dim);font-size:0.92rem;max-width:70ch;border-left:1px solid var(--line);padding-left:20px;}
+
+  /* ---------- COMPETENCES ---------- */
+  .skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;}
+  @media(max-width:860px){.skills-grid{grid-template-columns:1fr;gap:40px;}}
+  .meter-row{margin-bottom:22px;}
+  .meter-label{display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:8px;}
+  .meter-label span:last-child{font-family:var(--mono);color:var(--steel);font-size:0.75rem;}
+  .meter-track{height:5px;background:var(--panel-2);position:relative;overflow:hidden;}
+  .meter-fill{height:100%;background:linear-gradient(90deg,var(--gold-dim),var(--gold));width:0%;transition:width 1.2s ease;}
+  .soft-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;}
+
+  /* ---------- FORMATION ---------- */
+  .edu-list{border-top:1px solid var(--line);}
+  .edu-row{
+    display:grid;grid-template-columns:140px 1fr;gap:24px;
+    padding:22px 0;border-bottom:1px solid var(--line);
+  }
+  @media(max-width:640px){.edu-row{grid-template-columns:1fr;gap:6px;}}
+  .edu-row .yr{font-family:var(--mono);color:var(--gold-dim);font-size:0.85rem;}
+  .edu-row h4{font-size:1rem;font-weight:600;text-transform:none;font-family:var(--body);}
+  .edu-row p{color:var(--steel);font-size:0.85rem;margin-top:3px;}
+
+  /* ---------- CONTACT ---------- */
+  .contact-wrap{text-align:center;padding-bottom:100px;}
+  .contact-wrap h2{font-size:clamp(2.2rem,6vw,4rem);margin-bottom:24px;}
+  .contact-wrap p{color:var(--parchment-dim);max-width:50ch;margin:0 auto 40px;}
+  .contact-links{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+
+  footer{
+    text-align:center;padding:30px 8vw;font-family:var(--mono);font-size:0.7rem;color:var(--steel);
+    border-top:1px solid var(--line);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="logo"><span class="rec-dot"></span> Alan Brechotteau</div>
+  <nav class="desktop-nav">
+    <a href="#projets-reel">Production</a>
+    <a href="#experience">Parcours</a>
+    <a href="#competences">Compétences</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu">☰</button>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <button class="close-btn" id="navClose" aria-label="Fermer le menu">✕</button>
+  <a href="#projets-reel">Production</a>
+  <a href="#experience">Parcours</a>
+  <a href="#competences">Compétences</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- ================= HERO VIDÉO ================= -->
+<section class="hero" id="hero">
+  <video class="hero-video" id="introVideo" autoplay muted playsinline>
+    <source src="intro.mp4" type="video/mp4">
+  </video>
+  <div class="hero-tint" id="heroTint"></div>
+  <div class="hero-categories" id="heroCategories">
+    <div class="cat-links">
+      <a href="#projets-reel" class="cat-link">Production<small>Sur le plateau</small></a>
+      <a href="#experience" class="cat-link">Parcours<small>Expérience &amp; formation</small></a>
+      <a href="#competences" class="cat-link">Compétences<small>Logiciels &amp; langues</small></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS LIGNE ================= -->
+<section class="stats-line-section" id="stats">
+  <div class="stats-line">
+    <span class="role-tag">Chargé de Production</span>
+    <span class="sep">·</span>
+    <span><strong>5M+</strong> abonnés</span>
+    <span class="sep">·</span>
+    <span><strong>1,5M</strong> vues / mois</span>
+    <span class="sep">·</span>
+    <span><strong>40M+</strong> vues cumulées / an</span>
+    <span class="sep">·</span>
+    <span><strong>30+</strong> tournages</span>
+  </div>
+</section>
+
+<!-- ================= QUICK REEL : 3 VIDEOS ================= -->
+<section id="projets-reel">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Production</div>
+      <h2>Sur le plateau</h2>
+    </div>
+    <div class="reel-grid-3">
+      <a class="reel-item" href="https://www.youtube.com/watch?v=C8ysBeg72Jg" target="_blank" rel="noopener">
+        <img src="https://img.youtube.com/vi/C8ysBeg72Jg/hqdefault.jpg" alt="J'ai Arnaqué 10 Arnaqueurs À Paris !">
+        <div class="reel-overlay">
+          <span class="reel-stat">5,2M vues · 8 mois</span>
+          <h3>J'ai Arnaqué 10 Arnaqueurs À Paris !</h3>
+        </div>
+      </a>
+      <a class="reel-item" href="https://www.youtube.com/watch?v=7xYBHMMJDEc" target="_blank" rel="noopener">
+        <img src="https://img.youtube.com/vi/7xYBHMMJDEc/hqdefault.jpg" alt="J'ai Testé 30 Lifehacks TikTok !">
+        <div class="reel-overlay">
+          <span class="reel-stat">1,8M vues · 1 mois</span>
+          <h3>J'ai Testé 30 Lifehacks TikTok !</h3>
+        </div>
+      </a>
+      <a class="reel-item" href="https://www.youtube.com/watch?v=hn2mCUPy4jg" target="_blank" rel="noopener">
+        <img src="https://img.youtube.com/vi/hn2mCUPy4jg/hqdefault.jpg" alt="J'ai Testé 10 Promesses De Publicités !">
+        <div class="reel-overlay">
+          <span class="reel-stat">2,5M vues · 6 mois</span>
+          <h3>J'ai Testé 10 Promesses De Publicités !</h3>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROFIL ================= -->
+<section id="profil">
+  <div class="container profil-grid">
+    <div class="profil-text">
+      <div class="eyebrow">Profil</div>
+      <h2 style="margin-top:14px;font-size:2rem;">Une prod qui tient la cadence YouTube</h2>
+      <p>Chargé de production spécialisé dans les formats web et YouTube à forte audience. Depuis un an et dix mois — douze mois d'alternance suivis d'un CDI — je coordonne la production de la chaîne Hugoposé : plus de 30 tournages organisés, en autonomie ou en binôme, pour des vidéos qui font entre 2 et 5 millions de vues chacune.</p>
+      <p>Mon rôle démarre avant le clap : scripts, budgets, castings, repérages. Il continue sur le plateau : feuille de route, régie, cadrage secondaire. Il ne s'arrête qu'à la diffusion. Je cherche aujourd'hui à élargir ce savoir-faire dans une nouvelle structure.</p>
+    </div>
+    <div class="facts">
+      <div class="fact-row"><span class="k">Localisation</span><span>Paris, Île-de-France</span></div>
+      <div class="fact-row"><span class="k">Permis</span><span>B</span></div>
+      <div class="fact-row"><span class="k">Anglais</span><span>C1 — LanguageCert</span></div>
+      <div class="fact-row"><span class="k">Espagnol</span><span>Niveau scolaire</span></div>
+      <div class="fact-row"><span class="k">Email</span><span>brechotteau.alan@gmail.com</span></div>
+      <div class="fact-row" style="border-bottom:none;"><span class="k">LinkedIn</span><span>/in/alan-brechotteau</span></div>
+      <div class="chips">
+        <span class="chip">Rigueur</span>
+        <span class="chip">Organisation</span>
+        <span class="chip">Polyvalence</span>
+        <span class="chip">Problem solving</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EXPERIENCE ================= -->
+<section id="experience">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Expérience</div>
+      <h2>Feuille de route</h2>
+    </div>
+
+    <div class="timeline-ruler">
+      <div class="ruler-seg active">2024 — EN COURS · HUGOPOSÉ</div>
+      <div class="ruler-seg">2024 · SAEM</div>
+      <div class="ruler-seg">2022 · LE CRISTAL</div>
+      <div class="ruler-seg">2022 · COVERFAST</div>
+    </div>
+
+    <div class="job-card">
+      <div class="job-slate">PROD Nº<span class="n">01</span></div>
+      <div class="job-body">
+        <h3>Chargé de Production YouTube</h3>
+        <div class="job-meta">
+          <span><b>Chaîne Hugoposé</b></span>
+          <span>Oct. 2024 — aujourd'hui</span>
+          <span>1 an 10 mois · alternance puis CDI</span>
+          <span>Paris · Hybride</span>
+        </div>
+        <ul>
+          <li>Production et coordination de vidéos YouTube (2 à 5 millions de vues), en autonomie ou en binôme — formats long (20–50 min), short et reel.</li>
+          <li>Conception de scripts, happenings et mécaniques vidéo.</li>
+          <li>Gestion de production : budgets, contrats, facturation et casting.</li>
+          <li>Organisation des tournages : repérages, décors, logistique plateau et supports de production.</li>
+          <li>Installation technique et cadrage secondaire sur le plateau.</li>
+          <li>Réalisation des supports : feuille de route, script, objectifs de prod.</li>
+          <li>Supervision du déroulé des tournages et des intervenants.</li>
+        </ul>
+        <span class="job-stat">+30 tournages · +40M vues/an cumulées</span>
+      </div>
+    </div>
+
+    <div class="job-card">
+      <div class="job-slate">PROD Nº<span class="n">02</span></div>
+      <div class="job-body">
+        <h3>Responsable d'Établissement / Producteur Audiovisuel</h3>
+        <div class="job-meta">
+          <span><b>SARL SAEM</b></span>
+          <span>Avr. 2024 — Oct. 2024</span>
+          <span>7 mois · CDD</span>
+          <span>Saint-Hilaire-de-Riez</span>
+        </div>
+        <ul>
+          <li>Production audiovisuelle et stratégie opérationnelle d'un établissement.</li>
+          <li>Gestion multi-casquette : coordination d'équipe, exploitation et supports de production.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job-card">
+      <div class="job-slate">PROD Nº<span class="n">03</span></div>
+      <div class="job-body">
+        <h3>Créateur de Contenu pour les Réseaux Sociaux</h3>
+        <div class="job-meta">
+          <span><b>Le Cristal</b></span>
+          <span>Juil. 2022</span>
+          <span>1 mois · Freelance</span>
+          <span>Béziers · Hybride</span>
+        </div>
+        <ul>
+          <li>Production de vidéos en ligne sous Adobe Premiere Pro.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job-card">
+      <div class="job-slate">PROD Nº<span class="n">04</span></div>
+      <div class="job-body">
+        <h3>Manager de Communauté / Création de Contenu</h3>
+        <div class="job-meta">
+          <span><b>CoverFast</b></span>
+          <span>Mars — Juin 2022</span>
+          <span>4 mois · Stage</span>
+          <span>Montpellier · Hybride</span>
+        </div>
+        <ul>
+          <li>Réalisation de plaquettes commerciales, affiches et supports de communication.</li>
+          <li>Création de contenu web : stories et posts Instagram.</li>
+          <li>Stratégie de communication et gestion de communauté.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= CHIFFRES CLES ================= -->
+<!-- ================= PROJETS ================= -->
+<section id="projets">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Projets</div>
+      <h2>Filmographie complète</h2>
+    </div>
+    <div class="proj-grid">
+
+      <div class="proj-card">
+        <a href="https://www.youtube.com/watch?v=C8ysBeg72Jg" target="_blank" rel="noopener" class="proj-thumb" style="background-image:url('https://img.youtube.com/vi/C8ysBeg72Jg/hqdefault.jpg');background-size:cover;background-position:center;">
+          <span class="tag">Format long</span>
+          <div class="play-icon"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M4 2l10 6-10 6V2z"/></svg></div>
+        </a>
+        <div class="proj-info">
+          <h3>J'ai Arnaqué 10 Arnaqueurs À Paris !</h3>
+          <div class="proj-role">Chargé de production · Hugoposé</div>
+          <p>5,2M de vues en 8 mois. Script, budget, casting, repérages et régie plateau pour ce tournage extérieur.</p>
+          <a href="https://www.youtube.com/watch?v=C8ysBeg72Jg" class="proj-link" target="_blank" rel="noopener">Voir sur YouTube →</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <a href="https://www.youtube.com/watch?v=7xYBHMMJDEc" target="_blank" rel="noopener" class="proj-thumb" style="background-image:url('https://img.youtube.com/vi/7xYBHMMJDEc/hqdefault.jpg');background-size:cover;background-position:center;">
+          <span class="tag">Format long</span>
+          <div class="play-icon"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M4 2l10 6-10 6V2z"/></svg></div>
+        </a>
+        <div class="proj-info">
+          <h3>J'ai Testé 30 Lifehacks TikTok ! (Vrai ou Pas ?)</h3>
+          <div class="proj-role">Chargé de production · Hugoposé</div>
+          <p>1,8M de vues en 1 mois. Conception des mécaniques de test, logistique de tournage et objectifs de prod.</p>
+          <a href="https://www.youtube.com/watch?v=7xYBHMMJDEc" class="proj-link" target="_blank" rel="noopener">Voir sur YouTube →</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <a href="https://www.youtube.com/watch?v=hn2mCUPy4jg" target="_blank" rel="noopener" class="proj-thumb" style="background-image:url('https://img.youtube.com/vi/hn2mCUPy4jg/hqdefault.jpg');background-size:cover;background-position:center;">
+          <span class="tag">Format long</span>
+          <div class="play-icon"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M4 2l10 6-10 6V2z"/></svg></div>
+        </a>
+        <div class="proj-info">
+          <h3>J'ai Testé 10 Promesses De Publicités !</h3>
+          <div class="proj-role">Chargé de production · Hugoposé</div>
+          <p>2,5M de vues en 6 mois. Repérages, tournage et supervision du déroulé plateau.</p>
+          <a href="https://www.youtube.com/watch?v=hn2mCUPy4jg" class="proj-link" target="_blank" rel="noopener">Voir sur YouTube →</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-thumb print">
+          <span class="tag">Campagne affichage</span>
+          <div class="play-icon"><svg width="16" height="16" viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" fill="none" stroke-width="1.4"/><circle cx="6" cy="6" r="1.3"/><path d="M2 11l3.5-3.5L8 10l3-3.5L14 11"/></svg></div>
+        </div>
+        <div class="proj-info">
+          <h3>Renault 5 E-Tech Électrique</h3>
+          <div class="proj-role">Régie · Campagne affichage métro &amp; abribus</div>
+          <p>Participation en régie au tournage d'une campagne d'affichage nationale, diffusée dans le métro parisien et sur mobilier urbain.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top:60px;border-top:1px solid var(--line);padding-top:40px;">
+      <div class="eyebrow" style="margin-bottom:20px;">Bonus · format plateau</div>
+      <div class="proj-card" style="display:grid;grid-template-columns:220px 1fr;gap:24px;background:none;">
+        <a href="https://www.youtube.com/watch?v=iPvdpnAYSxE" target="_blank" rel="noopener" class="proj-thumb" style="background-image:url('https://img.youtube.com/vi/iPvdpnAYSxE/hqdefault.jpg');background-size:cover;background-position:center;border:1px solid var(--line);">
+          <div class="play-icon"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M4 2l10 6-10 6V2z"/></svg></div>
+        </a>
+        <div class="proj-info" style="padding:0;">
+          <h3>4 Acteurs VS 1 Vrai Millionnaire</h3>
+          <div class="proj-role">ft. FastGoodCuisine, Tsuku &amp; Cédric — Chargé de production · Hugoposé</div>
+          <p>700K vues en 2 mois. Mis ici pour montrer un format plateau en collaboration multi-créateurs, plus que pour la performance.</p>
+          <a href="https://www.youtube.com/watch?v=iPvdpnAYSxE" class="proj-link" target="_blank" rel="noopener">Voir sur YouTube →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BOBINE ETUDIANTE ================= -->
+<section id="etudiant">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Projets étudiants</div>
+      <h2>Bobine étudiante — 3iS &amp; IUT de Béziers</h2>
+    </div>
+    <div class="reel-grid">
+      <div class="reel-phase">
+        <h4>Pré-production</h4>
+        <ul>
+          <li>Dossier de production &amp; budget</li>
+          <li>Plan de financement</li>
+          <li>Découpage technique</li>
+          <li>Storyboard</li>
+          <li>Études de marché</li>
+        </ul>
+      </div>
+      <div class="reel-phase">
+        <h4>Tournage</h4>
+        <ul>
+          <li>Plannings &amp; organisation</li>
+          <li>Repérage</li>
+          <li>Régie plateau</li>
+          <li>Gestion des acteurs</li>
+          <li>Prise de son et caméra</li>
+        </ul>
+      </div>
+      <div class="reel-phase">
+        <h4>Post-production</h4>
+        <ul>
+          <li>Montage</li>
+          <li>Son</li>
+          <li>Diffusion</li>
+        </ul>
+      </div>
+      <div class="reel-phase">
+        <h4>Culture &amp; droit</h4>
+        <ul>
+          <li>Histoire du cinéma</li>
+          <li>Analyses &amp; critiques</li>
+          <li>Droits d'auteur et de diffusion</li>
+          <li>Aides publiques, régionales, investisseurs</li>
+        </ul>
+      </div>
+    </div>
+    <p class="reel-note">Réalisation de courts métrages, publicités, vidéos promotionnelles et projets MAO dans le cadre du Bachelor Production (3iS) et du DUT Métiers du multimédia et de l'internet, spécialité audiovisuel (IUT de Béziers).</p>
+  </div>
+</section>
+
+<!-- ================= COMPETENCES ================= -->
+<section id="competences">
+  <div class="container skills-grid">
+    <div>
+      <div class="eyebrow">Compétences</div>
+      <h2 style="margin-top:14px;font-size:1.8rem;">Logiciels &amp; langues</h2>
+      <div style="margin-top:34px;">
+        <div class="meter-row">
+          <div class="meter-label"><span>Suite Adobe (Premiere Pro)</span><span>Intermédiaire</span></div>
+          <div class="meter-track"><div class="meter-fill" data-level="60"></div></div>
+        </div>
+        <div class="meter-row">
+          <div class="meter-label"><span>Pack Office</span><span>Maîtrisé</span></div>
+          <div class="meter-track"><div class="meter-fill" data-level="90"></div></div>
+        </div>
+        <div class="meter-row">
+          <div class="meter-label"><span>Notion</span><span>Maîtrisé</span></div>
+          <div class="meter-track"><div class="meter-fill" data-level="90"></div></div>
+        </div>
+        <div class="meter-row">
+          <div class="meter-label"><span>Ableton Live</span><span>Novice</span></div>
+          <div class="meter-track"><div class="meter-fill" data-level="25"></div></div>
+        </div>
+        <div class="meter-row">
+          <div class="meter-label"><span>Anglais</span><span>C1 — LanguageCert</span></div>
+          <div class="meter-track"><div class="meter-fill" data-level="85"></div></div>
+        </div>
+        <div class="meter-row">
+          <div class="meter-label"><span>Espagnol</span><span>Scolaire</span></div>
+          <div class="meter-track"><div class="meter-fill" data-level="35"></div></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="eyebrow">Terrain</div>
+      <h2 style="margin-top:14px;font-size:1.8rem;">Savoir-être</h2>
+      <p style="color:var(--parchment-dim);margin-top:20px;max-width:50ch;">Un parcours passé aussi par la relation client, la gestion d'équipe et la création de sites internet en freelance — une polyvalence qui sert directement la gestion de production.</p>
+      <div class="soft-chips" style="margin-top:26px;">
+        <span class="chip">Rigueur</span>
+        <span class="chip">Organisation</span>
+        <span class="chip">Polyvalence</span>
+        <span class="chip">Problem solving</span>
+        <span class="chip">Gestion budget</span>
+        <span class="chip">Casting</span>
+        <span class="chip">Régie plateau</span>
+        <span class="chip">Permis B</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FORMATION ================= -->
+<section id="formation">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Formation</div>
+      <h2>Parcours académique</h2>
+    </div>
+    <div class="edu-list">
+      <div class="edu-row">
+        <div class="yr">2024–2025</div>
+        <div><h4>Bachelor Production, Cinematography and Film/Video Production</h4><p>3iS — Institut international de l'image et du son · Gestion de la production de courts métrages</p></div>
+      </div>
+      <div class="edu-row">
+        <div class="yr">2020–2022</div>
+        <div><h4>DUT Métiers du multimédia et de l'internet — spé. Audiovisuel</h4><p>IUT de Béziers · Spécialisation création audiovisuelle et numérique</p></div>
+      </div>
+      <div class="edu-row">
+        <div class="yr">2020</div>
+        <div><h4>L1 LEA Bilingue Anglais – Espagnol</h4></div>
+      </div>
+      <div class="edu-row">
+        <div class="yr">2018</div>
+        <div><h4>Bac Gestion et Management, spécialité mercatique</h4></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="container contact-wrap">
+    <div class="eyebrow" style="justify-content:center;">Contact</div>
+    <h2>On tourne ?</h2>
+    <p>Ouvert à un poste de chargé de production audiovisuelle, dans une structure qui produit pour le web comme pour la marque.</p>
+    <div class="contact-links">
+      <a href="mailto:brechotteau.alan@gmail.com" class="btn">brechotteau.alan@gmail.com</a>
+      <a href="https://www.linkedin.com/in/alan-brechotteau-9a7b71178" class="btn ghost" target="_blank" rel="noopener" id="linkedinLink">LinkedIn</a>
+      <a href="Cv.pdf" class="btn ghost" download>Télécharger le CV</a>
+    </div>
+  </div>
+</section>
+
+<footer>© <span id="year"></span> Alan Brechotteau — Portfolio</footer>
+
+<script>
+  // header scroll state
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // mobile nav
+  const navToggle = document.getElementById('navToggle');
+  const navClose = document.getElementById('navClose');
+  const mobileNav = document.getElementById('mobileNav');
+  navToggle.addEventListener('click', () => mobileNav.classList.add('open'));
+  navClose.addEventListener('click', () => mobileNav.classList.remove('open'));
+  mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open')));
+
+  // vidéo de fond : joue une fois puis se fige sur la dernière image (pas de boucle)
+  const introVideo = document.getElementById('introVideo');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if(introVideo){
+    introVideo.addEventListener('ended', () => introVideo.pause());
+    introVideo.play().catch(() => {}); // si l'autoplay est bloqué, l'image de poster/premier frame reste affichée, déjà assombrie
+    if(reduceMotion) introVideo.pause();
+  }
+
+  // reveal on scroll
+  const revealTargets = document.querySelectorAll('.job-card');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, {threshold:0.15});
+  revealTargets.forEach(t => io.observe(t));
+
+  // skill meters fill on view
+  const meters = document.querySelectorAll('.meter-fill');
+  const meterIo = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.style.width = e.target.dataset.level + '%';
+      }
+    });
+  }, {threshold:0.4});
+  meters.forEach(m => meterIo.observe(m));
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
