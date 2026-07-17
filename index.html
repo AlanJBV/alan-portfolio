@@ -7,23 +7,23 @@
 <meta name="description" content="Portfolio d'Alan Brechotteau, chargé de production audiovisuelle spécialisé formats web et YouTube à forte audience.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --void:#ffffff;
-    --panel:#f6f5f3;
-    --panel-2:#eeece9;
-    --line:#e2e0db;
-    --parchment:#131211;
-    --parchment-dim:#565349;
-    --steel:#9c988e;
-    --gold:#131211;
-    --gold-dim:#6b6862;
-    --tally:#b5392f;
+    --void:#0b0c0a;
+    --panel:#141510;
+    --panel-2:#1c1d17;
+    --line:#40402f;
+    --parchment:#f1efe6;
+    --parchment-dim:#a8a599;
+    --steel:#726f63;
+    --gold:#a9cc9c;
+    --gold-dim:#5a6b52;
+    --tally:#a8703f;
     --radius:0px;
-    --display:'Inter', sans-serif;
+    --display:'Space Grotesk', sans-serif;
     --body:'Inter', sans-serif;
-    --mono:'Space Mono', monospace;
+    --mono:'JetBrains Mono', monospace;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -39,8 +39,9 @@
   a{color:inherit;text-decoration:none;}
   .eyebrow{
     font-family:var(--mono);
-    font-size:0.72rem;
-    letter-spacing:0.18em;
+    font-size:0.95rem;
+    font-weight:500;
+    letter-spacing:0.14em;
     text-transform:uppercase;
     color:var(--gold);
     display:flex;align-items:center;gap:10px;
@@ -60,10 +61,19 @@
     position:fixed;top:0;left:0;right:0;z-index:500;
     display:flex;justify-content:space-between;align-items:center;
     padding:26px 8vw;
-    mix-blend-mode:difference;
+    border-bottom:1px solid transparent;
+    transition:background .35s ease, border-color .35s ease, padding .35s ease;
+  }
+  /* une fois le bandeau des données dépassé : fond identique au bandeau */
+  header.scrolled{
+    background:rgba(11,12,10,0.45);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(255,255,255,0.16);
+    padding:15px 8vw;
   }
   .logo{
-    font-size:0.85rem;letter-spacing:0.14em;font-weight:600;color:#fff;
+    font-size:0.98rem;letter-spacing:0.14em;font-weight:600;color:#fff;
     display:flex;align-items:center;gap:9px;text-transform:uppercase;
   }
   .rec-dot{
@@ -71,7 +81,7 @@
     animation:blink 2.4s infinite;
   }
   @keyframes blink{0%,100%{opacity:1;}50%{opacity:0.25;}}
-  nav.desktop-nav{display:flex;gap:34px;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;}
+  nav.desktop-nav{display:flex;gap:34px;font-size:0.86rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;}
   nav.desktop-nav a{color:#fff;transition:opacity .2s;position:relative;}
   nav.desktop-nav a:hover{opacity:0.6;}
   .nav-toggle{display:none;background:none;border:none;color:#fff;font-size:1.4rem;cursor:pointer;}
@@ -102,8 +112,9 @@
   }
   .hero-tint{
     position:absolute;inset:0;z-index:1;
-    background:#000;opacity:0.58;
+    background:#000;opacity:0.4;
     pointer-events:none;
+    transition:opacity .5s ease;
   }
   .hero-categories{
     position:absolute;inset:0;z-index:2;
@@ -111,18 +122,40 @@
   }
   .cat-links{display:flex;flex:1;}
   .cat-link{
+    position:relative;
     flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
     color:#fff;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;
     font-size:clamp(1.1rem,2.6vw,2rem);
     border-right:1px solid rgba(255,255,255,0.14);
-    transition:background .3s;
-    padding:20px;gap:10px;
+    padding:20px;gap:2px;
+    overflow:hidden;
+  }
+  .cat-link::before{
+    content:"";position:absolute;inset:0;z-index:-1;
+    background:rgba(0,0,0,0.3);
+    transition:background .45s ease;
   }
   .cat-link:last-child{border-right:none;}
-  .cat-link:hover{background:rgba(255,255,255,0.08);}
+  .cat-link:hover::before{background:rgba(124,148,115,0.12);}
+  .hero-categories:hover .cat-link:not(:hover)::before{background:rgba(0,0,0,0.6);}
+  .cat-title{
+    display:inline-block;font-family:var(--display);opacity:0;transform:translateY(18px);
+    animation:catPop .7s ease forwards;
+  }
+  .cat-link:nth-child(1) .cat-title{animation-delay:.15s;}
+  .cat-link:nth-child(2) .cat-title{animation-delay:.32s;}
+  .cat-link:nth-child(3) .cat-title{animation-delay:.49s;}
   .cat-link small{
     display:block;font-size:0.62rem;letter-spacing:0.16em;color:rgba(255,255,255,0.55);
     font-weight:400;text-transform:uppercase;
+    opacity:0;transform:translateY(14px);
+    animation:catPop .7s ease forwards;
+  }
+  .cat-link:nth-child(1) small{animation-delay:.3s;}
+  .cat-link:nth-child(2) small{animation-delay:.47s;}
+  .cat-link:nth-child(3) small{animation-delay:.64s;}
+  @keyframes catPop{
+    to{opacity:1;transform:translateY(0);}
   }
   @media(max-width:720px){
     .cat-links{flex-direction:column;}
@@ -138,39 +171,174 @@
   .btn.ghost{border-color:var(--line);}
   .btn.ghost:hover{background:var(--panel-2);color:var(--parchment);border-color:var(--steel);}
 
-  /* ---------- STATS LINE ---------- */
-  .stats-line-section{padding:34px 8vw;border-bottom:1px solid var(--line);}
-  .stats-line{
-    display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;gap:14px;
-    font-size:0.9rem;color:var(--parchment-dim);text-align:center;
+  /* ---------- BANDEAU STATS DU HERO ---------- */
+  .hero-stats{
+    position:relative;z-index:3;
+    display:flex;align-items:center;justify-content:center;gap:76px;
+    padding:16px 8vw 20px;
+    background:rgba(11,12,10,0.32);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    border-top:1px solid rgba(255,255,255,0.16);
   }
-  .stats-line .role-tag{font-weight:600;color:var(--parchment);text-transform:uppercase;letter-spacing:0.06em;font-size:0.8rem;}
-  .stats-line strong{font-family:var(--mono);color:var(--parchment);}
-  .stats-line .sep{color:var(--steel);}
+  .hero-stats-role{
+    font-family:var(--display);font-weight:700;text-transform:uppercase;
+    letter-spacing:0.09em;color:#fff;font-size:clamp(0.86rem,1.18vw,1.1rem);
+    line-height:1.25;
+    padding-right:52px;border-right:1px solid rgba(255,255,255,0.2);
+    white-space:nowrap;
+    opacity:0;transform:translateY(14px);animation:catPop .7s ease forwards .55s;
+  }
+  .hero-stats-grid{display:flex;justify-content:center;gap:clamp(38px,8.6vw,168px);}
+  .hstat{
+    display:flex;flex-direction:column;gap:5px;
+    opacity:0;transform:translateY(14px);animation:catPop .7s ease forwards;
+  }
+  .hstat:nth-child(1){animation-delay:.7s;}
+  .hstat:nth-child(2){animation-delay:.82s;}
+  .hstat:nth-child(3){animation-delay:.94s;}
+  .hstat:nth-child(4){animation-delay:1.06s;}
+  .hstat:nth-child(5){animation-delay:1.18s;}
+  .hstat-num{
+    font-family:var(--display);font-weight:700;line-height:1;
+    font-size:clamp(1.35rem,2.35vw,2rem);color:#fff;
+  }
+  .hstat-label{
+    font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;
+    color:rgba(255,255,255,0.6);font-weight:500;
+  }
+  @media(max-width:860px){
+    .hero-stats{flex-direction:column;align-items:flex-start;gap:16px;padding:18px 6vw 22px;}
+    .hero-stats-role{border-right:none;padding-right:0;}
+    .hero-stats-grid{flex-wrap:wrap;gap:16px 30px;justify-content:flex-start;}
+    .hstat-num{font-size:1.35rem;}
+  }
 
-  /* ---------- QUICK REEL (3 vidéos) ---------- */
+  /* ---------- FILMOGRAPHIE ---------- */
   #projets-reel{padding-top:70px;}
-  .reel-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
-  @media(max-width:860px){.reel-grid-3{grid-template-columns:1fr;}}
-  .reel-item{
-    position:relative;aspect-ratio:4/5;display:block;background:var(--panel);overflow:hidden;
+  .filmo-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+    background:var(--line);border:1px solid var(--line);
   }
-  .reel-item img{
-    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-    filter:grayscale(100%) contrast(1.05);
-    transition:transform .6s ease, filter .4s ease;
+  @media(max-width:1024px){.filmo-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:680px){.filmo-grid{grid-template-columns:1fr;}}
+  .filmo-card{
+    position:relative;display:block;overflow:hidden;
+    background:var(--panel);aspect-ratio:16/10;
   }
-  .reel-item:hover img{transform:scale(1.04);filter:grayscale(40%) contrast(1.05);}
-  .reel-item::after{
+  .filmo-thumb{
+    position:absolute;inset:0;
+    background-size:cover;background-position:center;
+  }
+  .filmo-thumb.print{background:linear-gradient(135deg,#221a14,#0f100c);}
+  .filmo-thumb.court{background:linear-gradient(135deg,#1b2416,#0b0c0a);}
+  .court-mark{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-62%);
+    color:rgba(241,239,230,0.26);
+  }
+  .filmo-thumb::after{
     content:"";position:absolute;inset:0;
-    background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(0,0,0,0.82) 100%);
+    background:rgba(0,0,0,0.22);transition:background .35s ease;
   }
-  .reel-overlay{position:absolute;left:0;right:0;bottom:0;padding:26px;z-index:2;}
-  .reel-stat{
-    font-family:var(--mono);font-size:0.7rem;color:#fff;opacity:0.85;letter-spacing:0.03em;
-    display:block;margin-bottom:8px;
+  .filmo-card:hover .filmo-thumb::after{background:rgba(0,0,0,0);}
+  .filmo-thumb .tag{
+    position:absolute;top:14px;left:14px;z-index:2;
+    font-family:var(--mono);font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;
+    color:var(--parchment);background:rgba(11,12,10,0.72);border:1px solid var(--line);
+    padding:4px 10px;
   }
-  .reel-overlay h3{color:#fff;font-size:1.1rem;font-weight:600;text-transform:none;letter-spacing:0;line-height:1.25;}
+  /* bandeau verre dépoli posé sur le bas de l'image */
+  .filmo-info{
+    position:absolute;left:0;right:0;bottom:0;z-index:2;
+    padding:9px 16px 11px;
+    background:rgba(11,12,10,0.42);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    border-top:1px solid rgba(255,255,255,0.14);
+  }
+  .filmo-stat{
+    font-family:var(--mono);font-size:0.8rem;letter-spacing:0.06em;text-transform:uppercase;
+    color:var(--gold);font-weight:500;
+  }
+  .filmo-info h3{
+    font-size:0.98rem;margin-top:4px;line-height:1.3;color:#fff;
+    min-height:2.6em; /* réserve 2 lignes : tous les bandeaux ont la même hauteur */
+    transition:color .25s ease;
+  }
+  .filmo-card:hover .filmo-info h3{color:var(--gold);}
+  /* cartes orphelines en fin de rangée : elles remplissent la largeur restante */
+  .filmo-card:nth-child(3n+1):last-child{grid-column:1/-1;aspect-ratio:auto;min-height:230px;}
+  .filmo-card:nth-child(3n+2):last-child{grid-column:span 2;aspect-ratio:auto;min-height:230px;}
+  @media(max-width:680px){
+    .filmo-card:nth-child(3n+1):last-child,
+    .filmo-card:nth-child(3n+2):last-child{grid-column:auto;aspect-ratio:16/10;min-height:0;}
+  }
+  /* dépliant : le reste de la filmographie */
+  .filmo-more{
+    display:grid;grid-template-rows:0fr;
+    transition:grid-template-rows .65s cubic-bezier(.4,0,.2,1);
+  }
+  .filmo-more-inner{min-height:0;overflow:hidden;}
+  .filmo-more .filmo-grid{margin-top:-1px;}
+  .filmo-more .filmo-card{
+    opacity:0;transform:translateY(22px);
+    transition:opacity .5s ease, transform .5s ease;
+  }
+  .filmo-more.open{grid-template-rows:1fr;}
+  .filmo-more.open .filmo-card{opacity:1;transform:none;}
+  .filmo-toggle{
+    position:relative;z-index:5;
+    margin:-26px auto 0;width:fit-content;
+    display:flex;align-items:center;justify-content:center;gap:12px;
+    padding:15px 30px;
+    background:rgba(20,21,16,0.72);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.18);color:var(--parchment);
+    font-family:var(--mono);font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;
+    cursor:pointer;
+    box-shadow:0 12px 34px rgba(0,0,0,0.5);
+    transition:border-color .25s ease, color .25s ease, transform .25s ease, box-shadow .25s ease;
+  }
+  .filmo-toggle:hover{
+    border-color:var(--gold);color:var(--gold);
+    transform:translateY(-2px);
+    box-shadow:0 18px 44px rgba(0,0,0,0.6);
+  }
+  .tgl-icon{font-size:1.15rem;line-height:1;display:inline-block;transition:transform .4s ease;}
+  .filmo-toggle.open .tgl-icon{transform:rotate(45deg);}
+
+  /* ---------- LECTEUR YOUTUBE INTÉGRÉ ---------- */
+  .player-modal{
+    position:fixed;inset:0;z-index:900;
+    display:flex;align-items:center;justify-content:center;
+    opacity:0;pointer-events:none;
+    transition:opacity .3s ease;
+  }
+  .player-modal.open{opacity:1;pointer-events:auto;}
+  .player-backdrop{
+    position:absolute;inset:0;
+    background:rgba(0,0,0,0.85);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+  }
+  .player-box{position:relative;z-index:1;width:min(1100px,92vw);}
+  .player-frame{aspect-ratio:16/9;background:#000;border:1px solid var(--line);}
+  .player-frame iframe{width:100%;height:100%;border:0;display:block;}
+  .player-close{
+    position:absolute;top:-44px;right:0;
+    background:none;border:none;color:#fff;
+    font-size:1.5rem;line-height:1;cursor:pointer;
+    transition:color .2s ease;
+  }
+  .player-close:hover{color:var(--gold);}
+  .player-yt{
+    display:inline-block;margin-top:12px;
+    font-family:var(--mono);font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--parchment-dim);border-bottom:1px solid var(--line);padding-bottom:2px;
+    transition:color .2s ease, border-color .2s ease;
+  }
+  .player-yt:hover{color:var(--gold);border-color:var(--gold);}
 
   /* ---------- SECTION HEADS ---------- */
   .section-head{margin-bottom:56px;}
@@ -178,18 +346,28 @@
 
   /* ---------- PROFIL ---------- */
   .profil-grid{
-    display:grid;grid-template-columns:1.5fr 1fr;gap:70px;
+    display:grid;grid-template-columns:1fr 1.75fr;gap:1px;
+    background:var(--line);border:1px solid var(--line);
   }
-  @media(max-width:860px){.profil-grid{grid-template-columns:1fr;gap:40px;}}
-  .profil-text p{color:var(--parchment-dim);font-size:1.05rem;margin-bottom:18px;max-width:60ch;}
-  .facts{border-left:1px solid var(--line);padding-left:28px;}
-  .fact-row{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line);font-size:0.92rem;}
-  .fact-row .k{color:var(--steel);font-family:var(--mono);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;}
+  @media(max-width:860px){.profil-grid{grid-template-columns:1fr;}}
+  .facts{background:var(--panel);padding:52px 44px;}
+  .fact-row{display:flex;justify-content:space-between;gap:14px;padding:15px 0;border-bottom:1px solid var(--line);font-size:0.98rem;}
+  .fact-row .k{color:var(--steel);font-family:var(--mono);font-size:0.8rem;font-weight:500;text-transform:uppercase;letter-spacing:0.04em;}
   .chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px;}
   .chip{
-    font-family:var(--mono);font-size:0.72rem;letter-spacing:0.03em;
+    font-family:var(--mono);font-size:0.76rem;letter-spacing:0.02em;
     padding:7px 13px;border:1px solid var(--line);color:var(--parchment-dim);
   }
+  /* liens réseaux */
+  .socials{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;}
+  .social{
+    display:inline-flex;align-items:center;gap:9px;
+    padding:10px 15px;border:1px solid var(--line);background:var(--panel-2);
+    font-family:var(--mono);font-size:0.82rem;font-weight:500;color:var(--parchment-dim);
+    transition:border-color .2s ease, color .2s ease, background .2s ease;
+  }
+  .social:hover{border-color:var(--gold);color:var(--gold);background:var(--panel);}
+  .social svg{width:17px;height:17px;flex:none;}
 
   /* ---------- EXPERIENCE TIMELINE ---------- */
   .timeline-ruler{
@@ -202,16 +380,40 @@
   }
   .ruler-seg.active{color:var(--gold);}
 
+  .jobs-list{
+    display:grid;gap:1px;background:var(--line);border:1px solid var(--line);
+    margin-bottom:70px;
+  }
   .job-card{
     display:grid;grid-template-columns:110px 1fr;gap:36px;
-    padding:40px 0;border-bottom:1px solid var(--line);
+    padding:40px 36px;background:var(--panel);
     opacity:0;transform:translateY(24px);transition:opacity .6s ease, transform .6s ease;
   }
   .job-card.visible{opacity:1;transform:translateY(0);}
-  @media(max-width:720px){.job-card{grid-template-columns:1fr;gap:14px;}}
+  @media(max-width:720px){.job-card{grid-template-columns:1fr;gap:14px;padding:32px 24px;}}
   .job-slate{
     font-family:var(--mono);color:var(--gold);font-size:0.85rem;
   }
+  .job-logo{
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+    width:48px;height:48px;margin-bottom:14px;
+    border:1px solid var(--line);background:var(--panel-2);
+    font-family:var(--display);font-weight:700;font-size:0.95rem;color:var(--gold);
+  }
+  .job-logo img{width:100%;height:100%;object-fit:cover;}
+  /* carte Hugoposé : mosaïque de miniatures en fond */
+  .job-card.hugopose::before{
+    content:"";position:absolute;inset:0;opacity:0.07;pointer-events:none;
+    background-image:
+      url('https://img.youtube.com/vi/C8ysBeg72Jg/hqdefault.jpg'),
+      url('https://img.youtube.com/vi/hn2mCUPy4jg/hqdefault.jpg'),
+      url('https://img.youtube.com/vi/7xYBHMMJDEc/hqdefault.jpg'),
+      url('https://img.youtube.com/vi/iPvdpnAYSxE/hqdefault.jpg');
+    background-size:50% 50%;
+    background-position:0 0,100% 0,0 100%,100% 100%;
+    background-repeat:no-repeat;
+  }
+  .job-card.hugopose > *{position:relative;z-index:1;}
   .job-slate .n{font-size:1.6rem;font-weight:700;display:block;color:var(--parchment);}
   .job-body h3{font-size:1.3rem;margin-bottom:4px;}
   .job-meta{
@@ -227,81 +429,85 @@
     color:var(--tally);border:1px solid var(--tally);padding:5px 11px;
   }
 
-  /* ---------- CHIFFRES CLES ---------- */
-  .stats-grid{
+  /* ---------- BOBINE ETUDIANTE ---------- */
+  .reel-grid{
     display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
     background:var(--line);border:1px solid var(--line);
   }
-  @media(max-width:860px){.stats-grid{grid-template-columns:repeat(2,1fr);}}
-  .stat-cell{
-    background:var(--void);padding:44px 26px;text-align:center;
-  }
-  .stat-num{
-    font-family:var(--mono);font-weight:700;font-size:clamp(2rem,4vw,2.8rem);color:var(--gold);
-  }
-  .stat-label{
-    font-size:0.78rem;color:var(--parchment-dim);margin-top:10px;letter-spacing:0.02em;
-  }
-
-  /* ---------- PROJETS VIDEO ---------- */
-  .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border:1px solid var(--line);}
-  @media(max-width:960px){.proj-grid{grid-template-columns:repeat(2,1fr);}}
-  @media(max-width:640px){.proj-grid{grid-template-columns:1fr;}}
-  @media(max-width:640px){ #projets .proj-card[style*="220px"]{grid-template-columns:1fr !important;} }
-  .proj-card{background:var(--panel);padding:0;display:flex;flex-direction:column;}
-  .proj-thumb{
-    aspect-ratio:16/9;position:relative;
-    background:linear-gradient(135deg,#efeeeb,#e2e0db);
-    display:flex;align-items:center;justify-content:center;
-    border-bottom:1px solid var(--line);
-  }
-  .proj-thumb.print{background:linear-gradient(135deg,#efe6e4,#e2e0db);}
-  .play-icon{
-    width:52px;height:52px;border-radius:50%;border:1px solid var(--gold-dim);
-    display:flex;align-items:center;justify-content:center;
-    transition:all .25s;
-  }
-  .proj-card:hover .play-icon{background:var(--gold);border-color:var(--gold);}
-  .play-icon svg{fill:var(--gold);transition:fill .25s;}
-  .proj-card:hover .play-icon svg{fill:var(--void);}
-  .proj-thumb .tag{
-    position:absolute;top:12px;left:12px;font-family:var(--mono);font-size:0.65rem;
-    color:var(--steel);letter-spacing:0.05em;text-transform:uppercase;
-    border:1px solid var(--line);padding:3px 9px;background:rgba(10,10,11,0.6);
-  }
-  .proj-info{padding:24px;flex:1;display:flex;flex-direction:column;}
-  .proj-info h3{font-size:1.05rem;margin-bottom:6px;}
-  .proj-role{font-family:var(--mono);font-size:0.72rem;color:var(--gold-dim);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:12px;}
-  .proj-info p{color:var(--parchment-dim);font-size:0.9rem;flex:1;margin-bottom:14px;}
-  .proj-link{font-family:var(--mono);font-size:0.72rem;color:var(--gold);letter-spacing:0.04em;border-bottom:1px solid var(--gold-dim);padding-bottom:2px;width:fit-content;}
-
-  /* ---------- BOBINE ETUDIANTE ---------- */
-  .reel-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
   @media(max-width:860px){.reel-grid{grid-template-columns:repeat(2,1fr);}}
-  .reel-phase{border-top:2px solid var(--gold-dim);padding-top:16px;}
+  .reel-phase{background:var(--panel);padding:28px 24px;border-top:2px solid var(--gold-dim);}
   .reel-phase h4{font-family:var(--mono);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--gold);margin-bottom:14px;}
   .reel-phase ul{list-style:none;font-size:0.86rem;color:var(--parchment-dim);}
   .reel-phase ul li{margin-bottom:8px;position:relative;padding-left:14px;}
   .reel-phase ul li::before{content:"·";position:absolute;left:0;color:var(--steel);}
   .reel-note{margin-top:40px;color:var(--parchment-dim);font-size:0.92rem;max-width:70ch;border-left:1px solid var(--line);padding-left:20px;}
 
-  /* ---------- COMPETENCES ---------- */
-  .skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;}
-  @media(max-width:860px){.skills-grid{grid-template-columns:1fr;gap:40px;}}
-  .meter-row{margin-bottom:22px;}
-  .meter-label{display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:8px;}
-  .meter-label span:last-child{font-family:var(--mono);color:var(--steel);font-size:0.75rem;}
-  .meter-track{height:5px;background:var(--panel-2);position:relative;overflow:hidden;}
-  .meter-fill{height:100%;background:linear-gradient(90deg,var(--gold-dim),var(--gold));width:0%;transition:width 1.2s ease;}
+  /* ---------- LOGICIELS & LANGUES (carte profil) ---------- */
+  .skills-col{background:var(--panel);padding:52px 44px;}
+  .soft-block + .soft-block{margin-top:30px;}
+  .soft-head{
+    font-family:var(--mono);font-size:0.86rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:16px;
+  }
+  .soft-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  @media(max-width:520px){.soft-grid{grid-template-columns:1fr;}}
+  .soft-item{
+    display:flex;align-items:center;gap:13px;
+    border:1px solid var(--line);background:var(--panel-2);
+    padding:11px 14px;
+  }
+  .soft-icon{
+    width:44px;height:44px;flex:none;
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+    font-family:var(--display);font-weight:700;font-size:1rem;
+    border-radius:11px; /* coins arrondis façon icône macOS */
+  }
+  .soft-icon svg{display:block;}
+  /* Adobe — carré sombre, monogramme coloré, fin liseré */
+  .ic-ai{background:#310e08;color:#ff9a00;border:1px solid #ff9a00;}
+  .ic-ps{background:#001e36;color:#31a8ff;border:1px solid #31a8ff;}
+  .ic-id{background:#49021f;color:#fb2e66;border:1px solid #fb2e66;}
+  .ic-pr{background:#2a0733;color:#ea77ff;border:1px solid #ea77ff;}
+  .ic-au{background:#00303b;color:#00e5c3;border:1px solid #00e5c3;}
+  .ic-ae{background:#00005b;color:#9a9bff;border:1px solid #9a9bff;}
+  /* marques */
+  .ic-office{background:#fff;}
+  .ic-notion{background:#fff;color:#0f0f0f;}
+  .ic-ableton{background:#1c1d17;color:#f1efe6;border:1px solid var(--line);}
+  .ic-wp{background:#21759b;color:#fff;}
+  .ic-flag{background:#0f100c;border:1px solid var(--line);padding:0;}
+  .soft-txt b{display:block;font-size:0.98rem;font-weight:600;}
+  .soft-txt small{
+    color:var(--parchment-dim);font-size:0.78rem;font-family:var(--mono);font-weight:500;
+    letter-spacing:0.02em;text-transform:uppercase;
+  }
   .soft-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;}
+  /* carte savoir-être (section Compétences) */
+  .savoir-card{background:var(--panel);border:1px solid var(--line);padding:44px;}
+  .savoir-card p{color:var(--parchment-dim);font-size:1rem;max-width:72ch;margin-bottom:26px;}
 
   /* ---------- FORMATION ---------- */
-  .edu-list{border-top:1px solid var(--line);}
-  .edu-row{
-    display:grid;grid-template-columns:140px 1fr;gap:24px;
-    padding:22px 0;border-bottom:1px solid var(--line);
+  .edu-list{
+    display:grid;gap:1px;background:var(--line);border:1px solid var(--line);
   }
-  @media(max-width:640px){.edu-row{grid-template-columns:1fr;gap:6px;}}
+  .edu-row{
+    display:grid;grid-template-columns:52px 120px 1fr;gap:24px;align-items:center;
+    padding:26px 32px;background:var(--panel);
+  }
+  .edu-logo{
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+    width:48px;height:48px;
+    border-radius:9px;background:var(--panel-2);
+    font-family:var(--display);font-weight:700;font-size:0.82rem;color:var(--gold);
+  }
+  .edu-logo img{width:100%;height:100%;object-fit:contain;}
+  .edu-logo.logo-light{background:#fff;padding:5px;}          /* 3iS : logo noir sur blanc */
+  .edu-logo.logo-nantes{background:#101010;}
+  .edu-logo.logo-nantes img{filter:brightness(0) invert(1);padding:7px;} /* marque en blanc */
+  @media(max-width:640px){
+    .edu-row{grid-template-columns:52px 1fr;gap:4px 14px;align-items:start;}
+    .edu-logo{grid-row:1 / span 2;}
+  }
   .edu-row .yr{font-family:var(--mono);color:var(--gold-dim);font-size:0.85rem;}
   .edu-row h4{font-size:1rem;font-weight:600;text-transform:none;font-family:var(--body);}
   .edu-row p{color:var(--steel);font-size:0.85rem;margin-top:3px;}
@@ -320,6 +526,8 @@
   @media (prefers-reduced-motion: reduce){
     *{animation:none !important;transition:none !important;}
     html{scroll-behavior:auto;}
+    .cat-title,.cat-link small,.hstat,.hero-stats-role{opacity:1;transform:none;}
+    .job-card{opacity:1;transform:none;}
   }
 </style>
 </head>
@@ -330,7 +538,7 @@
   <nav class="desktop-nav">
     <a href="#projets-reel">Production</a>
     <a href="#experience">Parcours</a>
-    <a href="#competences">Compétences</a>
+    <a href="#profil">Compétences</a>
     <a href="#contact">Contact</a>
   </nav>
   <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu">☰</button>
@@ -340,7 +548,7 @@
   <button class="close-btn" id="navClose" aria-label="Fermer le menu">✕</button>
   <a href="#projets-reel">Production</a>
   <a href="#experience">Parcours</a>
-  <a href="#competences">Compétences</a>
+  <a href="#profil">Compétences</a>
   <a href="#contact">Contact</a>
 </div>
 
@@ -352,82 +560,404 @@
   <div class="hero-tint" id="heroTint"></div>
   <div class="hero-categories" id="heroCategories">
     <div class="cat-links">
-      <a href="#projets-reel" class="cat-link">Production<small>Sur le plateau</small></a>
-      <a href="#experience" class="cat-link">Parcours<small>Expérience &amp; formation</small></a>
-      <a href="#competences" class="cat-link">Compétences<small>Logiciels &amp; langues</small></a>
+      <a href="#projets-reel" class="cat-link"><span class="cat-title">Production</span><small>Tournages &amp; vidéos</small></a>
+      <a href="#experience" class="cat-link"><span class="cat-title">Parcours</span><small>Expérience &amp; formation</small></a>
+      <a href="#profil" class="cat-link"><span class="cat-title">Compétences</span><small>Logiciels &amp; langues</small></a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stats-role">Chargé de<br>Production</div>
+      <div class="hero-stats-grid">
+        <div class="hstat"><span class="hstat-num">5M+</span><span class="hstat-label">Abonnés</span></div>
+        <div class="hstat"><span class="hstat-num">4,5M</span><span class="hstat-label">Vues / mois</span></div>
+        <div class="hstat"><span class="hstat-num">40M+</span><span class="hstat-label">Vues cumulées / an</span></div>
+        <div class="hstat"><span class="hstat-num">30+</span><span class="hstat-label">Productions</span></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ================= STATS LIGNE ================= -->
-<section class="stats-line-section" id="stats">
-  <div class="stats-line">
-    <span class="role-tag">Chargé de Production</span>
-    <span class="sep">·</span>
-    <span><strong>5M+</strong> abonnés</span>
-    <span class="sep">·</span>
-    <span><strong>1,5M</strong> vues / mois</span>
-    <span class="sep">·</span>
-    <span><strong>40M+</strong> vues cumulées / an</span>
-    <span class="sep">·</span>
-    <span><strong>30+</strong> tournages</span>
-  </div>
-</section>
-
-<!-- ================= QUICK REEL : 3 VIDEOS ================= -->
+<!-- ================= FILMOGRAPHIE ================= -->
 <section id="projets-reel">
   <div class="container">
     <div class="section-head">
       <div class="eyebrow">Production</div>
-      <h2>Sur le plateau</h2>
+      <h2>Filmographie</h2>
     </div>
-    <div class="reel-grid-3">
-      <a class="reel-item" href="https://www.youtube.com/watch?v=C8ysBeg72Jg" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/C8ysBeg72Jg/hqdefault.jpg" alt="J'ai Arnaqué 10 Arnaqueurs À Paris !">
-        <div class="reel-overlay">
-          <span class="reel-stat">5,2M vues · 8 mois</span>
+    <div class="filmo-grid">
+
+      <a class="filmo-card" data-video="C8ysBeg72Jg" href="https://www.youtube.com/watch?v=C8ysBeg72Jg" target="_blank" rel="noopener">
+        <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/C8ysBeg72Jg/maxresdefault.jpg'),url('https://img.youtube.com/vi/C8ysBeg72Jg/hqdefault.jpg');">
+          <span class="tag">Format long</span>
+        </div>
+        <div class="filmo-info">
+          <span class="filmo-stat">5,2M vues · oct. 2025</span>
           <h3>J'ai Arnaqué 10 Arnaqueurs À Paris !</h3>
         </div>
       </a>
-      <a class="reel-item" href="https://www.youtube.com/watch?v=7xYBHMMJDEc" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/7xYBHMMJDEc/hqdefault.jpg" alt="J'ai Testé 30 Lifehacks TikTok !">
-        <div class="reel-overlay">
-          <span class="reel-stat">1,8M vues · 1 mois</span>
-          <h3>J'ai Testé 30 Lifehacks TikTok !</h3>
+
+      <a class="filmo-card" data-video="55kOOcee43w" href="https://www.youtube.com/watch?v=55kOOcee43w" target="_blank" rel="noopener">
+        <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/55kOOcee43w/maxresdefault.jpg'),url('https://img.youtube.com/vi/55kOOcee43w/hqdefault.jpg');">
+          <span class="tag">Format long</span>
+        </div>
+        <div class="filmo-info">
+          <span class="filmo-stat">3,7M vues · mai 2025</span>
+          <h3>24h Sur La Croisière Notée 1 Étoile ! ★☆☆☆☆</h3>
         </div>
       </a>
-      <a class="reel-item" href="https://www.youtube.com/watch?v=hn2mCUPy4jg" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/hn2mCUPy4jg/hqdefault.jpg" alt="J'ai Testé 10 Promesses De Publicités !">
-        <div class="reel-overlay">
-          <span class="reel-stat">2,5M vues · 6 mois</span>
-          <h3>J'ai Testé 10 Promesses De Publicités !</h3>
+
+      <a class="filmo-card" data-video="kXjO96DAY_0" href="https://www.youtube.com/watch?v=kXjO96DAY_0" target="_blank" rel="noopener">
+        <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/kXjO96DAY_0/maxresdefault.jpg'),url('https://img.youtube.com/vi/kXjO96DAY_0/hqdefault.jpg');">
+          <span class="tag">Publicité</span>
+        </div>
+        <div class="filmo-info">
+          <span class="filmo-stat">Assistant · avr. 2024</span>
+          <h3>Renault 5 E-Tech Électrique</h3>
         </div>
       </a>
+
+      <a class="filmo-card" data-video="iPvdpnAYSxE" href="https://www.youtube.com/watch?v=iPvdpnAYSxE" target="_blank" rel="noopener">
+        <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/iPvdpnAYSxE/maxresdefault.jpg'),url('https://img.youtube.com/vi/iPvdpnAYSxE/hqdefault.jpg');">
+          <span class="tag">Format long</span>
+        </div>
+        <div class="filmo-info">
+          <span class="filmo-stat">641K vues · avr. 2026</span>
+          <h3>4 Acteurs VS 1 Vrai Millionnaire (ft FastGoodCuisine, Tsuku &amp; Cédric)</h3>
+        </div>
+      </a>
+
+      <a class="filmo-card" data-video="VbiA6pM82s4" href="https://www.youtube.com/watch?v=VbiA6pM82s4" target="_blank" rel="noopener">
+        <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/VbiA6pM82s4/maxresdefault.jpg'),url('https://img.youtube.com/vi/VbiA6pM82s4/hqdefault.jpg');">
+          <span class="tag">Format long</span>
+        </div>
+        <div class="filmo-info">
+          <span class="filmo-stat">2,2M vues · mai 2025</span>
+          <h3>ESSAYEZ DE NE PAS TOMBER (ft Flamby, FastGoodCuisine, Zack Nani, Tsuku &amp; Joel)</h3>
+        </div>
+      </a>
+
+      <a class="filmo-card" data-video="UuckQ2IZ8-E" href="https://www.youtube.com/watch?v=UuckQ2IZ8-E" target="_blank" rel="noopener">
+        <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/UuckQ2IZ8-E/maxresdefault.jpg'),url('https://img.youtube.com/vi/UuckQ2IZ8-E/hqdefault.jpg');">
+          <span class="tag">Format long</span>
+        </div>
+        <div class="filmo-info">
+          <span class="filmo-stat">584K vues · juin 2026</span>
+          <h3>DEVINE SINON T'ACHÈTES ! (ft FastGoodCuisine)</h3>
+        </div>
+      </a>
+
     </div>
+
+    <div class="filmo-more" id="filmoMore">
+      <div class="filmo-more-inner">
+        <div class="filmo-grid">
+
+          <a class="filmo-card" data-video="5fuWNmj5Kjs" href="https://www.youtube.com/watch?v=5fuWNmj5Kjs" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/5fuWNmj5Kjs/maxresdefault.jpg'),url('https://img.youtube.com/vi/5fuWNmj5Kjs/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">3,6M vues · févr. 2025</span>
+              <h3>J'ai Testé 10 Lieux Avec 0 Avis</h3>
+            </div>
+          </a>
+
+          <a class="filmo-card" data-video="Dx_YBpTiLX8" href="https://www.youtube.com/watch?v=Dx_YBpTiLX8" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/Dx_YBpTiLX8/maxresdefault.jpg'),url('https://img.youtube.com/vi/Dx_YBpTiLX8/hqdefault.jpg');">
+              <span class="tag">Court métrage</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">Second assistant réal · nov. 2025</span>
+              <h3>L'Autruche</h3>
+            </div>
+          </a>
+
+          <a class="filmo-card" data-video="bbkUNF4_OgE" href="https://www.youtube.com/watch?v=bbkUNF4_OgE" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/bbkUNF4_OgE/maxresdefault.jpg'),url('https://img.youtube.com/vi/bbkUNF4_OgE/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">3M vues · mars 2025</span>
+              <h3>J'ai Acheté 30 Objets Bannis ! (ILLÉGAL)</h3>
+            </div>
+          </a>
+
+          <a class="filmo-card" data-video="Ukf--XAd2-M" href="https://www.youtube.com/watch?v=Ukf--XAd2-M" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/Ukf--XAd2-M/maxresdefault.jpg'),url('https://img.youtube.com/vi/Ukf--XAd2-M/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">2,9M vues · déc. 2024</span>
+              <h3>QUI RAMÈNERA L'OBJET LE PLUS CHER ? (ft Nico, Flamby &amp; FastGoodCuisine)</h3>
+            </div>
+          </a>
+
+          <a class="filmo-card" data-video="midGUczRbvw" href="https://www.youtube.com/watch?v=midGUczRbvw" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/midGUczRbvw/maxresdefault.jpg'),url('https://img.youtube.com/vi/midGUczRbvw/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">2,8M vues · avr. 2025</span>
+              <h3>J'ai Testé 25 Astuces De Rat !</h3>
+            </div>
+          </a>
+
+          <a class="filmo-card" data-video="Tf5B1BYsdhw" href="https://www.youtube.com/watch?v=Tf5B1BYsdhw" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/Tf5B1BYsdhw/maxresdefault.jpg'),url('https://img.youtube.com/vi/Tf5B1BYsdhw/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">2,6M vues · janv. 2025</span>
+              <h3>J'ai Acheté 40 Pubs TikTok ! (ARNAQUE OU PAS ?)</h3>
+            </div>
+          </a>
+
+          <a class="filmo-card" data-video="0jKBCpaKfzk" href="https://www.youtube.com/watch?v=0jKBCpaKfzk" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/0jKBCpaKfzk/maxresdefault.jpg'),url('https://img.youtube.com/vi/0jKBCpaKfzk/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">2,6M vues · août 2025</span>
+              <h3>24h Avec Des Transports Notés 1 Étoile ★☆☆☆☆</h3>
+            </div>
+          </a>
+
+          <a class="filmo-card" data-video="1GHVXnZpZ2U" href="https://www.youtube.com/watch?v=1GHVXnZpZ2U" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/1GHVXnZpZ2U/maxresdefault.jpg'),url('https://img.youtube.com/vi/1GHVXnZpZ2U/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">1,4M vues · juin 2026</span>
+              <h3>J'ai Enquêté Sur 30 Objets Générés Par IA !</h3>
+            </div>
+          </a>
+
+          <a class="filmo-card" data-video="hn2mCUPy4jg" href="https://www.youtube.com/watch?v=hn2mCUPy4jg" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/hn2mCUPy4jg/maxresdefault.jpg'),url('https://img.youtube.com/vi/hn2mCUPy4jg/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">2,4M vues · déc. 2025</span>
+              <h3>J'ai Testé 10 Promesses De Publicités !</h3>
+            </div>
+          </a>
+
+          <a class="filmo-card" data-video="wXl8qlIrwEI" href="https://www.youtube.com/watch?v=wXl8qlIrwEI" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/wXl8qlIrwEI/maxresdefault.jpg'),url('https://img.youtube.com/vi/wXl8qlIrwEI/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">2,4M vues · janv. 2025</span>
+              <h3>VRAI OU PAS ? (J'ai Testé 40 Lifehacks TikTok !)</h3>
+            </div>
+          </a>
+
+          <a class="filmo-card" data-video="CSU471M_GNE" href="https://www.youtube.com/watch?v=CSU471M_GNE" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/CSU471M_GNE/maxresdefault.jpg'),url('https://img.youtube.com/vi/CSU471M_GNE/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">1,4M vues · févr. 2026</span>
+              <h3>J'ai Testé 15 Astuces Illégales Pour Gagner De l'Argent !</h3>
+            </div>
+          </a>
+
+          <a class="filmo-card" data-video="oDYJLvC_C0c" href="https://www.youtube.com/watch?v=oDYJLvC_C0c" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/oDYJLvC_C0c/maxresdefault.jpg'),url('https://img.youtube.com/vi/oDYJLvC_C0c/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">3,5M vues · juin 2025</span>
+              <h3>Billet D'Avion Le Moins Cher VS Le Plus Cher !</h3>
+            </div>
+          </a>
+
+          <a class="filmo-card" data-video="ge5zXFjYsws" href="https://www.youtube.com/watch?v=ge5zXFjYsws" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/ge5zXFjYsws/maxresdefault.jpg'),url('https://img.youtube.com/vi/ge5zXFjYsws/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">2,3M vues · oct. 2024</span>
+              <h3>TIKTOK M'A FAIT ACHETER ÇA ! (40 Arnaques Ou Pas ?)</h3>
+            </div>
+          </a>
+
+          <a class="filmo-card" data-video="KKqa5tO4Ss8" href="https://www.youtube.com/watch?v=KKqa5tO4Ss8" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/KKqa5tO4Ss8/maxresdefault.jpg'),url('https://img.youtube.com/vi/KKqa5tO4Ss8/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">2,2M vues · sept. 2025</span>
+              <h3>J'ai Testé 20 Astuces De Rat ! (GRATUIT OU PAS ?)</h3>
+            </div>
+          </a>
+
+          <a class="filmo-card" data-video="M3GUup5V1Zw" href="https://www.youtube.com/watch?v=M3GUup5V1Zw" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/M3GUup5V1Zw/maxresdefault.jpg'),url('https://img.youtube.com/vi/M3GUup5V1Zw/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">2M vues · mars 2026</span>
+              <h3>J'ai Arnaqué Un Serrurier "Arnaqueur"</h3>
+            </div>
+          </a>
+
+          <a class="filmo-card" data-video="fTDf6WoIvqI" href="https://www.youtube.com/watch?v=fTDf6WoIvqI" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/fTDf6WoIvqI/maxresdefault.jpg'),url('https://img.youtube.com/vi/fTDf6WoIvqI/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">2M vues · nov. 2025</span>
+              <h3>J'ai Testé 30 Lifehacks TikTok ! (VRAI OU PAS ?)</h3>
+            </div>
+          </a>
+
+          <a class="filmo-card" data-video="a43RYL_dYKo" href="https://www.youtube.com/watch?v=a43RYL_dYKo" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/a43RYL_dYKo/maxresdefault.jpg'),url('https://img.youtube.com/vi/a43RYL_dYKo/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">1,9M vues · nov. 2025</span>
+              <h3>J'ai Acheté 25 Objets Bannis ! (ILLÉGAL)</h3>
+            </div>
+          </a>
+
+          <a class="filmo-card" data-video="7xYBHMMJDEc" href="https://www.youtube.com/watch?v=7xYBHMMJDEc" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/7xYBHMMJDEc/maxresdefault.jpg'),url('https://img.youtube.com/vi/7xYBHMMJDEc/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">1,8M vues · mai 2026</span>
+              <h3>J'ai Testé 30 Lifehacks TikTok ! (VRAI OU PAS ?)</h3>
+            </div>
+          </a>
+
+          <a class="filmo-card" data-video="xUEBuj27GMA" href="https://www.youtube.com/watch?v=xUEBuj27GMA" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/xUEBuj27GMA/maxresdefault.jpg'),url('https://img.youtube.com/vi/xUEBuj27GMA/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">1,8M vues · janv. 2026</span>
+              <h3>J'ai Testé 10 Lieux Notés 1 Étoile ★☆☆☆☆</h3>
+            </div>
+          </a>
+
+          <a class="filmo-card" data-video="Pt7ETvLG6R0" href="https://www.youtube.com/watch?v=Pt7ETvLG6R0" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/Pt7ETvLG6R0/maxresdefault.jpg'),url('https://img.youtube.com/vi/Pt7ETvLG6R0/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">1,8M vues · oct. 2025</span>
+              <h3>J'ai Testé 10 Lieux Notés 5 Étoiles ! ★★★★★</h3>
+            </div>
+          </a>
+
+          <a class="filmo-card" data-video="6iEaCzkKjvc" href="https://www.youtube.com/watch?v=6iEaCzkKjvc" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/6iEaCzkKjvc/maxresdefault.jpg'),url('https://img.youtube.com/vi/6iEaCzkKjvc/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">1,7M vues · sept. 2025</span>
+              <h3>ARNAQUE OU PAS ? (J'ai Acheté 30 Pubs TikTok)</h3>
+            </div>
+          </a>
+
+          <a class="filmo-card" data-video="hJQdfSEXMhg" href="https://www.youtube.com/watch?v=hJQdfSEXMhg" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/hJQdfSEXMhg/maxresdefault.jpg'),url('https://img.youtube.com/vi/hJQdfSEXMhg/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">1,7M vues · avr. 2025</span>
+              <h3>Je Teste 5 Lieux Interdits ! (ILLÉGAL)</h3>
+            </div>
+          </a>
+
+          <a class="filmo-card" data-video="9tWN9X502RQ" href="https://www.youtube.com/watch?v=9tWN9X502RQ" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/9tWN9X502RQ/maxresdefault.jpg'),url('https://img.youtube.com/vi/9tWN9X502RQ/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">1,6M vues · mai 2025</span>
+              <h3>J'ai Testé 100 Ans De Jouets Pour Enfant !</h3>
+            </div>
+          </a>
+
+          <a class="filmo-card" data-video="Shf06f_3PiQ" href="https://www.youtube.com/watch?v=Shf06f_3PiQ" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/Shf06f_3PiQ/maxresdefault.jpg'),url('https://img.youtube.com/vi/Shf06f_3PiQ/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">522K vues · juil. 2026</span>
+              <h3>24h Pour Renta 10 000€ De Colis Perdus ! (feat Mentalow)</h3>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </div>
+
+    <button class="filmo-toggle" id="filmoToggle" aria-expanded="false">
+      <span class="tgl-icon">+</span><span class="tgl-label">Voir les 23 autres productions</span>
+    </button>
+
   </div>
 </section>
+
+<!-- lecteur YouTube intégré -->
+<div class="player-modal" id="playerModal" aria-hidden="true">
+  <div class="player-backdrop"></div>
+  <div class="player-box">
+    <button class="player-close" aria-label="Fermer le lecteur">✕</button>
+    <div class="player-frame">
+      <iframe id="playerIframe" src="" title="Lecteur YouTube" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <a class="player-yt" id="playerYt" href="#" target="_blank" rel="noopener">Regarder sur YouTube ↗</a>
+  </div>
+</div>
 
 <!-- ================= PROFIL ================= -->
 <section id="profil">
   <div class="container profil-grid">
-    <div class="profil-text">
-      <div class="eyebrow">Profil</div>
-      <h2 style="margin-top:14px;font-size:2rem;">Une prod qui tient la cadence YouTube</h2>
-      <p>Chargé de production spécialisé dans les formats web et YouTube à forte audience. Depuis un an et dix mois — douze mois d'alternance suivis d'un CDI — je coordonne la production de la chaîne Hugoposé : plus de 30 tournages organisés, en autonomie ou en binôme, pour des vidéos qui font entre 2 et 5 millions de vues chacune.</p>
-      <p>Mon rôle démarre avant le clap : scripts, budgets, castings, repérages. Il continue sur le plateau : feuille de route, régie, cadrage secondaire. Il ne s'arrête qu'à la diffusion. Je cherche aujourd'hui à élargir ce savoir-faire dans une nouvelle structure.</p>
-    </div>
     <div class="facts">
+      <div class="eyebrow" style="margin-bottom:30px;">Profil</div>
+      <div class="fact-row"><span class="k">Âge</span><span>26 ans</span></div>
       <div class="fact-row"><span class="k">Localisation</span><span>Paris, Île-de-France</span></div>
       <div class="fact-row"><span class="k">Permis</span><span>B</span></div>
       <div class="fact-row"><span class="k">Anglais</span><span>C1 — LanguageCert</span></div>
-      <div class="fact-row"><span class="k">Espagnol</span><span>Niveau scolaire</span></div>
-      <div class="fact-row"><span class="k">Email</span><span>brechotteau.alan@gmail.com</span></div>
-      <div class="fact-row" style="border-bottom:none;"><span class="k">LinkedIn</span><span>/in/alan-brechotteau</span></div>
-      <div class="chips">
-        <span class="chip">Rigueur</span>
-        <span class="chip">Organisation</span>
-        <span class="chip">Polyvalence</span>
-        <span class="chip">Problem solving</span>
+      <div class="fact-row"><span class="k">Espagnol</span><span>Niveau universitaire</span></div>
+      <div class="fact-row" style="border-bottom:none;"><span class="k">Email</span><span>brechotteau.alan@gmail.com</span></div>
+      <div class="socials">
+        <a class="social" href="https://www.linkedin.com/in/alan-brechotteau-9a7b71178/" target="_blank" rel="noopener" aria-label="LinkedIn d'Alan Brechotteau">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+          LinkedIn
+        </a>
+        <a class="social" href="https://www.instagram.com/alan_brechotteau/" target="_blank" rel="noopener" aria-label="Instagram d'Alan Brechotteau">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.12 1.38A5.85 5.85 0 0 0 .63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.12.66.66 1.33 1.08 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.3 1.46-.72 2.12-1.38.66-.66 1.08-1.33 1.38-2.12.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.79-.72-1.46-1.38-2.12A5.85 5.85 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.41-10.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
+          Instagram
+        </a>
+      </div>
+    </div>
+    <div class="skills-col">
+      <div class="soft-block">
+        <div class="soft-head">Logiciels</div>
+        <div class="soft-grid">
+          <div class="soft-item"><span class="soft-icon ic-ai">Ai</span><div class="soft-txt"><b>Illustrator</b><small>Intermédiaire</small></div></div>
+          <div class="soft-item"><span class="soft-icon ic-ps">Ps</span><div class="soft-txt"><b>Photoshop</b><small>Intermédiaire</small></div></div>
+          <div class="soft-item"><span class="soft-icon ic-id">Id</span><div class="soft-txt"><b>InDesign</b><small>Intermédiaire</small></div></div>
+          <div class="soft-item"><span class="soft-icon ic-pr">Pr</span><div class="soft-txt"><b>Premiere Pro</b><small>Intermédiaire</small></div></div>
+          <div class="soft-item"><span class="soft-icon ic-au">Au</span><div class="soft-txt"><b>Audition</b><small>Intermédiaire</small></div></div>
+          <div class="soft-item"><span class="soft-icon ic-ae">Ae</span><div class="soft-txt"><b>After Effects</b><small>Intermédiaire</small></div></div>
+          <div class="soft-item"><span class="soft-icon ic-office"><svg width="22" height="22" viewBox="0 0 21 21"><rect width="10" height="10" fill="#f25022"/><rect x="11" width="10" height="10" fill="#7fba00"/><rect y="11" width="10" height="10" fill="#00a4ef"/><rect x="11" y="11" width="10" height="10" fill="#ffb900"/></svg></span><div class="soft-txt"><b>Pack Office</b><small>Maîtrisé</small></div></div>
+          <div class="soft-item"><span class="soft-icon ic-notion">N</span><div class="soft-txt"><b>Notion</b><small>Maîtrisé</small></div></div>
+          <div class="soft-item"><span class="soft-icon ic-ableton"><svg width="24" height="14" viewBox="0 0 20 12" fill="#f1efe6"><rect x="0" width="2" height="12"/><rect x="4" width="2" height="12"/><rect x="8" width="2" height="12"/><rect x="12" y="1.2" width="8" height="1.6"/><rect x="12" y="5.2" width="8" height="1.6"/><rect x="12" y="9.2" width="8" height="1.6"/></svg></span><div class="soft-txt"><b>Ableton Live</b><small>Intermédiaire</small></div></div>
+          <div class="soft-item"><span class="soft-icon ic-wp">W</span><div class="soft-txt"><b>WordPress</b><small>Intermédiaire</small></div></div>
+        </div>
+      </div>
+      <div class="soft-block">
+        <div class="soft-head">Langues</div>
+        <div class="soft-grid">
+          <div class="soft-item"><span class="soft-icon ic-flag"><svg width="100%" height="100%" viewBox="0 0 60 40" preserveAspectRatio="xMidYMid slice"><rect width="60" height="40" fill="#012169"/><path d="M0,0 L60,40 M60,0 L0,40" stroke="#fff" stroke-width="8"/><path d="M0,0 L60,40 M60,0 L0,40" stroke="#c8102e" stroke-width="4"/><rect x="24" width="12" height="40" fill="#fff"/><rect y="14" width="60" height="12" fill="#fff"/><rect x="26" width="8" height="40" fill="#c8102e"/><rect y="16" width="60" height="8" fill="#c8102e"/></svg></span><div class="soft-txt"><b>Anglais</b><small>C1 — LanguageCert</small></div></div>
+          <div class="soft-item"><span class="soft-icon ic-flag"><svg width="100%" height="100%" viewBox="0 0 3 2" preserveAspectRatio="xMidYMid slice"><rect width="3" height="2" fill="#c60b1e"/><rect y="0.5" width="3" height="1" fill="#ffc400"/></svg></span><div class="soft-txt"><b>Espagnol</b><small>Niveau universitaire</small></div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -448,8 +978,9 @@
       <div class="ruler-seg">2022 · COVERFAST</div>
     </div>
 
-    <div class="job-card">
-      <div class="job-slate">PROD Nº<span class="n">01</span></div>
+    <div class="jobs-list">
+    <div class="job-card hugopose">
+      <div class="job-slate"><span class="job-logo"><img src="assets/hugopose.jpg" alt="Hugoposé"></span>PROD Nº<span class="n">01</span></div>
       <div class="job-body">
         <h3>Chargé de Production YouTube</h3>
         <div class="job-meta">
@@ -459,20 +990,17 @@
           <span>Paris · Hybride</span>
         </div>
         <ul>
-          <li>Production et coordination de vidéos YouTube (2 à 5 millions de vues), en autonomie ou en binôme — formats long (20–50 min), short et reel.</li>
-          <li>Conception de scripts, happenings et mécaniques vidéo.</li>
-          <li>Gestion de production : budgets, contrats, facturation et casting.</li>
-          <li>Organisation des tournages : repérages, décors, logistique plateau et supports de production.</li>
-          <li>Installation technique et cadrage secondaire sur le plateau.</li>
-          <li>Réalisation des supports : feuille de route, script, objectifs de prod.</li>
-          <li>Supervision du déroulé des tournages et des intervenants.</li>
+          <li>Production et coordination de vidéos à 2–5 millions de vues — formats long (20–50 min), short et reel.</li>
+          <li>Scripts, happenings et mécaniques vidéo.</li>
+          <li>Budgets, contrats, casting, repérages et logistique plateau.</li>
+          <li>Feuille de route, régie et cadrage secondaire en tournage.</li>
         </ul>
         <span class="job-stat">+30 tournages · +40M vues/an cumulées</span>
       </div>
     </div>
 
     <div class="job-card">
-      <div class="job-slate">PROD Nº<span class="n">02</span></div>
+      <div class="job-slate"><span class="job-logo">SA</span>PROD Nº<span class="n">02</span></div>
       <div class="job-body">
         <h3>Responsable d'Établissement / Producteur Audiovisuel</h3>
         <div class="job-meta">
@@ -489,7 +1017,7 @@
     </div>
 
     <div class="job-card">
-      <div class="job-slate">PROD Nº<span class="n">03</span></div>
+      <div class="job-slate"><span class="job-logo">LC</span>PROD Nº<span class="n">03</span></div>
       <div class="job-body">
         <h3>Créateur de Contenu pour les Réseaux Sociaux</h3>
         <div class="job-meta">
@@ -505,7 +1033,7 @@
     </div>
 
     <div class="job-card">
-      <div class="job-slate">PROD Nº<span class="n">04</span></div>
+      <div class="job-slate"><span class="job-logo">CF</span>PROD Nº<span class="n">04</span></div>
       <div class="job-body">
         <h3>Manager de Communauté / Création de Contenu</h3>
         <div class="job-meta">
@@ -521,87 +1049,8 @@
         </ul>
       </div>
     </div>
-
-  </div>
-</section>
-
-<!-- ================= CHIFFRES CLES ================= -->
-<!-- ================= PROJETS ================= -->
-<section id="projets">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">Projets</div>
-      <h2>Filmographie complète</h2>
-    </div>
-    <div class="proj-grid">
-
-      <div class="proj-card">
-        <a href="https://www.youtube.com/watch?v=C8ysBeg72Jg" target="_blank" rel="noopener" class="proj-thumb" style="background-image:url('https://img.youtube.com/vi/C8ysBeg72Jg/hqdefault.jpg');background-size:cover;background-position:center;">
-          <span class="tag">Format long</span>
-          <div class="play-icon"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M4 2l10 6-10 6V2z"/></svg></div>
-        </a>
-        <div class="proj-info">
-          <h3>J'ai Arnaqué 10 Arnaqueurs À Paris !</h3>
-          <div class="proj-role">Chargé de production · Hugoposé</div>
-          <p>5,2M de vues en 8 mois. Script, budget, casting, repérages et régie plateau pour ce tournage extérieur.</p>
-          <a href="https://www.youtube.com/watch?v=C8ysBeg72Jg" class="proj-link" target="_blank" rel="noopener">Voir sur YouTube →</a>
-        </div>
-      </div>
-
-      <div class="proj-card">
-        <a href="https://www.youtube.com/watch?v=7xYBHMMJDEc" target="_blank" rel="noopener" class="proj-thumb" style="background-image:url('https://img.youtube.com/vi/7xYBHMMJDEc/hqdefault.jpg');background-size:cover;background-position:center;">
-          <span class="tag">Format long</span>
-          <div class="play-icon"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M4 2l10 6-10 6V2z"/></svg></div>
-        </a>
-        <div class="proj-info">
-          <h3>J'ai Testé 30 Lifehacks TikTok ! (Vrai ou Pas ?)</h3>
-          <div class="proj-role">Chargé de production · Hugoposé</div>
-          <p>1,8M de vues en 1 mois. Conception des mécaniques de test, logistique de tournage et objectifs de prod.</p>
-          <a href="https://www.youtube.com/watch?v=7xYBHMMJDEc" class="proj-link" target="_blank" rel="noopener">Voir sur YouTube →</a>
-        </div>
-      </div>
-
-      <div class="proj-card">
-        <a href="https://www.youtube.com/watch?v=hn2mCUPy4jg" target="_blank" rel="noopener" class="proj-thumb" style="background-image:url('https://img.youtube.com/vi/hn2mCUPy4jg/hqdefault.jpg');background-size:cover;background-position:center;">
-          <span class="tag">Format long</span>
-          <div class="play-icon"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M4 2l10 6-10 6V2z"/></svg></div>
-        </a>
-        <div class="proj-info">
-          <h3>J'ai Testé 10 Promesses De Publicités !</h3>
-          <div class="proj-role">Chargé de production · Hugoposé</div>
-          <p>2,5M de vues en 6 mois. Repérages, tournage et supervision du déroulé plateau.</p>
-          <a href="https://www.youtube.com/watch?v=hn2mCUPy4jg" class="proj-link" target="_blank" rel="noopener">Voir sur YouTube →</a>
-        </div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-thumb print">
-          <span class="tag">Campagne affichage</span>
-          <div class="play-icon"><svg width="16" height="16" viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" fill="none" stroke-width="1.4"/><circle cx="6" cy="6" r="1.3"/><path d="M2 11l3.5-3.5L8 10l3-3.5L14 11"/></svg></div>
-        </div>
-        <div class="proj-info">
-          <h3>Renault 5 E-Tech Électrique</h3>
-          <div class="proj-role">Régie · Campagne affichage métro &amp; abribus</div>
-          <p>Participation en régie au tournage d'une campagne d'affichage nationale, diffusée dans le métro parisien et sur mobilier urbain.</p>
-        </div>
-      </div>
-
     </div>
 
-    <div style="margin-top:60px;border-top:1px solid var(--line);padding-top:40px;">
-      <div class="eyebrow" style="margin-bottom:20px;">Bonus · format plateau</div>
-      <div class="proj-card" style="display:grid;grid-template-columns:220px 1fr;gap:24px;background:none;">
-        <a href="https://www.youtube.com/watch?v=iPvdpnAYSxE" target="_blank" rel="noopener" class="proj-thumb" style="background-image:url('https://img.youtube.com/vi/iPvdpnAYSxE/hqdefault.jpg');background-size:cover;background-position:center;border:1px solid var(--line);">
-          <div class="play-icon"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M4 2l10 6-10 6V2z"/></svg></div>
-        </a>
-        <div class="proj-info" style="padding:0;">
-          <h3>4 Acteurs VS 1 Vrai Millionnaire</h3>
-          <div class="proj-role">ft. FastGoodCuisine, Tsuku &amp; Cédric — Chargé de production · Hugoposé</div>
-          <p>700K vues en 2 mois. Mis ici pour montrer un format plateau en collaboration multi-créateurs, plus que pour la performance.</p>
-          <a href="https://www.youtube.com/watch?v=iPvdpnAYSxE" class="proj-link" target="_blank" rel="noopener">Voir sur YouTube →</a>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -655,57 +1104,6 @@
   </div>
 </section>
 
-<!-- ================= COMPETENCES ================= -->
-<section id="competences">
-  <div class="container skills-grid">
-    <div>
-      <div class="eyebrow">Compétences</div>
-      <h2 style="margin-top:14px;font-size:1.8rem;">Logiciels &amp; langues</h2>
-      <div style="margin-top:34px;">
-        <div class="meter-row">
-          <div class="meter-label"><span>Suite Adobe (Premiere Pro)</span><span>Intermédiaire</span></div>
-          <div class="meter-track"><div class="meter-fill" data-level="60"></div></div>
-        </div>
-        <div class="meter-row">
-          <div class="meter-label"><span>Pack Office</span><span>Maîtrisé</span></div>
-          <div class="meter-track"><div class="meter-fill" data-level="90"></div></div>
-        </div>
-        <div class="meter-row">
-          <div class="meter-label"><span>Notion</span><span>Maîtrisé</span></div>
-          <div class="meter-track"><div class="meter-fill" data-level="90"></div></div>
-        </div>
-        <div class="meter-row">
-          <div class="meter-label"><span>Ableton Live</span><span>Novice</span></div>
-          <div class="meter-track"><div class="meter-fill" data-level="25"></div></div>
-        </div>
-        <div class="meter-row">
-          <div class="meter-label"><span>Anglais</span><span>C1 — LanguageCert</span></div>
-          <div class="meter-track"><div class="meter-fill" data-level="85"></div></div>
-        </div>
-        <div class="meter-row">
-          <div class="meter-label"><span>Espagnol</span><span>Scolaire</span></div>
-          <div class="meter-track"><div class="meter-fill" data-level="35"></div></div>
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="eyebrow">Terrain</div>
-      <h2 style="margin-top:14px;font-size:1.8rem;">Savoir-être</h2>
-      <p style="color:var(--parchment-dim);margin-top:20px;max-width:50ch;">Un parcours passé aussi par la relation client, la gestion d'équipe et la création de sites internet en freelance — une polyvalence qui sert directement la gestion de production.</p>
-      <div class="soft-chips" style="margin-top:26px;">
-        <span class="chip">Rigueur</span>
-        <span class="chip">Organisation</span>
-        <span class="chip">Polyvalence</span>
-        <span class="chip">Problem solving</span>
-        <span class="chip">Gestion budget</span>
-        <span class="chip">Casting</span>
-        <span class="chip">Régie plateau</span>
-        <span class="chip">Permis B</span>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ================= FORMATION ================= -->
 <section id="formation">
   <div class="container">
@@ -715,18 +1113,22 @@
     </div>
     <div class="edu-list">
       <div class="edu-row">
+        <span class="edu-logo logo-light"><img src="assets/3is.png" alt="3iS"></span>
         <div class="yr">2024–2025</div>
-        <div><h4>Bachelor Production, Cinematography and Film/Video Production</h4><p>3iS — Institut international de l'image et du son · Gestion de la production de courts métrages</p></div>
+        <div><h4>Bachelor Production</h4><p>3iS · Spécialisation Production — Titre RNCP34708, niveau 6</p></div>
       </div>
       <div class="edu-row">
+        <span class="edu-logo"><img src="assets/iut.png" alt="IUT de Béziers — Université de Montpellier"></span>
         <div class="yr">2020–2022</div>
         <div><h4>DUT Métiers du multimédia et de l'internet — spé. Audiovisuel</h4><p>IUT de Béziers · Spécialisation création audiovisuelle et numérique</p></div>
       </div>
       <div class="edu-row">
+        <span class="edu-logo logo-nantes"><img src="assets/nantes-fav.png" alt="Université de Nantes"></span>
         <div class="yr">2020</div>
-        <div><h4>L1 LEA Bilingue Anglais – Espagnol</h4></div>
+        <div><h4>L1 LEA Bilingue Anglais – Espagnol</h4><p>Université de Nantes</p></div>
       </div>
       <div class="edu-row">
+        <span class="edu-logo">BAC</span>
         <div class="yr">2018</div>
         <div><h4>Bac Gestion et Management, spécialité mercatique</h4></div>
       </div>
@@ -742,7 +1144,8 @@
     <p>Ouvert à un poste de chargé de production audiovisuelle, dans une structure qui produit pour le web comme pour la marque.</p>
     <div class="contact-links">
       <a href="mailto:brechotteau.alan@gmail.com" class="btn">brechotteau.alan@gmail.com</a>
-      <a href="https://www.linkedin.com/in/alan-brechotteau-9a7b71178" class="btn ghost" target="_blank" rel="noopener" id="linkedinLink">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/alan-brechotteau-9a7b71178/" class="btn ghost" target="_blank" rel="noopener" id="linkedinLink">LinkedIn</a>
+      <a href="https://www.instagram.com/alan_brechotteau/" class="btn ghost" target="_blank" rel="noopener">Instagram</a>
       <a href="Cv.pdf" class="btn ghost" download>Télécharger le CV</a>
     </div>
   </div>
@@ -751,11 +1154,15 @@
 <footer>© <span id="year"></span> Alan Brechotteau — Portfolio</footer>
 
 <script>
-  // header scroll state
+  // header : fond dès que le bandeau des données du hero est dépassé
   const header = document.getElementById('header');
-  window.addEventListener('scroll', () => {
-    header.classList.toggle('scrolled', window.scrollY > 40);
-  });
+  const heroSection = document.querySelector('.hero');
+  const updateHeader = () => {
+    const heroBottom = heroSection.getBoundingClientRect().bottom;
+    header.classList.toggle('scrolled', heroBottom <= header.offsetHeight);
+  };
+  window.addEventListener('scroll', updateHeader, {passive:true});
+  updateHeader();
 
   // mobile nav
   const navToggle = document.getElementById('navToggle');
@@ -782,16 +1189,56 @@
   }, {threshold:0.15});
   revealTargets.forEach(t => io.observe(t));
 
-  // skill meters fill on view
-  const meters = document.querySelectorAll('.meter-fill');
-  const meterIo = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if(e.isIntersecting){
-        e.target.style.width = e.target.dataset.level + '%';
+  // filmographie : dépliant animé
+  const filmoMore = document.getElementById('filmoMore');
+  const filmoToggle = document.getElementById('filmoToggle');
+  if(filmoMore && filmoToggle){
+    const moreCards = filmoMore.querySelectorAll('.filmo-card');
+    const setDelays = () => moreCards.forEach((c,i) => { c.style.transitionDelay = (0.15 + i*0.045) + 's'; });
+    setDelays();
+    filmoToggle.addEventListener('click', () => {
+      const open = filmoMore.classList.toggle('open');
+      filmoToggle.classList.toggle('open', open);
+      filmoToggle.setAttribute('aria-expanded', open);
+      filmoToggle.querySelector('.tgl-label').textContent = open ? 'Réduire la filmographie' : 'Voir les 23 autres productions';
+      if(open){
+        setDelays();
+      } else {
+        moreCards.forEach(c => c.style.transitionDelay = '0s');
+        // on remonte à la section Production pour ne pas rester perdu en bas
+        const target = document.getElementById('projets-reel');
+        const y = target.getBoundingClientRect().top + window.scrollY - 24;
+        window.scrollTo({top:y, behavior:'smooth'});
       }
     });
-  }, {threshold:0.4});
-  meters.forEach(m => meterIo.observe(m));
+  }
+
+  // lecteur YouTube intégré
+  const playerModal = document.getElementById('playerModal');
+  const playerIframe = document.getElementById('playerIframe');
+  const playerYt = document.getElementById('playerYt');
+  const closePlayer = () => {
+    playerModal.classList.remove('open');
+    playerModal.setAttribute('aria-hidden', 'true');
+    playerIframe.src = '';
+    document.body.style.overflow = '';
+  };
+  document.querySelectorAll('.filmo-card[data-video]').forEach(card => {
+    card.addEventListener('click', (e) => {
+      e.preventDefault();
+      const id = card.dataset.video;
+      playerIframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
+      playerYt.href = 'https://www.youtube.com/watch?v=' + id;
+      playerModal.classList.add('open');
+      playerModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  playerModal.querySelector('.player-backdrop').addEventListener('click', closePlayer);
+  playerModal.querySelector('.player-close').addEventListener('click', closePlayer);
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && playerModal.classList.contains('open')) closePlayer();
+  });
 
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
