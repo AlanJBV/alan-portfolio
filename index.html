@@ -139,7 +139,7 @@
     transition:background .45s ease;
   }
   .cat-link:last-child{border-right:none;}
-  .cat-link:hover::before{background:rgba(0,161,78,0.16);}
+  .cat-link:hover::before{background:rgba(0,0,0,0.12);}
   .hero-categories:hover .cat-link:not(:hover)::before{background:rgba(0,0,0,0.6);}
   .cat-title{
     display:inline-block;font-family:var(--display);opacity:0;transform:translateY(18px);
@@ -1108,9 +1108,22 @@
   // header : fond dès que le bandeau des données du hero est dépassé
   const header = document.getElementById('header');
   const heroSection = document.querySelector('.hero');
+  const heroStats = document.querySelector('.hero-stats');
   const updateHeader = () => {
     const heroBottom = heroSection.getBoundingClientRect().bottom;
     header.classList.toggle('scrolled', heroBottom <= header.offsetHeight);
+
+    // fondu + flou du bandeau chiffres avant qu'il ne touche le menu
+    if (heroStats) {
+      const top = heroStats.getBoundingClientRect().top;
+      const startFade = 185;                 // début du fondu tardif : plus près du menu
+      const endFade = (header.offsetHeight || 70) + 16; // disparu juste avant d'atteindre le menu
+      let p = (top - endFade) / (startFade - endFade);
+      p = Math.max(0, Math.min(1, p));
+      heroStats.style.opacity = p;
+      heroStats.style.filter = 'blur(' + ((1 - p) * 8).toFixed(1) + 'px)';
+      heroStats.style.pointerEvents = p < 0.1 ? 'none' : '';
+    }
   };
   window.addEventListener('scroll', updateHeader, {passive:true});
   updateHeader();
