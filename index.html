@@ -18,8 +18,9 @@
     --parchment:#17170f;    /* texte principal (presque noir) */
     --parchment-dim:#5c5b50;/* texte secondaire */
     --steel:#8b867a;        /* labels mono gris */
-    --gold:#00a14e;         /* accent vert */
-    --gold-dim:#6bc196;     /* vert clair décoratif */
+    --gold:#280137;         /* accent Midnight Purple */
+    --gold-dim:#7e4f97;     /* violet moyen décoratif */
+    --gold-bright:#bf6bff;  /* violet flashy : accent lisible sur fonds sombres */
     --tally:#e0603a;
     --radius:0px;
     --display:'Space Grotesk', sans-serif;
@@ -35,12 +36,12 @@
     line-height:1.6;
     overflow-x:hidden;
   }
-  ::selection{background:var(--gold);color:var(--void);}
+  ::selection{background:var(--gold);color:#fff;}
 
   a{color:inherit;text-decoration:none;}
   .eyebrow{
     font-family:var(--mono);
-    font-size:1.12rem;
+    font-size:1.3rem;
     font-weight:500;
     letter-spacing:0.14em;
     text-transform:uppercase;
@@ -82,9 +83,9 @@
     animation:blink 2.4s infinite;
   }
   @keyframes blink{0%,100%{opacity:1;}50%{opacity:0.25;}}
-  nav.desktop-nav{display:flex;gap:34px;font-size:0.86rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;}
+  nav.desktop-nav{display:flex;gap:28px;font-size:0.86rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;margin-right:-16px;}
   nav.desktop-nav a{color:#fff;transition:opacity .2s;position:relative;}
-  nav.desktop-nav a:hover{opacity:0.6;}
+  nav.desktop-nav a:hover{opacity:1;}
   .nav-toggle{display:none;background:none;border:none;color:#fff;font-size:1.4rem;cursor:pointer;}
   @media(max-width:860px){
     nav.desktop-nav{display:none;}
@@ -127,16 +128,19 @@
     flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
     color:#fff;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;
     font-size:clamp(1.1rem,2.6vw,2rem);
-    border-right:1px solid rgba(255,255,255,0.14);
     padding:20px;gap:2px;
     overflow:hidden;
+  }
+  /* séparateur vertical : démarre sous la rangée du menu pour ne pas la chevaucher */
+  .cat-link:not(:last-child)::after{
+    content:"";position:absolute;top:104px;bottom:0;right:0;width:1px;
+    background:rgba(255,255,255,0.10);pointer-events:none;
   }
   .cat-link::before{
     content:"";position:absolute;inset:0;z-index:-1;
     background:rgba(0,0,0,0.3);
     transition:background .45s ease;
   }
-  .cat-link:last-child{border-right:none;}
   .cat-link:hover::before{background:rgba(0,0,0,0.12);}
   .hero-categories:hover .cat-link:not(:hover)::before{background:rgba(0,0,0,0.6);}
   .cat-title{
@@ -160,15 +164,16 @@
   }
   @media(max-width:720px){
     .cat-links{flex-direction:column;}
-    .cat-link{border-right:none;border-bottom:1px solid rgba(255,255,255,0.14);}
+    .cat-link{border-bottom:1px solid rgba(255,255,255,0.10);}
     .cat-link:last-child{border-bottom:none;}
+    .cat-link:not(:last-child)::after{display:none;}
   }
   .btn{
     font-family:var(--mono);font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;
     padding:14px 26px;border:1px solid var(--gold-dim);
     transition:all .25s;display:inline-flex;align-items:center;gap:10px;
   }
-  .btn:hover{background:var(--gold);color:var(--void);border-color:var(--gold);}
+  .btn:hover{background:var(--gold);color:#fff;border-color:var(--gold);}
   .btn.ghost{border-color:var(--line);}
   .btn.ghost:hover{background:var(--panel-2);color:var(--parchment);border-color:var(--steel);}
 
@@ -259,14 +264,14 @@
   }
   .filmo-stat{
     font-family:var(--mono);font-size:0.8rem;letter-spacing:0.06em;text-transform:uppercase;
-    color:var(--gold);font-weight:500;
+    color:var(--gold-bright);font-weight:500;
   }
   .filmo-info h3{
     font-size:0.98rem;margin-top:4px;line-height:1.3;color:#fff;
     min-height:2.6em; /* réserve 2 lignes : tous les bandeaux ont la même hauteur */
     transition:color .25s ease;
   }
-  .filmo-card:hover .filmo-info h3{color:var(--gold);}
+  .filmo-card:hover .filmo-info h3{color:var(--gold-bright);}
   /* cartes orphelines en fin de rangée : elles remplissent la largeur restante */
   .filmo-card:nth-child(3n+1):last-child{grid-column:1/-1;aspect-ratio:auto;min-height:230px;}
   .filmo-card:nth-child(3n+2):last-child{grid-column:span 2;aspect-ratio:auto;min-height:230px;}
@@ -332,14 +337,14 @@
     font-size:1.5rem;line-height:1;cursor:pointer;
     transition:color .2s ease;
   }
-  .player-close:hover{color:var(--gold);}
+  .player-close:hover{color:var(--gold-bright);}
   .player-yt{
     display:inline-block;margin-top:12px;
     font-family:var(--mono);font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;
     color:rgba(255,255,255,0.72);border-bottom:1px solid rgba(255,255,255,0.3);padding-bottom:2px;
     transition:color .2s ease, border-color .2s ease;
   }
-  .player-yt:hover{color:var(--gold);border-color:var(--gold);}
+  .player-yt:hover{color:var(--gold-bright);border-color:var(--gold-bright);}
 
   /* ---------- SECTION HEADS ---------- */
   .section-head{margin-bottom:56px;}
@@ -372,12 +377,15 @@
   .social:hover{
     background:var(--gold);color:#fff;
     transform:translateY(-2px);
-    box-shadow:0 8px 20px rgba(0,161,78,0.28);
+    box-shadow:0 8px 20px rgba(40,1,55,0.30);
   }
-  /* CV : bouton principal, vert plein d'origine */
-  .social.primary{background:var(--gold);color:#fff;}
-  .social.primary:hover{background:#00893f;}
+  /* CV / email : bouton principal en dégradé Midnight Purple */
+  .social.primary{background:linear-gradient(135deg,#280137,#7e2f9e);color:#fff;}
+  .social.primary:hover{filter:brightness(1.14);}
   .social svg{width:17px;height:17px;flex:none;}
+  /* boutons plus grands dans la carte Profil */
+  .socials .social{padding:14px 24px;font-size:0.92rem;}
+  .socials .social svg{width:20px;height:20px;}
 
   /* ---------- EXPERIENCE TIMELINE ---------- */
   .timeline-ruler{
@@ -430,7 +438,7 @@
     font-family:var(--mono);font-size:0.75rem;color:var(--steel);
     display:flex;flex-wrap:wrap;gap:14px;margin:10px 0 18px;
   }
-  .job-meta b{color:var(--gold-dim);}
+  .job-meta b{color:#9333ea;}
   .job-body ul{list-style:none;color:var(--parchment-dim);font-size:0.95rem;}
   .job-body ul li{position:relative;padding-left:18px;margin-bottom:9px;}
   .job-body ul li::before{content:"—";position:absolute;left:0;color:var(--steel);}
@@ -458,7 +466,7 @@
   .langs-block{margin-top:auto;padding-top:30px;}
   .langs-grid{display:flex;justify-content:center;gap:36px;flex-wrap:wrap;}
   .soft-head{
-    font-family:var(--mono);font-size:1rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+    font-family:var(--mono);font-size:1.3rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
     color:var(--gold);margin-bottom:16px;
   }
   .soft-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
@@ -503,37 +511,67 @@
     display:grid;gap:1px;background:var(--line);border:1px solid var(--line);
   }
   .edu-row{
-    display:grid;grid-template-columns:52px 120px 1fr;gap:24px;align-items:center;
-    padding:26px 32px;background:var(--panel);
+    display:grid;grid-template-columns:72px 1fr;gap:34px;align-items:start;
+    padding:32px 44px;background:var(--panel);
   }
   .edu-logo{
-    display:flex;align-items:center;justify-content:center;overflow:hidden;
-    width:48px;height:48px;
-    border-radius:9px;background:var(--panel-2);
-    font-family:var(--display);font-weight:700;font-size:0.82rem;color:var(--gold);
+    display:flex;align-items:center;justify-content:center;overflow:hidden;flex:none;
+    width:64px;height:64px;padding:9px;                     /* padding uniforme -> même taille visuelle */
+    border-radius:13px;background:var(--panel-2);
+    font-family:var(--display);font-weight:700;font-size:1rem;color:var(--gold);
   }
   .edu-logo img{width:100%;height:100%;object-fit:contain;}
-  .edu-logo.logo-light{background:#fff;padding:5px;}          /* 3iS : logo noir sur blanc */
+  .edu-logo.logo-light{background:#fff;}          /* logo sur fond blanc */
   .edu-logo.logo-nantes{background:#101010;}
-  .edu-logo.logo-nantes img{filter:brightness(0) invert(1);padding:7px;} /* marque en blanc */
+  .edu-logo.logo-nantes img{filter:brightness(0) invert(1);} /* marque en blanc */
   @media(max-width:640px){
-    .edu-row{grid-template-columns:52px 1fr;gap:4px 14px;align-items:start;}
-    .edu-logo{grid-row:1 / span 2;}
+    .edu-row{grid-template-columns:56px 1fr;gap:20px;padding:24px 24px;}
+    .edu-logo{width:52px;height:52px;}
   }
-  .edu-row .yr{font-family:var(--mono);color:var(--gold-dim);font-size:0.85rem;}
-  .edu-row h4{font-size:1rem;font-weight:600;text-transform:none;font-family:var(--body);}
-  .edu-row p{color:var(--steel);font-size:0.85rem;margin-top:3px;}
+  .edu-row .yr{display:inline-block;font-family:var(--mono);color:var(--gold);font-size:0.85rem;letter-spacing:0.06em;margin-bottom:7px;}
+  .edu-row h4{font-size:1.12rem;font-weight:600;text-transform:none;font-family:var(--body);}
+  .edu-row p{color:var(--steel);font-size:0.92rem;margin-top:4px;}
+  .edu-desc{margin-top:14px;display:grid;gap:7px;}
+  .edu-desc li{list-style:none;position:relative;padding-left:18px;color:var(--parchment-dim);font-size:0.93rem;line-height:1.45;}
+  .edu-desc li::before{content:"";position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--gold);}
 
   /* ---------- CONTACT ---------- */
   .contact-wrap{text-align:center;padding-bottom:100px;}
   .contact-wrap h2{font-size:clamp(2.2rem,6vw,4rem);margin-bottom:24px;}
   .contact-wrap p{color:var(--parchment-dim);max-width:50ch;margin:0 auto 40px;}
-  .contact-links{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+  .contact-links{display:flex;flex-direction:column;align-items:center;gap:16px;}
+  .contact-mail{font-size:0.95rem;padding:15px 30px;}
+  .contact-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
 
   footer{
     text-align:center;padding:30px 8vw;font-family:var(--mono);font-size:0.7rem;color:var(--steel);
     border-top:1px solid var(--line);
   }
+
+  /* =========== AGRÉMENTS VISUELS (Midnight Purple) =========== */
+  /* Contact en violet plein */
+  #contact{background:#280137;}
+  #contact .eyebrow{color:var(--gold-bright);}
+  #contact .eyebrow::before{background:var(--gold-bright);}
+  #contact .contact-wrap h2{color:#fff;}
+  #contact .contact-wrap p{color:rgba(255,255,255,0.74);}
+  #contact .social{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.16);color:#fff;}
+  #contact .social:hover{background:var(--gold-bright);color:#280137;box-shadow:0 8px 22px rgba(0,0,0,0.38);}
+  #contact .social.primary{background:linear-gradient(135deg,#7e2f9e,#b98fd9);color:#fff;}
+  #contact .social.primary:hover{filter:brightness(1.08);}
+
+  /* Souligné lilas animé sous les liens du menu */
+  nav.desktop-nav a{padding-bottom:4px;}
+  nav.desktop-nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--gold-bright);transform:scaleX(0);transform-origin:left;transition:transform .28s ease;}
+  nav.desktop-nav a:hover::after{transform:scaleX(1);}
+
+  /* Rappels lilas au survol des cartes */
+  .job-card{transition:opacity .6s ease, transform .6s ease, box-shadow .3s ease;}
+  .job-card:hover{box-shadow:inset 3px 0 0 var(--gold-bright), 0 14px 34px rgba(40,1,55,0.14);}
+  .edu-row{transition:background .25s ease, box-shadow .25s ease;}
+  .edu-row:hover{background:#faf6fd;box-shadow:inset 3px 0 0 var(--gold-bright);}
+  .filmo-card{transition:box-shadow .3s ease, transform .3s ease;}
+  .filmo-card:hover{z-index:2;box-shadow:0 0 0 2px var(--gold-bright), 0 16px 38px rgba(40,1,55,0.28);}
 
   @media (prefers-reduced-motion: reduce){
     *{animation:none !important;transition:none !important;}
@@ -926,67 +964,12 @@
   </div>
 </div>
 
-<!-- ================= PROFIL ================= -->
-<section id="profil">
-  <div class="container profil-grid">
-    <div class="facts">
-      <div class="eyebrow" style="margin-bottom:18px;">Profil</div>
-      <p class="profil-lead">Chargé de production spécialisé YouTube &amp; web.</p>
-      <div class="fact-row"><span class="k">Âge</span><span>26 ans</span></div>
-      <div class="fact-row"><span class="k">Localisation</span><span>Paris, Île-de-France</span></div>
-      <div class="fact-row"><span class="k">Mobilité</span><span>France &amp; international</span></div>
-      <div class="fact-row"><span class="k">Permis</span><span>B</span></div>
-      <div class="fact-row"><span class="k">Anglais</span><span>C1 — LanguageCert</span></div>
-      <div class="fact-row"><span class="k">Espagnol</span><span>Niveau universitaire</span></div>
-      <div class="fact-row" style="border-bottom:none;"><span class="k">Email</span><span>brechotteau.alan@gmail.com</span></div>
-      <div class="socials">
-        <a class="social" href="https://www.linkedin.com/in/alan-brechotteau-9a7b71178/" target="_blank" rel="noopener" aria-label="LinkedIn d'Alan Brechotteau">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
-          LinkedIn
-        </a>
-        <a class="social" href="https://www.instagram.com/alan_brechotteau/" target="_blank" rel="noopener" aria-label="Instagram d'Alan Brechotteau">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.12 1.38A5.85 5.85 0 0 0 .63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.12.66.66 1.33 1.08 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.3 1.46-.72 2.12-1.38.66-.66 1.08-1.33 1.38-2.12.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.79-.72-1.46-1.38-2.12A5.85 5.85 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.41-10.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
-          Instagram
-        </a>
-        <a class="social primary" href="Cv.pdf" download aria-label="Télécharger le CV d'Alan Brechotteau">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-          CV
-        </a>
-      </div>
-    </div>
-    <div class="skills-col">
-      <div class="soft-block">
-        <div class="soft-head">Logiciels</div>
-        <div class="soft-grid">
-          <div class="soft-item"><span class="soft-icon ic-ai">Ai</span><div class="soft-txt"><b>Illustrator</b><small>Intermédiaire</small></div></div>
-          <div class="soft-item"><span class="soft-icon ic-ps">Ps</span><div class="soft-txt"><b>Photoshop</b><small>Intermédiaire</small></div></div>
-          <div class="soft-item"><span class="soft-icon ic-id">Id</span><div class="soft-txt"><b>InDesign</b><small>Intermédiaire</small></div></div>
-          <div class="soft-item"><span class="soft-icon ic-pr">Pr</span><div class="soft-txt"><b>Premiere Pro</b><small>Intermédiaire</small></div></div>
-          <div class="soft-item"><span class="soft-icon ic-au">Au</span><div class="soft-txt"><b>Audition</b><small>Intermédiaire</small></div></div>
-          <div class="soft-item"><span class="soft-icon ic-ae">Ae</span><div class="soft-txt"><b>After Effects</b><small>Intermédiaire</small></div></div>
-          <div class="soft-item"><span class="soft-icon ic-office"><svg width="22" height="22" viewBox="0 0 21 21"><rect width="10" height="10" fill="#f25022"/><rect x="11" width="10" height="10" fill="#7fba00"/><rect y="11" width="10" height="10" fill="#00a4ef"/><rect x="11" y="11" width="10" height="10" fill="#ffb900"/></svg></span><div class="soft-txt"><b>Pack Office</b><small>Maîtrisé</small></div></div>
-          <div class="soft-item"><span class="soft-icon ic-notion">N</span><div class="soft-txt"><b>Notion</b><small>Maîtrisé</small></div></div>
-          <div class="soft-item"><span class="soft-icon ic-ableton"><svg width="24" height="14" viewBox="0 0 20 12" fill="#f1efe6"><rect x="0" width="2" height="12"/><rect x="4" width="2" height="12"/><rect x="8" width="2" height="12"/><rect x="12" y="1.2" width="8" height="1.6"/><rect x="12" y="5.2" width="8" height="1.6"/><rect x="12" y="9.2" width="8" height="1.6"/></svg></span><div class="soft-txt"><b>Ableton Live</b><small>Intermédiaire</small></div></div>
-          <div class="soft-item"><span class="soft-icon ic-wp">W</span><div class="soft-txt"><b>WordPress</b><small>Intermédiaire</small></div></div>
-        </div>
-      </div>
-      <div class="langs-block">
-        <div class="soft-head">Langues</div>
-        <div class="langs-grid">
-          <div class="soft-item"><span class="soft-icon ic-flag"><svg width="100%" height="100%" viewBox="0 0 60 40" preserveAspectRatio="xMidYMid slice"><rect width="60" height="40" fill="#012169"/><path d="M0,0 L60,40 M60,0 L0,40" stroke="#fff" stroke-width="8"/><path d="M0,0 L60,40 M60,0 L0,40" stroke="#c8102e" stroke-width="4"/><rect x="24" width="12" height="40" fill="#fff"/><rect y="14" width="60" height="12" fill="#fff"/><rect x="26" width="8" height="40" fill="#c8102e"/><rect y="16" width="60" height="8" fill="#c8102e"/></svg></span><div class="soft-txt"><b>Anglais</b><small>C1 — LanguageCert</small></div></div>
-          <div class="soft-item"><span class="soft-icon ic-flag"><svg width="100%" height="100%" viewBox="0 0 3 2" preserveAspectRatio="xMidYMid slice"><rect width="3" height="2" fill="#c60b1e"/><rect y="0.5" width="3" height="1" fill="#ffc400"/></svg></span><div class="soft-txt"><b>Espagnol</b><small>Niveau universitaire</small></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ================= EXPERIENCE ================= -->
 <section id="experience">
   <div class="container">
     <div class="section-head">
       <div class="eyebrow">Expérience</div>
-      <h2>Feuille de route</h2>
+      <h2>Parcours Professionnel</h2>
     </div>
 
     <div class="jobs-list">
@@ -1065,6 +1048,61 @@
   </div>
 </section>
 
+<!-- ================= PROFIL ================= -->
+<section id="profil">
+  <div class="container profil-grid">
+    <div class="facts">
+      <div class="eyebrow" style="margin-bottom:18px;">Profil</div>
+      <p class="profil-lead">Chargé de production spécialisé YouTube &amp; web.</p>
+      <div class="fact-row"><span class="k">Âge</span><span>26 ans</span></div>
+      <div class="fact-row"><span class="k">Localisation</span><span>Paris, Île-de-France</span></div>
+      <div class="fact-row"><span class="k">Mobilité</span><span>France &amp; international</span></div>
+      <div class="fact-row"><span class="k">Permis</span><span>B</span></div>
+      <div class="fact-row"><span class="k">Anglais</span><span>C1 — LanguageCert</span></div>
+      <div class="fact-row"><span class="k">Espagnol</span><span>Niveau universitaire</span></div>
+      <div class="fact-row" style="border-bottom:none;"><span class="k">Email</span><span>brechotteau.alan@gmail.com</span></div>
+      <div class="socials">
+        <a class="social" href="https://www.linkedin.com/in/alan-brechotteau-9a7b71178/" target="_blank" rel="noopener" aria-label="LinkedIn d'Alan Brechotteau">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+          LinkedIn
+        </a>
+        <a class="social" href="https://www.instagram.com/alan_brechotteau/" target="_blank" rel="noopener" aria-label="Instagram d'Alan Brechotteau">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.12 1.38A5.85 5.85 0 0 0 .63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.12.66.66 1.33 1.08 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.3 1.46-.72 2.12-1.38.66-.66 1.08-1.33 1.38-2.12.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.79-.72-1.46-1.38-2.12A5.85 5.85 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.41-10.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
+          Instagram
+        </a>
+        <a class="social primary" href="Cv.pdf" download aria-label="Télécharger le CV d'Alan Brechotteau">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+          CV
+        </a>
+      </div>
+    </div>
+    <div class="skills-col">
+      <div class="soft-block">
+        <div class="soft-head">Logiciels</div>
+        <div class="soft-grid">
+          <div class="soft-item"><span class="soft-icon ic-ai">Ai</span><div class="soft-txt"><b>Illustrator</b><small>Intermédiaire</small></div></div>
+          <div class="soft-item"><span class="soft-icon ic-ps">Ps</span><div class="soft-txt"><b>Photoshop</b><small>Intermédiaire</small></div></div>
+          <div class="soft-item"><span class="soft-icon ic-id">Id</span><div class="soft-txt"><b>InDesign</b><small>Intermédiaire</small></div></div>
+          <div class="soft-item"><span class="soft-icon ic-pr">Pr</span><div class="soft-txt"><b>Premiere Pro</b><small>Intermédiaire</small></div></div>
+          <div class="soft-item"><span class="soft-icon ic-au">Au</span><div class="soft-txt"><b>Audition</b><small>Intermédiaire</small></div></div>
+          <div class="soft-item"><span class="soft-icon ic-ae">Ae</span><div class="soft-txt"><b>After Effects</b><small>Intermédiaire</small></div></div>
+          <div class="soft-item"><span class="soft-icon ic-office"><svg width="22" height="22" viewBox="0 0 21 21"><rect width="10" height="10" fill="#f25022"/><rect x="11" width="10" height="10" fill="#7fba00"/><rect y="11" width="10" height="10" fill="#00a4ef"/><rect x="11" y="11" width="10" height="10" fill="#ffb900"/></svg></span><div class="soft-txt"><b>Pack Office</b><small>Maîtrisé</small></div></div>
+          <div class="soft-item"><span class="soft-icon ic-notion">N</span><div class="soft-txt"><b>Notion</b><small>Maîtrisé</small></div></div>
+          <div class="soft-item"><span class="soft-icon ic-ableton"><svg width="24" height="14" viewBox="0 0 20 12" fill="#f1efe6"><rect x="0" width="2" height="12"/><rect x="4" width="2" height="12"/><rect x="8" width="2" height="12"/><rect x="12" y="1.2" width="8" height="1.6"/><rect x="12" y="5.2" width="8" height="1.6"/><rect x="12" y="9.2" width="8" height="1.6"/></svg></span><div class="soft-txt"><b>Ableton Live</b><small>Intermédiaire</small></div></div>
+          <div class="soft-item"><span class="soft-icon ic-wp">W</span><div class="soft-txt"><b>WordPress</b><small>Intermédiaire</small></div></div>
+        </div>
+      </div>
+      <div class="langs-block">
+        <div class="soft-head">Langues</div>
+        <div class="langs-grid">
+          <div class="soft-item"><span class="soft-icon ic-flag"><svg width="100%" height="100%" viewBox="0 0 60 40" preserveAspectRatio="xMidYMid slice"><rect width="60" height="40" fill="#012169"/><path d="M0,0 L60,40 M60,0 L0,40" stroke="#fff" stroke-width="8"/><path d="M0,0 L60,40 M60,0 L0,40" stroke="#c8102e" stroke-width="4"/><rect x="24" width="12" height="40" fill="#fff"/><rect y="14" width="60" height="12" fill="#fff"/><rect x="26" width="8" height="40" fill="#c8102e"/><rect y="16" width="60" height="8" fill="#c8102e"/></svg></span><div class="soft-txt"><b>Anglais</b><small>C1 — LanguageCert</small></div></div>
+          <div class="soft-item"><span class="soft-icon ic-flag"><svg width="100%" height="100%" viewBox="0 0 3 2" preserveAspectRatio="xMidYMid slice"><rect width="3" height="2" fill="#c60b1e"/><rect y="0.5" width="3" height="1" fill="#ffc400"/></svg></span><div class="soft-txt"><b>Espagnol</b><small>Niveau universitaire</small></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= FORMATION ================= -->
 <section id="formation">
   <div class="container">
@@ -1075,23 +1113,51 @@
     <div class="edu-list">
       <div class="edu-row">
         <span class="edu-logo logo-light"><img src="assets/3is.png" alt="3iS"></span>
-        <div class="yr">2024–2025</div>
-        <div><h4>Bachelor Production</h4><p>3iS · Spécialisation Production — Titre RNCP34708, niveau 6</p></div>
+        <div>
+          <span class="yr">2024–2025</span>
+          <h4>Bachelor Production</h4>
+          <p>3iS · Spécialisation Production — Titre RNCP34708, niveau 6 · En alternance</p>
+          <ul class="edu-desc">
+            <li>Gestion de la production de courts métrages</li>
+            <li>Suite Adobe et logiciels de production</li>
+            <li>Organisation et production d'émissions de plateau en direct</li>
+            <li>Préparation et production de clips musicaux</li>
+            <li>Élaboration de dossiers de production</li>
+            <li>Gestion des budgets et des plannings</li>
+            <li>Coordination des équipes techniques et artistiques</li>
+            <li>Repérages, logistique et organisation de tournages</li>
+          </ul>
+        </div>
       </div>
       <div class="edu-row">
         <span class="edu-logo"><img src="assets/iut.png" alt="IUT de Béziers — Université de Montpellier"></span>
-        <div class="yr">2020–2022</div>
-        <div><h4>DUT Métiers du multimédia et de l'internet — spé. Audiovisuel</h4><p>IUT de Béziers · Spécialisation création audiovisuelle et numérique</p></div>
+        <div>
+          <span class="yr">2020–2022</span>
+          <h4>DUT Métiers du multimédia et de l'internet</h4>
+          <p>IUT de Béziers · Spécialisation création audiovisuelle et numérique</p>
+          <ul class="edu-desc">
+            <li>Suite Adobe : Photoshop, Illustrator, Premiere Pro, After Effects, Audition</li>
+            <li>Production audiovisuelle : tournages, interviews, reportages et captation</li>
+            <li>Culture audiovisuelle : cinéma, création de contenus web et médias numériques</li>
+            <li>Compétences transversales : droit, économie, RSE et gestion de projet</li>
+          </ul>
+        </div>
       </div>
       <div class="edu-row">
         <span class="edu-logo logo-nantes"><img src="assets/nantes-fav.png" alt="Université de Nantes"></span>
-        <div class="yr">2020</div>
-        <div><h4>L1 LEA Bilingue Anglais – Espagnol</h4><p>Université de Nantes</p></div>
+        <div>
+          <span class="yr">2020</span>
+          <h4>L1 LEA Bilingue Anglais – Espagnol</h4>
+          <p>Université de Nantes · Année obtenue</p>
+        </div>
       </div>
       <div class="edu-row">
-        <span class="edu-logo">BAC</span>
-        <div class="yr">2018</div>
-        <div><h4>Bac Gestion et Management, spécialité mercatique</h4></div>
+        <span class="edu-logo logo-light"><img src="assets/pmf.jpg" alt="Lycée Pierre Mendès France"></span>
+        <div>
+          <span class="yr">2018</span>
+          <h4>Bac Gestion et Management, spécialité mercatique</h4>
+          <p>Lycée Pierre Mendès France · Mention bien</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1104,10 +1170,24 @@
     <h2>On tourne ?</h2>
     <p>Ouvert à un poste de chargé de production audiovisuelle, dans une structure qui produit pour le web comme pour la marque.</p>
     <div class="contact-links">
-      <a href="mailto:brechotteau.alan@gmail.com" class="btn">brechotteau.alan@gmail.com</a>
-      <a href="https://www.linkedin.com/in/alan-brechotteau-9a7b71178/" class="btn ghost" target="_blank" rel="noopener" id="linkedinLink">LinkedIn</a>
-      <a href="https://www.instagram.com/alan_brechotteau/" class="btn ghost" target="_blank" rel="noopener">Instagram</a>
-      <a href="Cv.pdf" class="btn ghost" download>Télécharger le CV</a>
+      <a href="mailto:brechotteau.alan@gmail.com" class="social primary contact-mail">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        brechotteau.alan@gmail.com
+      </a>
+      <div class="contact-row">
+        <a class="social" href="https://www.linkedin.com/in/alan-brechotteau-9a7b71178/" target="_blank" rel="noopener" id="linkedinLink">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+          LinkedIn
+        </a>
+        <a class="social" href="https://www.instagram.com/alan_brechotteau/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.12 1.38A5.85 5.85 0 0 0 .63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.12.66.66 1.33 1.08 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.3 1.46-.72 2.12-1.38.66-.66 1.08-1.33 1.38-2.12.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.79-.72-1.46-1.38-2.12A5.85 5.85 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.41-10.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
+          Instagram
+        </a>
+        <a class="social" href="Cv.pdf" download aria-label="Télécharger le CV d'Alan Brechotteau">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+          Télécharger le CV
+        </a>
+      </div>
     </div>
   </div>
 </section>
