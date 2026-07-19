@@ -164,7 +164,8 @@
     to{opacity:1;transform:translateY(0);}
   }
   @media(max-width:720px){
-    .cat-links{flex-direction:column;padding-top:56px;} /* dégage le menu : les 3 colonnes sont réparties sous le header */
+    .cat-links{flex-direction:column;padding-top:56px;background:rgba(0,0,0,0.3);} /* dégage le menu ; le voile sur le conteneur évite la bande claire en haut */
+    .cat-link::before{background:transparent;} /* darkening porté par le conteneur -> uniforme, plus de ligne de coupure */
     .cat-link{border-bottom:1px solid rgba(255,255,255,0.10);}
     .cat-link:last-child{border-bottom:none;}
     .cat-link:not(:last-child)::after{display:none;}
@@ -216,7 +217,7 @@
   }
   @media(max-width:860px){
     .hero-stats{flex-direction:column;align-items:center;gap:9px;padding:11px 4vw 13px;}
-    .hero-stats-role{border-right:none;padding-right:0;text-align:center;font-size:0.82rem;}
+    .hero-stats-role{border-right:none;padding-right:0;text-align:center;font-size:0.92rem;}
     .hero-stats-role br{display:none;} /* rôle sur une ligne */
     /* les 4 stats sur une seule rangée horizontale */
     .hero-stats-grid{display:flex;flex-wrap:nowrap;width:100%;justify-content:space-between;gap:6px;}
@@ -746,7 +747,7 @@
       <a href="#profil" class="cat-link"><span class="cat-title">Compétences</span><small>Logiciels &amp; langues</small></a>
     </div>
     <div class="hero-stats">
-      <div class="hero-stats-role">Chargé de<br>Production</div>
+      <div class="hero-stats-role">Chargé de <br>Production</div>
       <div class="hero-stats-grid">
         <div class="hstat"><span class="hstat-num">5M+</span><span class="hstat-label">Abonnés</span></div>
         <div class="hstat"><span class="hstat-num">4,5M</span><span class="hstat-label">Vues / mois</span></div>
@@ -1365,6 +1366,9 @@
   const header = document.getElementById('header');
   const heroSection = document.querySelector('.hero');
   const heroStats = document.querySelector('.hero-stats');
+  const catLinks = document.querySelector('.cat-links');
+  const catLinkEls = catLinks ? [...catLinks.querySelectorAll('.cat-link')] : [];
+  const isMobile = () => window.matchMedia('(max-width:720px)').matches;
   const updateHeader = () => {
     const heroBottom = heroSection.getBoundingClientRect().bottom;
     header.classList.toggle('scrolled', heroBottom <= header.offsetHeight);
@@ -1379,6 +1383,25 @@
       heroStats.style.opacity = p;
       heroStats.style.filter = 'blur(' + ((1 - p) * 8).toFixed(1) + 'px)';
       heroStats.style.pointerEvents = p < 0.1 ? 'none' : '';
+    }
+
+    // MOBILE : fondu des libellés de catégories avant qu'ils passent sous le menu (déclenché tôt)
+    if (catLinkEls.length) {
+      if (isMobile()) {
+        const firstTitle = catLinks.querySelector('.cat-title');
+        const t = firstTitle.getBoundingClientRect().top;
+        const startFade = 160;                        // commence dès qu'on descend un peu
+        const endFade = (header.offsetHeight || 70) + 20; // disparu avant de toucher le menu
+        let p = (t - endFade) / (startFade - endFade);
+        p = Math.max(0, Math.min(1, p));
+        catLinkEls.forEach(el => {
+          el.style.opacity = p;
+          el.style.filter = 'blur(' + ((1 - p) * 6).toFixed(1) + 'px)';
+          el.style.pointerEvents = p < 0.1 ? 'none' : '';
+        });
+      } else {
+        catLinkEls.forEach(el => { el.style.opacity = ''; el.style.filter = ''; el.style.pointerEvents = ''; });
+      }
     }
   };
   window.addEventListener('scroll', updateHeader, {passive:true});
