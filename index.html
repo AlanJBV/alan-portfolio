@@ -87,7 +87,7 @@
   nav.desktop-nav{display:flex;gap:28px;font-size:0.86rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;margin-right:-16px;}
   nav.desktop-nav a{color:#fff;transition:opacity .2s;position:relative;}
   nav.desktop-nav a:hover{opacity:1;}
-  .nav-toggle{display:none;background:none;border:none;color:#fff;font-size:1.4rem;cursor:pointer;}
+  .nav-toggle{display:none;background:none;border:none;color:#fff;font-size:1.4rem;cursor:pointer;padding:10px 12px;margin:-10px -12px;} /* zone tactile élargie */
   @media(max-width:860px){
     nav.desktop-nav{display:none;}
     .nav-toggle{display:block;}
@@ -99,11 +99,11 @@
   }
   .mobile-nav.open{transform:translateY(0);}
   .mobile-nav a{font-family:var(--display);font-size:1.4rem;text-transform:uppercase;color:#fff;}
-  .mobile-nav .close-btn{position:absolute;top:24px;right:8vw;background:none;border:none;color:#fff;font-size:1.8rem;cursor:pointer;}
+  .mobile-nav .close-btn{position:absolute;top:14px;right:calc(8vw - 10px);background:none;border:none;color:#fff;font-size:1.8rem;cursor:pointer;padding:10px;}
 
   /* ---------- HERO (vidéo + écran de catégories) ---------- */
   .hero{
-    height:100vh;
+    height:100vh;height:100dvh; /* dvh : stable quand la barre d'URL mobile se replie */
     position:relative;
     background:#000;
     overflow:hidden;
@@ -215,10 +215,11 @@
     color:rgba(255,255,255,0.6);font-weight:500;
   }
   @media(max-width:860px){
-    .hero-stats{flex-direction:column;align-items:flex-start;gap:16px;padding:18px 6vw 22px;}
+    .hero-stats{flex-direction:column;align-items:stretch;gap:14px;padding:16px 6vw 20px;}
     .hero-stats-role{border-right:none;padding-right:0;}
-    .hero-stats-grid{flex-wrap:wrap;gap:16px 30px;justify-content:flex-start;}
-    .hstat-num{font-size:1.35rem;}
+    .hero-stats-role br{display:none;} /* rôle sur une ligne */
+    .hero-stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px 24px;} /* 2x2 propre */
+    .hstat-num{font-size:1.3rem;}
   }
 
   /* ---------- FILMOGRAPHIE ---------- */
@@ -523,7 +524,7 @@
   .edu-logo.logo-light{background:#fff;}          /* logo sur fond blanc */
   .edu-logo.logo-nantes{background:#101010;}
   .edu-logo.logo-nantes img{filter:brightness(0) invert(1);} /* marque en blanc */
-  @media(max-width:640px){
+  @media(max-width:720px){ /* même seuil que .job-card */
     .edu-row{grid-template-columns:1fr;gap:14px;padding:32px 24px;}
   }
   .edu-body h4{font-size:1.3rem;margin-bottom:4px;font-weight:700;font-family:var(--display);text-transform:uppercase;letter-spacing:0.01em;color:var(--parchment);}
@@ -635,6 +636,33 @@
   .profil-grid, .jobs-list, .edu-list{
     border-radius:18px;overflow:hidden;
     box-shadow:0 16px 44px rgba(64,46,16,0.10);
+  }
+
+  /* =========== MOBILE (polish global) =========== */
+  html.nav-open{overflow:hidden;} /* verrouille le scroll quand le menu mobile est ouvert */
+  @media(max-width:720px){
+    .section-head{margin-bottom:38px;}
+    #projets-reel{padding-top:64px;}
+    .filmo-toggle{padding:14px 18px;font-size:0.78rem;letter-spacing:0.05em;gap:9px;white-space:nowrap;}
+    .tgl-icon{font-size:1.1rem;}
+    .facts,.skills-col{padding:34px 22px;}
+    .socials .social{padding:12px 18px;font-size:0.86rem;}
+    .soft-head{font-size:1.05rem;}
+    .langs-grid{gap:18px;}
+    .job-card,.edu-row{padding:30px 20px;gap:18px;}
+    .job-body h3,.edu-body h4{font-size:1.12rem;}
+    .job-meta,.edu-meta{font-size:0.8rem;gap:8px 14px;margin:10px 0 16px;}
+    .job-co,.edu-co{font-size:1rem;}
+    .job-logo,.edu-logo{width:68px;height:68px;margin:0 auto 10px;}
+    .job-body ul,.edu-desc{font-size:0.9rem;}
+    .profil-grid,.jobs-list,.edu-list{border-radius:14px;}
+    .contact-wrap{padding-bottom:56px;}
+    .avail{font-size:0.68rem;padding:7px 13px;letter-spacing:0.04em;}
+    .contact-cards{margin-top:34px;gap:12px;}
+    .ccard{padding:16px;border-radius:14px;gap:13px;}
+    .ccard-ic{width:40px;height:40px;border-radius:10px;}
+    .contact-foot{margin-top:26px;font-size:0.72rem;line-height:1.8;}
+    .player-close{top:-48px;right:-6px;padding:10px;}
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -1321,9 +1349,13 @@
   const navToggle = document.getElementById('navToggle');
   const navClose = document.getElementById('navClose');
   const mobileNav = document.getElementById('mobileNav');
-  navToggle.addEventListener('click', () => mobileNav.classList.add('open'));
-  navClose.addEventListener('click', () => mobileNav.classList.remove('open'));
-  mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open')));
+  const setMobileNav = open => {
+    mobileNav.classList.toggle('open', open);
+    document.documentElement.classList.toggle('nav-open', open); // bloque le scroll derrière le menu
+  };
+  navToggle.addEventListener('click', () => setMobileNav(true));
+  navClose.addEventListener('click', () => setMobileNav(false));
+  mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMobileNav(false)));
 
   // vidéo de fond : joue une fois puis se fige sur la dernière image (pas de boucle)
   const introVideo = document.getElementById('introVideo');
