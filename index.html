@@ -581,7 +581,6 @@
     margin-top:34px;font-family:var(--mono);font-size:0.8rem;letter-spacing:0.03em;
     color:rgba(255,255,255,0.55);
   }
-  @media(max-width:560px){.contact-cards{grid-template-columns:1fr;}}
 
 
   /* =========== AGRÉMENTS VISUELS (Midnight Purple) =========== */
@@ -662,9 +661,13 @@
     .profil-grid,.jobs-list,.edu-list{border-radius:14px;}
     .contact-wrap{padding-bottom:56px;}
     .avail{font-size:0.68rem;padding:7px 13px;letter-spacing:0.04em;}
-    .contact-cards{margin-top:34px;gap:12px;}
-    .ccard{padding:16px;border-radius:14px;gap:13px;}
-    .ccard-ic{width:40px;height:40px;border-radius:10px;}
+    .contact-cards{margin-top:34px;gap:8px;grid-template-columns:1fr 1fr;}
+    .ccard{padding:13px 12px;border-radius:14px;gap:10px;}
+    .ccard-ic{width:34px;height:34px;border-radius:10px;}
+    .ccard-ic svg{width:18px;height:18px;}
+    .ccard-txt b{font-size:0.9rem;}
+    .ccard-txt small{font-size:0.64rem;white-space:normal;overflow-wrap:anywhere;line-height:1.3;}
+    .ccard-arrow{display:none;}
     .contact-foot{margin-top:26px;font-size:0.72rem;line-height:1.8;}
     .player-close{top:-48px;right:-6px;padding:10px;}
   }
