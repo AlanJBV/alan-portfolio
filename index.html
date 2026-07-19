@@ -368,7 +368,7 @@
     padding:7px 13px;border:1px solid var(--line);color:var(--parchment-dim);
   }
   /* liens réseaux */
-  .socials{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto;padding-top:26px;justify-content:center;}
+  .socials{display:flex;flex-wrap:nowrap;gap:8px;margin-top:auto;padding-top:26px;justify-content:center;}
   .social{
     display:inline-flex;align-items:center;gap:9px;
     padding:11px 18px;border-radius:999px;
@@ -385,9 +385,9 @@
   .social.primary{background:linear-gradient(135deg,#4c6d84,#6f92a8);color:#f4f6f7;}
   .social.primary:hover{filter:brightness(1.14);}
   .social svg{width:17px;height:17px;flex:none;}
-  /* boutons plus grands dans la carte Profil */
-  .socials .social{padding:14px 24px;font-size:0.92rem;}
-  .socials .social svg{width:20px;height:20px;}
+  /* boutons de la carte Profil : les trois sur une ligne, largeur équilibrée */
+  .socials .social{flex:1 1 0;min-width:0;justify-content:center;padding:13px 10px;font-size:0.84rem;white-space:nowrap;overflow:hidden;}
+  .socials .social svg{width:18px;height:18px;}
 
   /* ---------- EXPERIENCE TIMELINE ---------- */
   .timeline-ruler{
@@ -439,7 +439,7 @@
   .job-body ul li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--gold);}
   .job-stat{
     display:inline-block;margin-top:14px;font-family:var(--mono);font-size:0.78rem;
-    color:var(--tally);border:1px solid var(--tally);padding:5px 11px;
+    color:#3d5b6e;border:1px solid #b9ccd8;background:#eaf1f5;padding:5px 11px;
   }
 
   /* ---------- BOBINE ETUDIANTE ---------- */
@@ -660,6 +660,7 @@
     .job-body ul,.edu-desc{font-size:0.9rem;}
     .profil-grid,.jobs-list,.edu-list{border-radius:14px;}
     .contact-wrap{padding-bottom:56px;}
+    .contact-wrap h2{font-size:1.95rem;}
     .avail{font-size:0.68rem;padding:7px 13px;letter-spacing:0.04em;}
     .contact-cards{margin-top:34px;gap:8px;grid-template-columns:1fr 1fr;}
     .ccard{padding:13px 12px;border-radius:14px;gap:10px;}
@@ -1090,7 +1091,7 @@
           <li>Supervision des tournages et coordination des intervenants.</li>
           <li>Installation technique et cadrage.</li>
         </ul>
-        <span class="job-stat">+30 tournages · +40M vues/an cumulées</span>
+        <span class="job-stat">+25 tournages · +40M vues/an cumulées</span>
       </div>
     </div>
 
