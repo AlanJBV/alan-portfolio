@@ -11,16 +11,17 @@
 <style>
   :root{
     --void:#101109;         /* encre sombre : texte sur accent, overlay mobile */
-    --paper:#f5f3ec;        /* fond de page clair */
-    --panel:#ffffff;        /* cartes */
-    --panel-2:#edeae0;      /* panneaux secondaires */
-    --line:#e2ddce;         /* filets / bordures clairs */
-    --parchment:#17170f;    /* texte principal (presque noir) */
-    --parchment-dim:#5c5b50;/* texte secondaire */
-    --steel:#8b867a;        /* labels mono gris */
-    --gold:#280137;         /* accent Midnight Purple */
-    --gold-dim:#7e4f97;     /* violet moyen décoratif */
-    --gold-bright:#bf6bff;  /* violet flashy : accent lisible sur fonds sombres */
+    --paper:#e6e4df;        /* fond de page : gris doux (chaud très léger) */
+    --band:#c9c7be;         /* bande alternée : gris plus profond */
+    --panel:#f4f2ee;        /* cartes : blanc cassé neutre */
+    --panel-2:#e9e6e0;      /* panneaux secondaires */
+    --line:#d8d4ca;         /* filets / bordures gris */
+    --parchment:#211c13;    /* texte principal (presque noir, chaud) */
+    --parchment-dim:#5f584a;/* texte secondaire */
+    --steel:#8c8574;        /* labels mono gris chaud */
+    --gold:#5d7f95;         /* accent bleu ardoise pastel (lisible sur fond clair) */
+    --gold-dim:#93aabb;     /* bleu pastel moyen décoratif */
+    --gold-bright:#b3cad9;  /* bleu pastel clair : accent lisible sur fonds sombres */
     --tally:#e0603a;
     --radius:0px;
     --display:'Space Grotesk', sans-serif;
@@ -54,8 +55,8 @@
     background:var(--gold-dim);
   }
   h1,h2,h3{font-family:var(--display);text-transform:uppercase;letter-spacing:0.01em;}
-  section{padding:96px 8vw;position:relative;}
-  @media(max-width:720px){ section{padding:64px 6vw;} }
+  section{padding:113px 8vw;position:relative;}
+  @media(max-width:720px){ section{padding:76px 6vw;} }
   .container{max-width:1180px;margin:0 auto;}
 
   /* ---------- NAV ---------- */
@@ -295,15 +296,15 @@
   .filmo-toggle{
     position:relative;z-index:5;
     margin:-26px auto 0;width:fit-content;
-    display:flex;align-items:center;justify-content:center;gap:12px;
-    padding:15px 30px;
+    display:flex;align-items:center;justify-content:center;gap:14px;
+    padding:19px 44px;
     background:var(--panel);
     backdrop-filter:blur(12px);
     -webkit-backdrop-filter:blur(12px);
     border:1px solid var(--line);color:var(--parchment);
-    font-family:var(--mono);font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;
+    font-family:var(--mono);font-size:0.98rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
     cursor:pointer;
-    box-shadow:0 12px 34px rgba(0,0,0,0.14);
+    box-shadow:0 14px 40px rgba(64,46,16,0.16);
     transition:border-color .25s ease, color .25s ease, transform .25s ease, box-shadow .25s ease;
   }
   .filmo-toggle:hover{
@@ -311,7 +312,7 @@
     transform:translateY(-2px);
     box-shadow:0 18px 44px rgba(0,0,0,0.6);
   }
-  .tgl-icon{font-size:1.15rem;line-height:1;display:inline-block;transition:transform .4s ease;}
+  .tgl-icon{font-size:1.4rem;line-height:1;display:inline-block;transition:transform .4s ease;}
   .filmo-toggle.open .tgl-icon{transform:rotate(45deg);}
 
   /* ---------- LECTEUR YOUTUBE INTÉGRÉ ---------- */
@@ -377,10 +378,10 @@
   .social:hover{
     background:var(--gold);color:#fff;
     transform:translateY(-2px);
-    box-shadow:0 8px 20px rgba(40,1,55,0.30);
+    box-shadow:0 8px 20px rgba(93,127,149,0.32);
   }
   /* CV / email : bouton principal en dégradé Midnight Purple */
-  .social.primary{background:linear-gradient(135deg,#280137,#7e2f9e);color:#fff;}
+  .social.primary{background:linear-gradient(135deg,#4c6d84,#6f92a8);color:#f4f6f7;}
   .social.primary:hover{filter:brightness(1.14);}
   .social svg{width:17px;height:17px;flex:none;}
   /* boutons plus grands dans la carte Profil */
@@ -403,45 +404,39 @@
     margin-bottom:70px;
   }
   .job-card{
-    display:grid;grid-template-columns:110px 1fr;gap:36px;
-    padding:40px 36px;background:var(--panel);
+    display:grid;grid-template-columns:150px 1fr;gap:52px;
+    padding:40px 52px;background:var(--panel);
     opacity:0;transform:translateY(24px);transition:opacity .6s ease, transform .6s ease;
   }
   .job-card.visible{opacity:1;transform:translateY(0);}
   @media(max-width:720px){.job-card{grid-template-columns:1fr;gap:14px;padding:32px 24px;}}
   .job-slate{
-    font-family:var(--mono);color:var(--gold);font-size:0.85rem;
+    font-family:var(--mono);color:var(--gold);font-size:0.85rem;text-align:center;
+  }
+  .job-co{
+    display:block;font-family:var(--display);font-weight:700;
+    font-size:1.15rem;line-height:1.2;color:var(--gold);
   }
   .job-logo{
     display:flex;align-items:center;justify-content:center;overflow:hidden;
-    width:48px;height:48px;margin-bottom:14px;
+    width:82px;height:82px;margin:0 auto 16px;
     border:1px solid var(--line);background:var(--panel-2);
-    font-family:var(--display);font-weight:700;font-size:0.95rem;color:var(--gold);
+    font-family:var(--display);font-weight:700;font-size:1.5rem;color:var(--gold);
   }
   .job-logo img{width:100%;height:100%;object-fit:cover;}
-  /* carte Hugoposé : mosaïque de miniatures en fond */
-  .job-card.hugopose::before{
-    content:"";position:absolute;inset:0;opacity:0.07;pointer-events:none;
-    background-image:
-      url('https://img.youtube.com/vi/C8ysBeg72Jg/hqdefault.jpg'),
-      url('https://img.youtube.com/vi/hn2mCUPy4jg/hqdefault.jpg'),
-      url('https://img.youtube.com/vi/7xYBHMMJDEc/hqdefault.jpg'),
-      url('https://img.youtube.com/vi/iPvdpnAYSxE/hqdefault.jpg');
-    background-size:50% 50%;
-    background-position:0 0,100% 0,0 100%,100% 100%;
-    background-repeat:no-repeat;
-  }
+  .job-logo.cf{background:#fff;}
+  .job-logo.cf img{object-fit:contain;transform:scale(1.08);}
   .job-card.hugopose > *{position:relative;z-index:1;}
   .job-slate .n{font-size:1.6rem;font-weight:700;display:block;color:var(--parchment);}
   .job-body h3{font-size:1.3rem;margin-bottom:4px;}
   .job-meta{
-    font-family:var(--mono);font-size:0.75rem;color:var(--steel);
-    display:flex;flex-wrap:wrap;gap:14px;margin:10px 0 18px;
+    font-family:var(--mono);font-size:0.92rem;color:var(--steel);
+    display:flex;flex-wrap:wrap;gap:16px;margin:12px 0 20px;
   }
-  .job-meta b{color:#9333ea;}
+  .job-meta b{color:#48697e;}
   .job-body ul{list-style:none;color:var(--parchment-dim);font-size:0.95rem;}
   .job-body ul li{position:relative;padding-left:18px;margin-bottom:9px;}
-  .job-body ul li::before{content:"—";position:absolute;left:0;color:var(--steel);}
+  .job-body ul li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--gold);}
   .job-stat{
     display:inline-block;margin-top:14px;font-family:var(--mono);font-size:0.78rem;
     color:var(--tally);border:1px solid var(--tally);padding:5px 11px;
@@ -511,29 +506,35 @@
     display:grid;gap:1px;background:var(--line);border:1px solid var(--line);
   }
   .edu-row{
-    display:grid;grid-template-columns:72px 1fr;gap:34px;align-items:start;
-    padding:32px 44px;background:var(--panel);
+    display:grid;grid-template-columns:150px 1fr;gap:52px;align-items:start;
+    padding:40px 52px;background:var(--panel);
+  }
+  .edu-slate{text-align:center;font-family:var(--mono);color:var(--gold);font-size:0.85rem;}
+  .edu-co{
+    display:block;font-family:var(--display);font-weight:700;
+    font-size:1.15rem;line-height:1.2;color:var(--gold);
   }
   .edu-logo{
-    display:flex;align-items:center;justify-content:center;overflow:hidden;flex:none;
-    width:64px;height:64px;padding:9px;                     /* padding uniforme -> même taille visuelle */
-    border-radius:13px;background:var(--panel-2);
-    font-family:var(--display);font-weight:700;font-size:1rem;color:var(--gold);
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+    width:82px;height:82px;margin:0 auto 16px;padding:9px;   /* padding uniforme -> même taille visuelle */
+    border:1px solid var(--line);background:var(--panel-2);
+    font-family:var(--display);font-weight:700;font-size:1.5rem;color:var(--gold);
   }
   .edu-logo img{width:100%;height:100%;object-fit:contain;}
   .edu-logo.logo-light{background:#fff;}          /* logo sur fond blanc */
   .edu-logo.logo-nantes{background:#101010;}
   .edu-logo.logo-nantes img{filter:brightness(0) invert(1);} /* marque en blanc */
   @media(max-width:640px){
-    .edu-row{grid-template-columns:56px 1fr;gap:20px;padding:24px 24px;}
-    .edu-logo{width:52px;height:52px;}
+    .edu-row{grid-template-columns:1fr;gap:14px;padding:32px 24px;}
   }
-  .edu-row .yr{display:inline-block;font-family:var(--mono);color:var(--gold);font-size:0.85rem;letter-spacing:0.06em;margin-bottom:7px;}
-  .edu-row h4{font-size:1.12rem;font-weight:600;text-transform:none;font-family:var(--body);}
-  .edu-row p{color:var(--steel);font-size:0.92rem;margin-top:4px;}
-  .edu-desc{margin-top:14px;display:grid;gap:7px;}
-  .edu-desc li{list-style:none;position:relative;padding-left:18px;color:var(--parchment-dim);font-size:0.93rem;line-height:1.45;}
-  .edu-desc li::before{content:"";position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--gold);}
+  .edu-body h4{font-size:1.3rem;margin-bottom:4px;font-weight:700;font-family:var(--display);text-transform:uppercase;letter-spacing:0.01em;color:var(--parchment);}
+  .edu-meta{
+    font-family:var(--mono);font-size:0.92rem;color:var(--steel);
+    display:flex;flex-wrap:wrap;gap:16px;margin:12px 0 20px;
+  }
+  .edu-desc{list-style:none;color:var(--parchment-dim);font-size:0.95rem;}
+  .edu-desc li{position:relative;padding-left:18px;margin-bottom:9px;}
+  .edu-desc li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--gold);}
 
   /* ---------- CONTACT ---------- */
   .contact-wrap{text-align:center;padding-bottom:100px;}
@@ -550,14 +551,14 @@
 
   /* =========== AGRÉMENTS VISUELS (Midnight Purple) =========== */
   /* Contact en violet plein */
-  #contact{background:#280137;}
+  #contact{background:linear-gradient(160deg,#1e262b,#3c4a52);}
   #contact .eyebrow{color:var(--gold-bright);}
   #contact .eyebrow::before{background:var(--gold-bright);}
   #contact .contact-wrap h2{color:#fff;}
   #contact .contact-wrap p{color:rgba(255,255,255,0.74);}
   #contact .social{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.16);color:#fff;}
-  #contact .social:hover{background:var(--gold-bright);color:#280137;box-shadow:0 8px 22px rgba(0,0,0,0.38);}
-  #contact .social.primary{background:linear-gradient(135deg,#7e2f9e,#b98fd9);color:#fff;}
+  #contact .social:hover{background:var(--gold-bright);color:#1e262b;box-shadow:0 8px 22px rgba(0,0,0,0.38);}
+  #contact .social.primary{background:linear-gradient(135deg,#4c6d84,#6f92a8);color:#f4f6f7;}
   #contact .social.primary:hover{filter:brightness(1.08);}
 
   /* Souligné lilas animé sous les liens du menu */
@@ -565,13 +566,26 @@
   nav.desktop-nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--gold-bright);transform:scaleX(0);transform-origin:left;transition:transform .28s ease;}
   nav.desktop-nav a:hover::after{transform:scaleX(1);}
 
-  /* Rappels lilas au survol des cartes */
-  .job-card{transition:opacity .6s ease, transform .6s ease, box-shadow .3s ease;}
-  .job-card:hover{box-shadow:inset 3px 0 0 var(--gold-bright), 0 14px 34px rgba(40,1,55,0.14);}
+  /* Rappels lilas au survol des cartes (ombres internes : compatibles coins arrondis) */
+  .job-card{transition:opacity .6s ease, transform .6s ease, background .25s ease;}
+  .job-card:hover{background:#e4ecf1;box-shadow:inset 4px 0 0 #4e7189;}
   .edu-row{transition:background .25s ease, box-shadow .25s ease;}
-  .edu-row:hover{background:#faf6fd;box-shadow:inset 3px 0 0 var(--gold-bright);}
+  .edu-row:hover{background:#e4ecf1;box-shadow:inset 4px 0 0 #4e7189;}
   .filmo-card{transition:box-shadow .3s ease, transform .3s ease;}
-  .filmo-card:hover{z-index:2;box-shadow:0 0 0 2px var(--gold-bright), 0 16px 38px rgba(40,1,55,0.28);}
+  .filmo-card:hover{z-index:2;box-shadow:0 0 0 2px var(--gold), 0 16px 38px rgba(93,127,149,0.30);}
+
+  /* Cocooning : rythme bicolore fondu (dégradés doux aux transitions) */
+  #experience, #profil{
+    background:linear-gradient(to bottom,
+      var(--paper) 0,
+      var(--band) 120px,
+      var(--band) calc(100% - 120px),
+      var(--paper) 100%);
+  }
+  .profil-grid, .jobs-list, .edu-list{
+    border-radius:18px;overflow:hidden;
+    box-shadow:0 16px 44px rgba(64,46,16,0.10);
+  }
 
   @media (prefers-reduced-motion: reduce){
     *{animation:none !important;transition:none !important;}
@@ -974,70 +988,72 @@
 
     <div class="jobs-list">
     <div class="job-card hugopose">
-      <div class="job-slate"><span class="job-logo"><img src="assets/hugopose.jpg" alt="Hugoposé"></span>PROD Nº<span class="n">01</span></div>
+      <div class="job-slate"><span class="job-logo"><img src="assets/hugopose.jpg" alt="Hugoposé"></span><span class="job-co">Hugoposé</span></div>
       <div class="job-body">
         <h3>Chargé de Production YouTube</h3>
         <div class="job-meta">
-          <span><b>Chaîne Hugoposé</b></span>
           <span>Oct. 2024 — aujourd'hui</span>
           <span>1 an 10 mois · alternance puis CDI</span>
           <span>Paris · Hybride</span>
         </div>
         <ul>
-          <li>Production et coordination de vidéos à 2–5 millions de vues — formats long (20–50 min), short et reel.</li>
-          <li>Scripts, happenings et mécaniques vidéo.</li>
-          <li>Budgets, contrats, casting, repérages et logistique plateau.</li>
-          <li>Feuille de route, régie et cadrage secondaire en tournage.</li>
+          <li>Production de vidéos YouTube et de formats courts, en autonomie ou en binôme.</li>
+          <li>Création de scripts, happenings et mécaniques vidéo.</li>
+          <li>Gestion de production : budgets, contrats, facturation et casting.</li>
+          <li>Organisation des productions : repérages, décors, logistique plateau et supports de production.</li>
+          <li>Mise en place des collaborations et gestion des guests.</li>
+          <li>Supervision des tournages et coordination des intervenants.</li>
+          <li>Installation technique et cadrage.</li>
         </ul>
         <span class="job-stat">+30 tournages · +40M vues/an cumulées</span>
       </div>
     </div>
 
     <div class="job-card">
-      <div class="job-slate"><span class="job-logo">SA</span>PROD Nº<span class="n">02</span></div>
+      <div class="job-slate"><span class="job-logo">SA</span><span class="job-co">SARL SAEM</span></div>
       <div class="job-body">
         <h3>Responsable d'Établissement / Producteur Audiovisuel</h3>
         <div class="job-meta">
-          <span><b>SARL SAEM</b></span>
           <span>Avr. 2024 — Oct. 2024</span>
           <span>7 mois · CDD</span>
           <span>Saint-Hilaire-de-Riez</span>
         </div>
         <ul>
           <li>Production audiovisuelle et stratégie opérationnelle d'un établissement.</li>
-          <li>Gestion multi-casquette : coordination d'équipe, exploitation et supports de production.</li>
+          <li>Gestion multi-casquette : coordination d'équipe, exploitation et responsable du bon déroulement des évènements.</li>
+          <li>Accueil et gestion des guests.</li>
         </ul>
       </div>
     </div>
 
     <div class="job-card">
-      <div class="job-slate"><span class="job-logo">LC</span>PROD Nº<span class="n">03</span></div>
+      <div class="job-slate"><span class="job-logo"><img src="assets/cristal.jpg" alt="Le Cristal"></span><span class="job-co">Le Cristal</span></div>
       <div class="job-body">
         <h3>Créateur de Contenu pour les Réseaux Sociaux</h3>
         <div class="job-meta">
-          <span><b>Le Cristal</b></span>
           <span>Juil. 2022</span>
           <span>1 mois · Freelance</span>
           <span>Béziers · Hybride</span>
         </div>
         <ul>
-          <li>Production de vidéos en ligne sous Adobe Premiere Pro.</li>
+          <li>Production de vidéos pour les réseaux.</li>
+          <li>Cadrage et montage avec la suite Adobe.</li>
         </ul>
       </div>
     </div>
 
     <div class="job-card">
-      <div class="job-slate"><span class="job-logo">CF</span>PROD Nº<span class="n">04</span></div>
+      <div class="job-slate"><span class="job-logo cf"><img src="assets/coverfast.png" alt="CoverFast"></span><span class="job-co">CoverFast</span></div>
       <div class="job-body">
         <h3>Manager de Communauté / Création de Contenu</h3>
         <div class="job-meta">
-          <span><b>CoverFast</b></span>
           <span>Mars — Juin 2022</span>
           <span>4 mois · Stage</span>
           <span>Montpellier · Hybride</span>
         </div>
         <ul>
           <li>Réalisation de plaquettes commerciales, affiches et supports de communication.</li>
+          <li>Création avec la suite Adobe.</li>
           <li>Création de contenu web : stories et posts Instagram.</li>
           <li>Stratégie de communication et gestion de communauté.</li>
         </ul>
@@ -1048,8 +1064,94 @@
   </div>
 </section>
 
-<!-- ================= PROFIL ================= -->
+<!-- ================= FORMATION ================= -->
+<section id="formation">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Formation</div>
+      <h2>Parcours académique</h2>
+    </div>
+    <div class="edu-list">
+      <div class="edu-row">
+        <div class="edu-slate">
+          <span class="edu-logo logo-light"><img src="assets/3is.png" alt="3iS"></span>
+          <span class="edu-co">3iS</span>
+        </div>
+        <div class="edu-body">
+          <h4>Bachelor Production</h4>
+          <div class="edu-meta">
+            <span>2024–2025</span>
+            <span>Spécialisation Production — Titre RNCP34708, niveau 6 · En alternance</span>
+          </div>
+          <ul class="edu-desc">
+            <li>Gestion de la production de courts métrages</li>
+            <li>Suite Adobe et logiciels de production</li>
+            <li>Organisation et production d'émissions de plateau en direct</li>
+            <li>Préparation et production de clips musicaux</li>
+            <li>Élaboration de dossiers de production</li>
+            <li>Gestion des budgets et des plannings</li>
+            <li>Coordination des équipes techniques et artistiques</li>
+            <li>Repérages, logistique et organisation de tournages</li>
+          </ul>
+        </div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-slate">
+          <span class="edu-logo"><img src="assets/iut.png" alt="IUT de Béziers — Université de Montpellier"></span>
+          <span class="edu-co">IUT de Béziers</span>
+        </div>
+        <div class="edu-body">
+          <h4>DUT Métiers du multimédia et de l'internet</h4>
+          <div class="edu-meta">
+            <span>2020–2022</span>
+            <span>Spécialisation création audiovisuelle et numérique</span>
+          </div>
+          <ul class="edu-desc">
+            <li>Suite Adobe : Photoshop, Illustrator, Premiere Pro, After Effects, Audition</li>
+            <li>Production audiovisuelle : tournages, interviews, reportages et captation</li>
+            <li>Culture audiovisuelle : cinéma, création de contenus web et médias numériques</li>
+            <li>Compétences transversales : droit, économie, RSE et gestion de projet</li>
+          </ul>
+        </div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-slate">
+          <span class="edu-logo logo-nantes"><img src="assets/nantes-fav.png" alt="Université de Nantes"></span>
+          <span class="edu-co">Université de Nantes</span>
+        </div>
+        <div class="edu-body">
+          <h4>L1 LEA Bilingue Anglais – Espagnol</h4>
+          <div class="edu-meta">
+            <span>2020</span>
+            <span>Année obtenue</span>
+          </div>
+        </div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-slate">
+          <span class="edu-logo logo-light"><img src="assets/pmf.jpg" alt="Lycée Pierre Mendès France"></span>
+          <span class="edu-co">Lycée Pierre Mendès France</span>
+        </div>
+        <div class="edu-body">
+          <h4>Bac Gestion et Management, spécialité mercatique</h4>
+          <div class="edu-meta">
+            <span>2018</span>
+            <span>Mention bien</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COMPÉTENCES ================= -->
 <section id="profil">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Compétences</div>
+      <h2>Informations et logiciels</h2>
+    </div>
+  </div>
   <div class="container profil-grid">
     <div class="facts">
       <div class="eyebrow" style="margin-bottom:18px;">Profil</div>
@@ -1097,66 +1199,6 @@
         <div class="langs-grid">
           <div class="soft-item"><span class="soft-icon ic-flag"><svg width="100%" height="100%" viewBox="0 0 60 40" preserveAspectRatio="xMidYMid slice"><rect width="60" height="40" fill="#012169"/><path d="M0,0 L60,40 M60,0 L0,40" stroke="#fff" stroke-width="8"/><path d="M0,0 L60,40 M60,0 L0,40" stroke="#c8102e" stroke-width="4"/><rect x="24" width="12" height="40" fill="#fff"/><rect y="14" width="60" height="12" fill="#fff"/><rect x="26" width="8" height="40" fill="#c8102e"/><rect y="16" width="60" height="8" fill="#c8102e"/></svg></span><div class="soft-txt"><b>Anglais</b><small>C1 — LanguageCert</small></div></div>
           <div class="soft-item"><span class="soft-icon ic-flag"><svg width="100%" height="100%" viewBox="0 0 3 2" preserveAspectRatio="xMidYMid slice"><rect width="3" height="2" fill="#c60b1e"/><rect y="0.5" width="3" height="1" fill="#ffc400"/></svg></span><div class="soft-txt"><b>Espagnol</b><small>Niveau universitaire</small></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= FORMATION ================= -->
-<section id="formation">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">Formation</div>
-      <h2>Parcours académique</h2>
-    </div>
-    <div class="edu-list">
-      <div class="edu-row">
-        <span class="edu-logo logo-light"><img src="assets/3is.png" alt="3iS"></span>
-        <div>
-          <span class="yr">2024–2025</span>
-          <h4>Bachelor Production</h4>
-          <p>3iS · Spécialisation Production — Titre RNCP34708, niveau 6 · En alternance</p>
-          <ul class="edu-desc">
-            <li>Gestion de la production de courts métrages</li>
-            <li>Suite Adobe et logiciels de production</li>
-            <li>Organisation et production d'émissions de plateau en direct</li>
-            <li>Préparation et production de clips musicaux</li>
-            <li>Élaboration de dossiers de production</li>
-            <li>Gestion des budgets et des plannings</li>
-            <li>Coordination des équipes techniques et artistiques</li>
-            <li>Repérages, logistique et organisation de tournages</li>
-          </ul>
-        </div>
-      </div>
-      <div class="edu-row">
-        <span class="edu-logo"><img src="assets/iut.png" alt="IUT de Béziers — Université de Montpellier"></span>
-        <div>
-          <span class="yr">2020–2022</span>
-          <h4>DUT Métiers du multimédia et de l'internet</h4>
-          <p>IUT de Béziers · Spécialisation création audiovisuelle et numérique</p>
-          <ul class="edu-desc">
-            <li>Suite Adobe : Photoshop, Illustrator, Premiere Pro, After Effects, Audition</li>
-            <li>Production audiovisuelle : tournages, interviews, reportages et captation</li>
-            <li>Culture audiovisuelle : cinéma, création de contenus web et médias numériques</li>
-            <li>Compétences transversales : droit, économie, RSE et gestion de projet</li>
-          </ul>
-        </div>
-      </div>
-      <div class="edu-row">
-        <span class="edu-logo logo-nantes"><img src="assets/nantes-fav.png" alt="Université de Nantes"></span>
-        <div>
-          <span class="yr">2020</span>
-          <h4>L1 LEA Bilingue Anglais – Espagnol</h4>
-          <p>Université de Nantes · Année obtenue</p>
-        </div>
-      </div>
-      <div class="edu-row">
-        <span class="edu-logo logo-light"><img src="assets/pmf.jpg" alt="Lycée Pierre Mendès France"></span>
-        <div>
-          <span class="yr">2018</span>
-          <h4>Bac Gestion et Management, spécialité mercatique</h4>
-          <p>Lycée Pierre Mendès France · Mention bien</p>
         </div>
       </div>
     </div>
