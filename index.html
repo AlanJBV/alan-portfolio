@@ -1380,7 +1380,6 @@
         p = Math.max(0, Math.min(1, p));
         catLinkEls.forEach(el => {
           el.style.opacity = p;
-          el.style.filter = 'blur(' + ((1 - p) * 6).toFixed(1) + 'px)';
           el.style.pointerEvents = p < 0.1 ? 'none' : '';
         });
       } else {
