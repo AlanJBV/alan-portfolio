@@ -648,31 +648,15 @@
     #projets-reel{padding-top:64px;}
     .filmo-toggle{padding:14px 18px;font-size:0.78rem;letter-spacing:0.05em;gap:9px;white-space:nowrap;}
     .tgl-icon{font-size:1.1rem;}
-    /* Filmographie en carrousel horizontal : on swipe au lieu d'une longue colonne */
-    .filmo-grid{
-      display:flex;gap:10px;
-      overflow-x:auto;overflow-y:hidden;
-      scroll-snap-type:x mandatory;
-      -webkit-overflow-scrolling:touch;
-      background:none;border:none;
-      padding-bottom:6px;
-      scrollbar-width:none;
-    }
-    .filmo-grid::-webkit-scrollbar{display:none;}
-    .filmo-card{
-      flex:0 0 82%;
-      scroll-snap-align:center;
-      border-radius:12px;overflow:hidden;
-      aspect-ratio:16/10;min-height:0;
-    }
+    /* Filmographie : 2 par ligne, déploiement vers le bas (identique au desktop) */
+    .filmo-grid{grid-template-columns:1fr 1fr;}
+    .filmo-card,
     .filmo-card:nth-child(3n+1):last-child,
-    .filmo-card:nth-child(3n+2):last-child{flex:0 0 82%;aspect-ratio:16/10;min-height:0;}
-    .filmo-more .filmo-grid{margin-top:12px;}
-    /* révélation fiable pour un carrousel : le mécanisme grid 0fr->1fr (et la transition max-height) ne gèrent pas un scroller horizontal en enfant. On révèle le conteneur instantanément ; l'animation reste portée par le fondu/slide de chaque carte. */
-    .filmo-more{display:block;grid-template-rows:none;max-height:0;overflow:hidden;}
-    .filmo-more.open{max-height:none;}
-    .filmo-info h3{font-size:0.9rem;min-height:2.4em;}
-    .filmo-stat{font-size:0.72rem;}
+    .filmo-card:nth-child(3n+2):last-child{aspect-ratio:5/4;min-height:0;grid-column:auto;}
+    .filmo-info{padding:7px 10px 9px;}
+    .filmo-info h3{font-size:0.78rem;min-height:2.4em;margin-top:3px;}
+    .filmo-stat{font-size:0.62rem;}
+    .filmo-thumb .tag{font-size:0.56rem;padding:3px 7px;top:8px;left:8px;}
     .facts,.skills-col{padding:34px 22px;}
     .socials{gap:6px;}
     .socials .social{padding:12px 5px;gap:5px;font-size:0.72rem;letter-spacing:0;}
