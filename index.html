@@ -358,9 +358,10 @@
     background:var(--line);border:1px solid var(--line);
   }
   @media(max-width:860px){.profil-grid{grid-template-columns:1fr;}}
-  .facts{background:var(--panel);padding:52px 44px;display:flex;flex-direction:column;}
+  .facts{background:var(--panel);padding:52px 44px;display:flex;flex-direction:column;min-width:0;}
   .profil-lead{font-family:var(--display);font-size:1.12rem;line-height:1.45;color:var(--parchment);margin-bottom:26px;font-weight:500;}
   .fact-row{display:flex;justify-content:space-between;gap:14px;padding:15px 0;border-bottom:1px solid var(--line);font-size:0.98rem;}
+  .fact-row span:last-child{min-width:0;text-align:right;overflow-wrap:anywhere;}
   .fact-row .k{color:var(--steel);font-family:var(--mono);font-size:0.8rem;font-weight:500;text-transform:uppercase;letter-spacing:0.04em;}
   .chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px;}
   .chip{
@@ -456,7 +457,7 @@
   .reel-note{margin-top:40px;color:var(--parchment-dim);font-size:0.92rem;max-width:70ch;border-left:1px solid var(--line);padding-left:20px;}
 
   /* ---------- LOGICIELS & LANGUES (carte profil) ---------- */
-  .skills-col{background:var(--panel);padding:52px 44px;display:flex;flex-direction:column;}
+  .skills-col{background:var(--panel);padding:52px 44px;display:flex;flex-direction:column;min-width:0;}
   .soft-block + .soft-block{margin-top:30px;}
   .langs-block{margin-top:auto;padding-top:30px;}
   .langs-grid{display:flex;justify-content:center;gap:36px;flex-wrap:wrap;}
