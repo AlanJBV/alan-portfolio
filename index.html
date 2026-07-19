@@ -401,7 +401,6 @@
 
   .jobs-list{
     display:grid;gap:1px;background:var(--line);border:1px solid var(--line);
-    margin-bottom:70px;
   }
   .job-card{
     display:grid;grid-template-columns:150px 1fr;gap:52px;
@@ -538,16 +537,52 @@
 
   /* ---------- CONTACT ---------- */
   .contact-wrap{text-align:center;padding-bottom:100px;}
-  .contact-wrap h2{font-size:clamp(2.2rem,6vw,4rem);margin-bottom:24px;}
-  .contact-wrap p{color:var(--parchment-dim);max-width:50ch;margin:0 auto 40px;}
-  .contact-links{display:flex;flex-direction:column;align-items:center;gap:16px;}
-  .contact-mail{font-size:0.95rem;padding:15px 30px;}
-  .contact-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
-
-  footer{
-    text-align:center;padding:30px 8vw;font-family:var(--mono);font-size:0.7rem;color:var(--steel);
-    border-top:1px solid var(--line);
+  .contact-wrap h2{font-size:clamp(2.2rem,6vw,4rem);margin-bottom:20px;}
+  .contact-wrap p{color:var(--parchment-dim);max-width:52ch;margin:0 auto;}
+  /* badge disponibilité */
+  .avail{
+    display:inline-flex;align-items:center;gap:9px;margin-bottom:26px;
+    padding:8px 16px;border-radius:999px;
+    background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.16);
+    font-family:var(--mono);font-size:0.76rem;letter-spacing:0.05em;text-transform:uppercase;
+    color:rgba(255,255,255,0.86);
   }
+  .avail .dot{width:9px;height:9px;border-radius:50%;background:#5fd08a;animation:availPulse 2.2s infinite;}
+  @keyframes availPulse{
+    0%{box-shadow:0 0 0 0 rgba(95,208,138,0.55);}
+    70%{box-shadow:0 0 0 10px rgba(95,208,138,0);}
+    100%{box-shadow:0 0 0 0 rgba(95,208,138,0);}
+  }
+  /* grille de cartes de contact */
+  .contact-cards{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;
+    max-width:640px;margin:44px auto 0;text-align:left;
+  }
+  .ccard{
+    display:flex;align-items:center;gap:16px;position:relative;
+    padding:20px 22px;border-radius:16px;
+    background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);
+    color:#fff;transition:transform .25s ease, background .25s ease, border-color .25s ease;
+  }
+  .ccard:hover{transform:translateY(-3px);background:rgba(255,255,255,0.11);border-color:var(--gold-bright);}
+  .ccard-ic{
+    flex:none;width:44px;height:44px;border-radius:12px;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(255,255,255,0.10);
+  }
+  .ccard-ic svg{width:22px;height:22px;fill:var(--gold-bright);}
+  .ccard-txt{display:flex;flex-direction:column;gap:2px;min-width:0;}
+  .ccard-txt b{font-family:var(--display);font-size:1rem;font-weight:700;line-height:1.1;}
+  .ccard-txt small{font-family:var(--mono);font-size:0.78rem;color:rgba(255,255,255,0.6);
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .ccard-arrow{margin-left:auto;flex:none;color:var(--gold-bright);font-size:1.1rem;transition:transform .25s ease;}
+  .ccard:hover .ccard-arrow{transform:translateX(4px);}
+  .contact-foot{
+    margin-top:34px;font-family:var(--mono);font-size:0.8rem;letter-spacing:0.03em;
+    color:rgba(255,255,255,0.55);
+  }
+  @media(max-width:560px){.contact-cards{grid-template-columns:1fr;}}
+
 
   /* =========== AGRÉMENTS VISUELS (Midnight Purple) =========== */
   /* Contact en violet plein */
@@ -563,7 +598,7 @@
 
   /* Souligné lilas animé sous les liens du menu */
   nav.desktop-nav a{padding-bottom:4px;}
-  nav.desktop-nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--gold-bright);transform:scaleX(0);transform-origin:left;transition:transform .28s ease;}
+  nav.desktop-nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:#7aa6c4;transform:scaleX(0);transform-origin:left;transition:transform .28s ease;}
   nav.desktop-nav a:hover::after{transform:scaleX(1);}
 
   /* Rappels lilas au survol des cartes (ombres internes : compatibles coins arrondis) */
@@ -575,12 +610,27 @@
   .filmo-card:hover{z-index:2;box-shadow:0 0 0 2px var(--gold), 0 16px 38px rgba(93,127,149,0.30);}
 
   /* Cocooning : rythme bicolore fondu (dégradés doux aux transitions) */
-  #experience, #profil{
+  /* Expérience : fondu haut standard ; fondu bas centré sur la limite avec Formation (moitié ici, moitié dans Formation via la couleur médiane #d8d6cf) */
+  #experience{
     background:linear-gradient(to bottom,
       var(--paper) 0,
-      var(--band) 120px,
-      var(--band) calc(100% - 120px),
+      var(--band) 69px,
+      var(--band) calc(100% - 15px),
+      #cfcdc5 100%);
+  }
+  /* Formation : reçoit la plus grande partie du fondu (raccord -> clair) -> centre du fondu sous la limite, plus proche de Formation */
+  #formation{
+    background:linear-gradient(to bottom,
+      #cfcdc5 0,
+      var(--paper) 55px,
       var(--paper) 100%);
+  }
+  /* Compétences : fondu haut standard ; reste en bande jusqu'au contact (pas de retour au clair) */
+  #profil{
+    background:linear-gradient(to bottom,
+      var(--paper) 0,
+      var(--band) 69px,
+      var(--band) 100%);
   }
   .profil-grid, .jobs-list, .edu-list{
     border-radius:18px;overflow:hidden;
@@ -1208,33 +1258,34 @@
 <!-- ================= CONTACT ================= -->
 <section id="contact">
   <div class="container contact-wrap">
-    <div class="eyebrow" style="justify-content:center;">Contact</div>
-    <h2>On tourne ?</h2>
-    <p>Ouvert à un poste de chargé de production audiovisuelle, dans une structure qui produit pour le web comme pour la marque.</p>
-    <div class="contact-links">
-      <a href="mailto:brechotteau.alan@gmail.com" class="social primary contact-mail">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
-        brechotteau.alan@gmail.com
+    <div class="avail"><span class="dot"></span>Disponible — ouvert aux opportunités</div>
+    <h2>Et si on échangeait ?</h2>
+    <p>Je suis actuellement ouvert à de nouvelles opportunités en production audiovisuelle. Que vous ayez un projet, une proposition ou simplement l'envie de discuter, n'hésitez pas à me contacter.</p>
+    <div class="contact-cards">
+      <a class="ccard" href="mailto:brechotteau.alan@gmail.com" aria-label="Envoyer un email à Alan Brechotteau">
+        <span class="ccard-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></span>
+        <span class="ccard-txt"><b>Email</b><small>brechotteau.alan@gmail.com</small></span>
+        <span class="ccard-arrow">→</span>
       </a>
-      <div class="contact-row">
-        <a class="social" href="https://www.linkedin.com/in/alan-brechotteau-9a7b71178/" target="_blank" rel="noopener" id="linkedinLink">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
-          LinkedIn
-        </a>
-        <a class="social" href="https://www.instagram.com/alan_brechotteau/" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.12 1.38A5.85 5.85 0 0 0 .63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.12.66.66 1.33 1.08 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.3 1.46-.72 2.12-1.38.66-.66 1.08-1.33 1.38-2.12.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.79-.72-1.46-1.38-2.12A5.85 5.85 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.41-10.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
-          Instagram
-        </a>
-        <a class="social" href="Cv.pdf" download aria-label="Télécharger le CV d'Alan Brechotteau">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-          Télécharger le CV
-        </a>
-      </div>
+      <a class="ccard" href="Cv.pdf" download aria-label="Télécharger le CV d'Alan Brechotteau">
+        <span class="ccard-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></span>
+        <span class="ccard-txt"><b>CV</b><small>Télécharger le PDF</small></span>
+        <span class="ccard-arrow">→</span>
+      </a>
+      <a class="ccard" href="https://www.linkedin.com/in/alan-brechotteau-9a7b71178/" target="_blank" rel="noopener" id="linkedinLink" aria-label="LinkedIn d'Alan Brechotteau">
+        <span class="ccard-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></span>
+        <span class="ccard-txt"><b>LinkedIn</b><small>in/alan-brechotteau</small></span>
+        <span class="ccard-arrow">→</span>
+      </a>
+      <a class="ccard" href="https://www.instagram.com/alan_brechotteau/" target="_blank" rel="noopener" aria-label="Instagram d'Alan Brechotteau">
+        <span class="ccard-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.12 1.38A5.85 5.85 0 0 0 .63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.12.66.66 1.33 1.08 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.3 1.46-.72 2.12-1.38.66-.66 1.08-1.33 1.38-2.12.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.79-.72-1.46-1.38-2.12A5.85 5.85 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.41-10.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg></span>
+        <span class="ccard-txt"><b>Instagram</b><small>@alan_brechotteau</small></span>
+        <span class="ccard-arrow">→</span>
+      </a>
     </div>
+    <div class="contact-foot">Basé à Paris · Mobilité France &amp; international</div>
   </div>
 </section>
-
-<footer>© <span id="year"></span> Alan Brechotteau — Portfolio</footer>
 
 <script>
   // toujours (re)démarrer sur l'accueil : pas de restauration de scroll ni de saut vers une ancre
@@ -1341,8 +1392,6 @@
   document.addEventListener('keydown', (e) => {
     if(e.key === 'Escape' && playerModal.classList.contains('open')) closePlayer();
   });
-
-  document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 
 </body>
