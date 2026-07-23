@@ -429,8 +429,8 @@
     font-family:var(--display);font-weight:700;font-size:1.5rem;color:var(--gold);
   }
   .job-logo img{width:100%;height:100%;object-fit:cover;}
-  .job-logo.cf{background:#fff;}
-  .job-logo.cf img{object-fit:contain;transform:scale(1.08);}
+  .job-logo.cf,.job-logo.pub{background:#fff;}
+  .job-logo.cf img,.job-logo.pub img{object-fit:contain;transform:scale(1.08);}
   .job-card.hugopose > *{position:relative;z-index:1;}
   .job-slate .n{font-size:1.6rem;font-weight:700;display:block;color:var(--parchment);}
   .job-body h3{font-size:1.3rem;margin-bottom:4px;}
@@ -657,16 +657,20 @@
     .filmo-info h3{font-size:0.78rem;min-height:2.4em;margin-top:3px;}
     .filmo-stat{font-size:0.62rem;}
     .filmo-thumb .tag{font-size:0.56rem;padding:3px 7px;top:8px;left:8px;}
-    .facts,.skills-col{padding:34px 22px;}
+    /* même padding sur les deux blocs : empilés, ils doivent s'aligner au pixel */
+    .facts,.skills-col{padding:34px 18px;}
     .socials{gap:6px;}
     .socials .social{padding:12px 5px;gap:5px;font-size:0.72rem;letter-spacing:0;}
     .socials .social svg{width:15px;height:15px;}
     .soft-head{font-size:1.05rem;}
     .soft-grid{gap:8px;}
-    .soft-item{padding:9px 10px;gap:10px;}
-    .soft-icon{width:38px;height:38px;}
-    .soft-txt b{font-size:0.9rem;}
-    .soft-txt small{font-size:0.68rem;}
+    /* min-width:0 indispensable : sans lui le contenu impose sa largeur mini
+       et les colonnes de droite débordent hors de la carte (rognées) */
+    .soft-item{padding:9px 9px;gap:8px;min-width:0;}
+    .soft-icon{width:32px;height:32px;}
+    .soft-txt{min-width:0;}
+    .soft-txt b{font-size:0.87rem;overflow-wrap:anywhere;}
+    .soft-txt small{font-size:0.63rem;letter-spacing:0;overflow-wrap:anywhere;} /* "Intermédiaire" tient sur une ligne */
     .langs-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
     .job-card,.edu-row{padding:30px 20px;gap:18px;}
     .job-body h3,.edu-body h4{font-size:1.12rem;}
@@ -1099,11 +1103,12 @@
           <span>Paris · Hybride</span>
         </div>
         <ul>
+          <li>Gestion de la production de A à Z.</li>
           <li>Production de vidéos YouTube et de formats courts, en autonomie ou en binôme.</li>
           <li>Création de scripts, happenings et mécaniques vidéo.</li>
           <li>Gestion de production : budgets, contrats, facturation et casting.</li>
           <li>Organisation des productions : repérages, décors, logistique plateau et supports de production.</li>
-          <li>Mise en place des collaborations et gestion des guests.</li>
+          <li>Mise en place des collaborations et coordination des guests.</li>
           <li>Supervision des tournages et coordination des intervenants.</li>
           <li>Installation technique et cadrage.</li>
         </ul>
@@ -1112,12 +1117,28 @@
     </div>
 
     <div class="job-card">
+      <div class="job-slate"><span class="job-logo pub"><img src="assets/publicis.png" alt="Publicis Groupe"></span><span class="job-co">Allezgo Production × Publicis</span></div>
+      <div class="job-body">
+        <h3>Chargé de Production</h3>
+        <div class="job-meta">
+          <span>Sept. — Oct. 2024</span>
+          <span>2 mois · Freelance</span>
+          <span>Paris</span>
+        </div>
+        <ul>
+          <li>Préparation et mise en place de la campagne pour la Renault 5 électrique.</li>
+          <li>Tournage de séquences pour les supports publicitaires.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job-card">
       <div class="job-slate"><span class="job-logo">SA</span><span class="job-co">SARL SAEM</span></div>
       <div class="job-body">
-        <h3>Responsable d'Établissement / Producteur Audiovisuel</h3>
+        <h3>Responsable de Site / Production Audiovisuelle</h3>
         <div class="job-meta">
-          <span>Avr. 2024 — Oct. 2024</span>
-          <span>7 mois · CDD</span>
+          <span>Avr. — Sept. 2024</span>
+          <span>6 mois · CDD</span>
           <span>Saint-Hilaire-de-Riez</span>
         </div>
         <ul>
@@ -1131,7 +1152,7 @@
     <div class="job-card">
       <div class="job-slate"><span class="job-logo"><img src="assets/cristal.jpg" alt="Le Cristal"></span><span class="job-co">Le Cristal</span></div>
       <div class="job-body">
-        <h3>Créateur de Contenu pour les Réseaux Sociaux</h3>
+        <h3>Création de Contenu</h3>
         <div class="job-meta">
           <span>Juil. 2022</span>
           <span>1 mois · Freelance</span>
@@ -1147,10 +1168,10 @@
     <div class="job-card">
       <div class="job-slate"><span class="job-logo cf"><img src="assets/coverfast.png" alt="CoverFast"></span><span class="job-co">CoverFast</span></div>
       <div class="job-body">
-        <h3>Manager de Communauté / Création de Contenu</h3>
+        <h3>Community Manager / Création de Contenu</h3>
         <div class="job-meta">
-          <span>Mars — Juin 2022</span>
-          <span>4 mois · Stage</span>
+          <span>Janv. — Juin 2022</span>
+          <span>6 mois · Stage</span>
           <span>Montpellier · Hybride</span>
         </div>
         <ul>
@@ -1183,7 +1204,7 @@
           <h4>Bachelor Production</h4>
           <div class="edu-meta">
             <span>2024–2025</span>
-            <span>Spécialisation Production — Titre RNCP34708, niveau 6 · En alternance</span>
+            <span>Spécialisation Production — Titre RNCP 34708, niveau 6 · En alternance</span>
           </div>
           <ul class="edu-desc">
             <li>Gestion de la production de courts métrages</li>
