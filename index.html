@@ -720,7 +720,7 @@
 
 <!-- ================= HERO VIDÉO ================= -->
 <section class="hero" id="hero">
-  <video class="hero-video" id="introVideo" autoplay muted playsinline>
+  <video class="hero-video" id="introVideo" autoplay muted playsinline preload="auto">
     <source src="intro.mp4" type="video/mp4">
   </video>
   <div class="hero-tint" id="heroTint"></div>
@@ -1408,8 +1408,11 @@
 
   if(introVideo){
     introVideo.addEventListener('ended', () => introVideo.pause());
-    introVideo.play().catch(() => {}); // si l'autoplay est bloqué, l'image de poster/premier frame reste affichée, déjà assombrie
-    if(reduceMotion) introVideo.pause();
+    if(reduceMotion){
+      introVideo.pause();
+    } else {
+      introVideo.play().catch(() => {});
+    }
   }
 
   // reveal on scroll
