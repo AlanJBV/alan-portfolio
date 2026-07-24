@@ -2,17 +2,21 @@
 
 Portfolio en HTML/CSS/JS pur (aucune dépendance, aucun build).
 
+**En ligne :** https://alanjbv.github.io/alan-portfolio/
+
 ## Structure
 - `index.html` — page unique (tout le CSS/JS est inline)
 - `intro.mp4` — vidéo de fond du hero
-- `Cv.pdf` — CV téléchargeable (à remplacer par la version finale)
+- `Cv.pdf` — CV téléchargeable
+- `assets/` — logos et images (expériences, formations)
 
-## Déploiement sur Netlify (via GitHub)
-1. Pousser ce repo sur GitHub (voir plus bas)
-2. Sur [netlify.com](https://netlify.com) → "Add new site" → "Import an existing project" → connecter GitHub → choisir ce repo
-3. Build command : (laisser vide)
-4. Publish directory : `/` (racine)
-5. Déployer — chaque `git push` sur `main` redéploiera automatiquement le site
+## Déploiement (GitHub Pages)
+Le site est hébergé sur **GitHub Pages** : gratuit, bande passante généreuse, déploiements illimités.
 
-## Nom de domaine
-Une fois le site en ligne sur Netlify, aller dans Site settings → Domain management → Add custom domain, puis modifier les DNS chez OVH pour pointer vers Netlify.
+- Chaque `git push` sur `main` **redéploie automatiquement** le site en ~1 min.
+- Aucune configuration de build : GitHub sert directement les fichiers de la racine.
+
+Pour (ré)activer si besoin : repo → **Settings → Pages → Build and deployment → Source : « Deploy from a branch » → branche `main`, dossier `/ (root)`**.
+
+## Nom de domaine (optionnel)
+Pour utiliser un domaine perso (ex. `alanbrechotteau.com`) : Settings → Pages → **Custom domain**, puis créer un enregistrement DNS chez le registrar (CNAME vers `alanjbv.github.io`, ou les 4 A records de GitHub pour un domaine apex).
