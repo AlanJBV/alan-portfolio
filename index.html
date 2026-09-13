@@ -320,6 +320,49 @@
   .tgl-icon{font-size:1.4rem;line-height:1;display:inline-block;transition:transform .4s ease;}
   .filmo-toggle.open .tgl-icon{transform:rotate(45deg);}
 
+  /* ---------- FORMATS VERTICAUX (shorts & reels) ---------- */
+  .vert-block{margin-top:44px;}
+  .vert-head{
+    font-family:var(--mono);font-size:0.9rem;font-weight:600;letter-spacing:0.14em;
+    text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:20px;
+  }
+  .vert-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+    max-width:640px;margin:0 auto;
+  }
+  .vert-card{
+    position:relative;display:block;overflow:hidden;aspect-ratio:7/10;
+    border:1px solid var(--line);background:#0b0c0a;
+    transition:box-shadow .3s ease, transform .3s ease;
+  }
+  .vert-thumb{
+    position:absolute;inset:0;background-size:cover;background-position:center;
+    transition:transform .5s ease;
+  }
+  .vert-card::after{
+    content:"";position:absolute;inset:0;z-index:1;
+    background:linear-gradient(to bottom,rgba(0,0,0,0.18) 0%,rgba(0,0,0,0) 32%,rgba(0,0,0,0) 62%,rgba(11,12,10,0.72) 100%);
+  }
+  .vert-card:hover{z-index:2;box-shadow:0 0 0 2px var(--gold), 0 16px 38px rgba(93,127,149,0.30);}
+  .vert-card:hover .vert-thumb{transform:scale(1.05);}
+  .vert-tag{
+    position:absolute;top:10px;left:10px;z-index:2;
+    font-family:var(--mono);font-size:0.62rem;letter-spacing:0.08em;text-transform:uppercase;
+    color:#fff;background:rgba(11,12,10,0.72);border:1px solid rgba(255,255,255,0.18);
+    padding:3px 9px;
+  }
+  .vert-stat{
+    position:absolute;bottom:10px;left:10px;right:10px;z-index:2;
+    font-family:var(--mono);font-size:0.72rem;letter-spacing:0.05em;text-transform:uppercase;
+    color:var(--gold-bright);font-weight:500;
+  }
+  @media(max-width:680px){
+    .vert-grid{gap:10px;max-width:none;}
+    .vert-head{font-size:0.82rem;}
+    .vert-tag{font-size:0.56rem;padding:2px 7px;}
+    .vert-stat{font-size:0.64rem;}
+  }
+
   /* ---------- LECTEUR YOUTUBE INTÉGRÉ ---------- */
   .player-modal{
     position:fixed;inset:0;z-index:900;
@@ -760,7 +803,7 @@
           <span class="tag">Format long</span>
         </div>
         <div class="filmo-info">
-          <span class="filmo-stat">5,2M vues · oct. 2025</span>
+          <span class="filmo-stat">5,6M vues · oct. 2025</span>
           <h3>J'ai Arnaqué 10 Arnaqueurs À Paris !</h3>
         </div>
       </a>
@@ -770,7 +813,7 @@
           <span class="tag">Format long</span>
         </div>
         <div class="filmo-info">
-          <span class="filmo-stat">3,7M vues · mai 2025</span>
+          <span class="filmo-stat">3,9M vues · mai 2025</span>
           <h3>24h Sur La Croisière Notée 1 Étoile ! ★☆☆☆☆</h3>
         </div>
       </a>
@@ -790,7 +833,7 @@
           <span class="tag">Format long</span>
         </div>
         <div class="filmo-info">
-          <span class="filmo-stat">641K vues · avr. 2026</span>
+          <span class="filmo-stat">764K vues · avr. 2026</span>
           <h3>4 Acteurs VS 1 Vrai Millionnaire (ft FastGoodCuisine, Tsuku &amp; Cédric)</h3>
         </div>
       </a>
@@ -810,7 +853,7 @@
           <span class="tag">Format long</span>
         </div>
         <div class="filmo-info">
-          <span class="filmo-stat">584K vues · juin 2026</span>
+          <span class="filmo-stat">714K vues · juin 2026</span>
           <h3>DEVINE SINON T'ACHÈTES ! (ft FastGoodCuisine)</h3>
         </div>
       </a>
@@ -826,7 +869,7 @@
               <span class="tag">Format long</span>
             </div>
             <div class="filmo-info">
-              <span class="filmo-stat">3,6M vues · févr. 2025</span>
+              <span class="filmo-stat">3,8M vues · févr. 2025</span>
               <h3>J'ai Testé 10 Lieux Avec 0 Avis</h3>
             </div>
           </a>
@@ -846,7 +889,7 @@
               <span class="tag">Format long</span>
             </div>
             <div class="filmo-info">
-              <span class="filmo-stat">3M vues · mars 2025</span>
+              <span class="filmo-stat">3,1M vues · mars 2025</span>
               <h3>J'ai Acheté 30 Objets Bannis ! (ILLÉGAL)</h3>
             </div>
           </a>
@@ -856,7 +899,7 @@
               <span class="tag">Format long</span>
             </div>
             <div class="filmo-info">
-              <span class="filmo-stat">2,9M vues · déc. 2024</span>
+              <span class="filmo-stat">3,1M vues · déc. 2024</span>
               <h3>QUI RAMÈNERA L'OBJET LE PLUS CHER ? (ft Nico, Flamby &amp; FastGoodCuisine)</h3>
             </div>
           </a>
@@ -866,7 +909,7 @@
               <span class="tag">Format long</span>
             </div>
             <div class="filmo-info">
-              <span class="filmo-stat">2,8M vues · avr. 2025</span>
+              <span class="filmo-stat">2,9M vues · avr. 2025</span>
               <h3>J'ai Testé 25 Astuces De Rat !</h3>
             </div>
           </a>
@@ -876,7 +919,7 @@
               <span class="tag">Format long</span>
             </div>
             <div class="filmo-info">
-              <span class="filmo-stat">2,6M vues · janv. 2025</span>
+              <span class="filmo-stat">2,7M vues · janv. 2025</span>
               <h3>J'ai Acheté 40 Pubs TikTok ! (ARNAQUE OU PAS ?)</h3>
             </div>
           </a>
@@ -886,7 +929,7 @@
               <span class="tag">Format long</span>
             </div>
             <div class="filmo-info">
-              <span class="filmo-stat">2,6M vues · août 2025</span>
+              <span class="filmo-stat">2,8M vues · août 2025</span>
               <h3>24h Avec Des Transports Notés 1 Étoile ★☆☆☆☆</h3>
             </div>
           </a>
@@ -896,7 +939,7 @@
               <span class="tag">Format long</span>
             </div>
             <div class="filmo-info">
-              <span class="filmo-stat">1,4M vues · juin 2026</span>
+              <span class="filmo-stat">1,8M vues · juin 2026</span>
               <h3>J'ai Enquêté Sur 30 Objets Générés Par IA !</h3>
             </div>
           </a>
@@ -906,7 +949,7 @@
               <span class="tag">Format long</span>
             </div>
             <div class="filmo-info">
-              <span class="filmo-stat">2,4M vues · déc. 2025</span>
+              <span class="filmo-stat">2,7M vues · déc. 2025</span>
               <h3>J'ai Testé 10 Promesses De Publicités !</h3>
             </div>
           </a>
@@ -916,7 +959,7 @@
               <span class="tag">Format long</span>
             </div>
             <div class="filmo-info">
-              <span class="filmo-stat">2,4M vues · janv. 2025</span>
+              <span class="filmo-stat">2,5M vues · janv. 2025</span>
               <h3>VRAI OU PAS ? (J'ai Testé 40 Lifehacks TikTok !)</h3>
             </div>
           </a>
@@ -926,7 +969,7 @@
               <span class="tag">Format long</span>
             </div>
             <div class="filmo-info">
-              <span class="filmo-stat">1,4M vues · févr. 2026</span>
+              <span class="filmo-stat">1,5M vues · févr. 2026</span>
               <h3>J'ai Testé 15 Astuces Illégales Pour Gagner De l'Argent !</h3>
             </div>
           </a>
@@ -936,7 +979,7 @@
               <span class="tag">Format long</span>
             </div>
             <div class="filmo-info">
-              <span class="filmo-stat">3,5M vues · juin 2025</span>
+              <span class="filmo-stat">3,8M vues · juin 2025</span>
               <h3>Billet D'Avion Le Moins Cher VS Le Plus Cher !</h3>
             </div>
           </a>
@@ -946,7 +989,7 @@
               <span class="tag">Format long</span>
             </div>
             <div class="filmo-info">
-              <span class="filmo-stat">2,3M vues · oct. 2024</span>
+              <span class="filmo-stat">2,4M vues · oct. 2024</span>
               <h3>TIKTOK M'A FAIT ACHETER ÇA ! (40 Arnaques Ou Pas ?)</h3>
             </div>
           </a>
@@ -956,7 +999,7 @@
               <span class="tag">Format long</span>
             </div>
             <div class="filmo-info">
-              <span class="filmo-stat">2,2M vues · sept. 2025</span>
+              <span class="filmo-stat">2,3M vues · sept. 2025</span>
               <h3>J'ai Testé 20 Astuces De Rat ! (GRATUIT OU PAS ?)</h3>
             </div>
           </a>
@@ -966,7 +1009,7 @@
               <span class="tag">Format long</span>
             </div>
             <div class="filmo-info">
-              <span class="filmo-stat">2M vues · mars 2026</span>
+              <span class="filmo-stat">2,2M vues · mars 2026</span>
               <h3>J'ai Arnaqué Un Serrurier "Arnaqueur"</h3>
             </div>
           </a>
@@ -976,7 +1019,7 @@
               <span class="tag">Format long</span>
             </div>
             <div class="filmo-info">
-              <span class="filmo-stat">2M vues · nov. 2025</span>
+              <span class="filmo-stat">2,1M vues · nov. 2025</span>
               <h3>J'ai Testé 30 Lifehacks TikTok ! (VRAI OU PAS ?)</h3>
             </div>
           </a>
@@ -986,7 +1029,7 @@
               <span class="tag">Format long</span>
             </div>
             <div class="filmo-info">
-              <span class="filmo-stat">1,9M vues · nov. 2025</span>
+              <span class="filmo-stat">2M vues · nov. 2025</span>
               <h3>J'ai Acheté 25 Objets Bannis ! (ILLÉGAL)</h3>
             </div>
           </a>
@@ -996,7 +1039,7 @@
               <span class="tag">Format long</span>
             </div>
             <div class="filmo-info">
-              <span class="filmo-stat">1,8M vues · mai 2026</span>
+              <span class="filmo-stat">2M vues · mai 2026</span>
               <h3>J'ai Testé 30 Lifehacks TikTok ! (VRAI OU PAS ?)</h3>
             </div>
           </a>
@@ -1006,7 +1049,7 @@
               <span class="tag">Format long</span>
             </div>
             <div class="filmo-info">
-              <span class="filmo-stat">1,8M vues · janv. 2026</span>
+              <span class="filmo-stat">1,9M vues · janv. 2026</span>
               <h3>J'ai Testé 10 Lieux Notés 1 Étoile ★☆☆☆☆</h3>
             </div>
           </a>
@@ -1016,7 +1059,7 @@
               <span class="tag">Format long</span>
             </div>
             <div class="filmo-info">
-              <span class="filmo-stat">1,8M vues · oct. 2025</span>
+              <span class="filmo-stat">1,9M vues · oct. 2025</span>
               <h3>J'ai Testé 10 Lieux Notés 5 Étoiles ! ★★★★★</h3>
             </div>
           </a>
@@ -1026,7 +1069,7 @@
               <span class="tag">Format long</span>
             </div>
             <div class="filmo-info">
-              <span class="filmo-stat">1,7M vues · sept. 2025</span>
+              <span class="filmo-stat">1,9M vues · sept. 2025</span>
               <h3>ARNAQUE OU PAS ? (J'ai Acheté 30 Pubs TikTok)</h3>
             </div>
           </a>
@@ -1056,8 +1099,18 @@
               <span class="tag">Format long</span>
             </div>
             <div class="filmo-info">
-              <span class="filmo-stat">522K vues · juil. 2026</span>
+              <span class="filmo-stat">910K vues · juil. 2026</span>
               <h3>24h Pour Renta 10 000€ De Colis Perdus ! (feat Mentalow)</h3>
+            </div>
+          </a>
+
+          <a class="filmo-card" data-video="9vSxvlybJnQ" href="https://www.youtube.com/watch?v=9vSxvlybJnQ" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/9vSxvlybJnQ/maxresdefault.jpg'),url('https://img.youtube.com/vi/9vSxvlybJnQ/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">1,6M vues · août 2026</span>
+              <h3>J'ai Testé 15 Promesses De Publicités !</h3>
             </div>
           </a>
 
@@ -1066,8 +1119,33 @@
     </div>
 
     <button class="filmo-toggle" id="filmoToggle" aria-expanded="false">
-      <span class="tgl-icon">+</span><span class="tgl-label">Afficher les 23 productions</span>
+      <span class="tgl-icon">+</span><span class="tgl-label">Afficher les productions</span>
     </button>
+
+    <div class="vert-block">
+      <div class="vert-head">Formats verticaux</div>
+      <div class="vert-grid">
+
+        <a class="vert-card" href="https://www.youtube.com/shorts/QtBg7Ic6JX4" target="_blank" rel="noopener">
+          <div class="vert-thumb" style="background-image:url('assets/vert-short.jpg');"></div>
+          <span class="vert-tag">Short</span>
+          <span class="vert-stat">216K vues</span>
+        </a>
+
+        <a class="vert-card" href="https://www.instagram.com/reel/DLKzmFRoLZa/" target="_blank" rel="noopener">
+          <div class="vert-thumb" style="background-image:url('assets/vert-reel-a.jpg');"></div>
+          <span class="vert-tag">Reel</span>
+          <span class="vert-stat">103K vues</span>
+        </a>
+
+        <a class="vert-card" href="https://www.instagram.com/reel/DRh1kXTAi3f/" target="_blank" rel="noopener">
+          <div class="vert-thumb" style="background-image:url('assets/vert-reel-b.jpg');"></div>
+          <span class="vert-tag">Reel</span>
+          <span class="vert-stat">478K vues</span>
+        </a>
+
+      </div>
+    </div>
 
   </div>
 </section>
@@ -1454,7 +1532,7 @@
       const open = filmoMore.classList.toggle('open');
       filmoToggle.classList.toggle('open', open);
       filmoToggle.setAttribute('aria-expanded', open);
-      filmoToggle.querySelector('.tgl-label').textContent = open ? 'Réduire la filmographie' : 'Afficher les 23 productions';
+      filmoToggle.querySelector('.tgl-label').textContent = open ? 'Réduire la filmographie' : 'Afficher les productions';
       if(open){
         setDelays();
       } else {
