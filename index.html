@@ -321,20 +321,29 @@
   .filmo-toggle.open .tgl-icon{transform:rotate(45deg);}
 
   /* ---------- FORMATS VERTICAUX (shorts & reels) ---------- */
-  .vert-block{margin-top:44px;}
+  .vert-block{margin-top:52px;}
   .vert-head{
-    font-family:var(--mono);font-size:0.9rem;font-weight:600;letter-spacing:0.14em;
-    text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:20px;
+    font-family:var(--mono);font-size:1.3rem;font-weight:600;letter-spacing:0.1em;
+    text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:22px;
   }
   .vert-grid{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
-    max-width:640px;margin:0 auto;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
   }
   .vert-card{
     position:relative;display:block;overflow:hidden;aspect-ratio:7/10;
     border:1px solid var(--line);background:#0b0c0a;
     transition:box-shadow .3s ease, transform .3s ease;
   }
+  /* vignette "en attente" */
+  .vert-card.pending{
+    display:flex;align-items:center;justify-content:center;
+    background:var(--panel-2);border:1px dashed var(--gold-dim);
+  }
+  .vert-card.pending::after{display:none;}
+  .pending-inner{display:flex;flex-direction:column;align-items:center;gap:9px;text-align:center;padding:14px;}
+  .pending-dot{width:9px;height:9px;border-radius:50%;background:var(--gold);animation:blink 2.4s infinite;}
+  .pending-num{font-family:var(--display);font-weight:700;font-size:2.8rem;line-height:1;color:var(--gold);}
+  .pending-txt{font-family:var(--mono);font-size:0.74rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--steel);}
   .vert-thumb{
     position:absolute;inset:0;background-size:cover;background-position:center;
     transition:transform .5s ease;
@@ -356,11 +365,14 @@
     font-family:var(--mono);font-size:0.72rem;letter-spacing:0.05em;text-transform:uppercase;
     color:var(--gold-bright);font-weight:500;
   }
+  @media(max-width:900px){
+    .vert-grid{grid-template-columns:repeat(2,1fr);gap:12px;}
+  }
   @media(max-width:680px){
-    .vert-grid{gap:10px;max-width:none;}
-    .vert-head{font-size:0.82rem;}
+    .vert-head{font-size:1.05rem;}
     .vert-tag{font-size:0.56rem;padding:2px 7px;}
-    .vert-stat{font-size:0.64rem;}
+    .vert-stat{font-size:0.66rem;}
+    .pending-num{font-size:2.2rem;}
   }
 
   /* ---------- LECTEUR YOUTUBE INTÉGRÉ ---------- */
@@ -782,8 +794,8 @@
       <div class="hero-stats-grid">
         <div class="hstat"><span class="hstat-num">5M+</span><span class="hstat-label">Abonnés</span></div>
         <div class="hstat"><span class="hstat-num">4,5M</span><span class="hstat-label">Vues / mois</span></div>
-        <div class="hstat"><span class="hstat-num">40M+</span><span class="hstat-label">Vues cumulées / an</span></div>
-        <div class="hstat"><span class="hstat-num">30+</span><span class="hstat-label">Productions</span></div>
+        <div class="hstat"><span class="hstat-num">45M+</span><span class="hstat-label">Vues cumulées / an</span></div>
+        <div class="hstat"><span class="hstat-num">35+</span><span class="hstat-label">Productions</span></div>
       </div>
     </div>
   </div>
@@ -1144,6 +1156,14 @@
           <span class="vert-stat">478K vues</span>
         </a>
 
+        <div class="vert-card pending" aria-label="9 formats en livraison">
+          <div class="pending-inner">
+            <span class="pending-dot"></span>
+            <span class="pending-num">9</span>
+            <span class="pending-txt">en livraison</span>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -1190,7 +1210,7 @@
           <li>Supervision des tournages et coordination des intervenants.</li>
           <li>Installation technique et cadrage.</li>
         </ul>
-        <span class="job-stat">+25 tournages · +40M vues/an cumulées</span>
+        <span class="job-stat">+30 tournages · +45M vues/an cumulées</span>
       </div>
     </div>
 
