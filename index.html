@@ -327,8 +327,9 @@
     text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:22px;
   }
   .vert-grid{
-    display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+    display:grid;grid-template-columns:repeat(6,1fr);gap:16px;
   }
+  @media(max-width:1100px){.vert-grid{grid-template-columns:repeat(3,1fr);}}
   .vert-card{
     position:relative;display:block;overflow:hidden;aspect-ratio:7/10;
     border:1px solid var(--line);background:#0b0c0a;
@@ -365,7 +366,7 @@
     font-family:var(--mono);font-size:0.72rem;letter-spacing:0.05em;text-transform:uppercase;
     color:var(--gold-bright);font-weight:500;
   }
-  @media(max-width:900px){
+  @media(max-width:680px){
     .vert-grid{grid-template-columns:repeat(2,1fr);gap:12px;}
   }
   @media(max-width:680px){
@@ -549,6 +550,8 @@
   .ic-notion{background:#fff;color:#0f0f0f;}
   .ic-ableton{background:#1c1d17;color:#f1efe6;border:1px solid var(--line);}
   .ic-wp{background:#21759b;color:#fff;}
+  .ic-obs{background:#302e31;border:1px solid var(--line);}
+  .ic-obs svg{width:60%;height:60%;}
   .ic-flag{background:#0f100c;border:1px solid var(--line);padding:0;}
   .soft-txt b{display:block;font-size:0.98rem;font-weight:600;}
   .soft-txt small{
@@ -793,9 +796,9 @@
       <div class="hero-stats-role">Chargé de <br>Production</div>
       <div class="hero-stats-grid">
         <div class="hstat"><span class="hstat-num">5M+</span><span class="hstat-label">Abonnés</span></div>
-        <div class="hstat"><span class="hstat-num">4,5M</span><span class="hstat-label">Vues / mois</span></div>
-        <div class="hstat"><span class="hstat-num">45M+</span><span class="hstat-label">Vues cumulées / an</span></div>
-        <div class="hstat"><span class="hstat-num">35+</span><span class="hstat-label">Productions</span></div>
+        <div class="hstat"><span class="hstat-num">5M+</span><span class="hstat-label">Vues / mois</span></div>
+        <div class="hstat"><span class="hstat-num">50M+</span><span class="hstat-label">Vues cumulées / an</span></div>
+        <div class="hstat"><span class="hstat-num">40+</span><span class="hstat-label">Productions</span></div>
       </div>
     </div>
   </div>
@@ -815,7 +818,7 @@
           <span class="tag">Format long</span>
         </div>
         <div class="filmo-info">
-          <span class="filmo-stat">5,6M vues · oct. 2025</span>
+          <span class="filmo-stat">5,7M vues · oct. 2025</span>
           <h3>J'ai Arnaqué 10 Arnaqueurs À Paris !</h3>
         </div>
       </a>
@@ -825,10 +828,11 @@
           <span class="tag">Format long</span>
         </div>
         <div class="filmo-info">
-          <span class="filmo-stat">3,9M vues · mai 2025</span>
+          <span class="filmo-stat">4M vues · mai 2025</span>
           <h3>24h Sur La Croisière Notée 1 Étoile ! ★☆☆☆☆</h3>
         </div>
       </a>
+
 
       <a class="filmo-card" data-video="kXjO96DAY_0" href="https://www.youtube.com/watch?v=kXjO96DAY_0" target="_blank" rel="noopener">
         <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/kXjO96DAY_0/maxresdefault.jpg'),url('https://img.youtube.com/vi/kXjO96DAY_0/hqdefault.jpg');">
@@ -839,13 +843,12 @@
           <h3>Renault 5 E-Tech Électrique</h3>
         </div>
       </a>
-
       <a class="filmo-card" data-video="iPvdpnAYSxE" href="https://www.youtube.com/watch?v=iPvdpnAYSxE" target="_blank" rel="noopener">
         <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/iPvdpnAYSxE/maxresdefault.jpg'),url('https://img.youtube.com/vi/iPvdpnAYSxE/hqdefault.jpg');">
           <span class="tag">Format long</span>
         </div>
         <div class="filmo-info">
-          <span class="filmo-stat">764K vues · avr. 2026</span>
+          <span class="filmo-stat">793K vues · avr. 2026</span>
           <h3>4 Acteurs VS 1 Vrai Millionnaire (ft FastGoodCuisine, Tsuku &amp; Cédric)</h3>
         </div>
       </a>
@@ -855,7 +858,7 @@
           <span class="tag">Format long</span>
         </div>
         <div class="filmo-info">
-          <span class="filmo-stat">2,2M vues · mai 2025</span>
+          <span class="filmo-stat">2,3M vues · mai 2025</span>
           <h3>ESSAYEZ DE NE PAS TOMBER (ft Flamby, FastGoodCuisine, Zack Nani, Tsuku &amp; Joel)</h3>
         </div>
       </a>
@@ -865,7 +868,7 @@
           <span class="tag">Format long</span>
         </div>
         <div class="filmo-info">
-          <span class="filmo-stat">714K vues · juin 2026</span>
+          <span class="filmo-stat">741K vues · juin 2026</span>
           <h3>DEVINE SINON T'ACHÈTES ! (ft FastGoodCuisine)</h3>
         </div>
       </a>
@@ -875,7 +878,15 @@
     <div class="filmo-more" id="filmoMore">
       <div class="filmo-more-inner">
         <div class="filmo-grid">
-
+          <a class="filmo-card" data-video="oDYJLvC_C0c" href="https://www.youtube.com/watch?v=oDYJLvC_C0c" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/oDYJLvC_C0c/maxresdefault.jpg'),url('https://img.youtube.com/vi/oDYJLvC_C0c/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">4M vues · juin 2025</span>
+              <h3>Billet D'Avion Le Moins Cher VS Le Plus Cher !</h3>
+            </div>
+          </a>
           <a class="filmo-card" data-video="5fuWNmj5Kjs" href="https://www.youtube.com/watch?v=5fuWNmj5Kjs" target="_blank" rel="noopener">
             <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/5fuWNmj5Kjs/maxresdefault.jpg'),url('https://img.youtube.com/vi/5fuWNmj5Kjs/hqdefault.jpg');">
               <span class="tag">Format long</span>
@@ -885,17 +896,6 @@
               <h3>J'ai Testé 10 Lieux Avec 0 Avis</h3>
             </div>
           </a>
-
-          <a class="filmo-card" data-video="Dx_YBpTiLX8" href="https://www.youtube.com/watch?v=Dx_YBpTiLX8" target="_blank" rel="noopener">
-            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/Dx_YBpTiLX8/maxresdefault.jpg'),url('https://img.youtube.com/vi/Dx_YBpTiLX8/hqdefault.jpg');">
-              <span class="tag">Court métrage</span>
-            </div>
-            <div class="filmo-info">
-              <span class="filmo-stat">Second assistant réal · nov. 2025</span>
-              <h3>L'Autruche</h3>
-            </div>
-          </a>
-
           <a class="filmo-card" data-video="bbkUNF4_OgE" href="https://www.youtube.com/watch?v=bbkUNF4_OgE" target="_blank" rel="noopener">
             <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/bbkUNF4_OgE/maxresdefault.jpg'),url('https://img.youtube.com/vi/bbkUNF4_OgE/hqdefault.jpg');">
               <span class="tag">Format long</span>
@@ -905,7 +905,6 @@
               <h3>J'ai Acheté 30 Objets Bannis ! (ILLÉGAL)</h3>
             </div>
           </a>
-
           <a class="filmo-card" data-video="Ukf--XAd2-M" href="https://www.youtube.com/watch?v=Ukf--XAd2-M" target="_blank" rel="noopener">
             <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/Ukf--XAd2-M/maxresdefault.jpg'),url('https://img.youtube.com/vi/Ukf--XAd2-M/hqdefault.jpg');">
               <span class="tag">Format long</span>
@@ -915,7 +914,6 @@
               <h3>QUI RAMÈNERA L'OBJET LE PLUS CHER ? (ft Nico, Flamby &amp; FastGoodCuisine)</h3>
             </div>
           </a>
-
           <a class="filmo-card" data-video="midGUczRbvw" href="https://www.youtube.com/watch?v=midGUczRbvw" target="_blank" rel="noopener">
             <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/midGUczRbvw/maxresdefault.jpg'),url('https://img.youtube.com/vi/midGUczRbvw/hqdefault.jpg');">
               <span class="tag">Format long</span>
@@ -925,17 +923,6 @@
               <h3>J'ai Testé 25 Astuces De Rat !</h3>
             </div>
           </a>
-
-          <a class="filmo-card" data-video="Tf5B1BYsdhw" href="https://www.youtube.com/watch?v=Tf5B1BYsdhw" target="_blank" rel="noopener">
-            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/Tf5B1BYsdhw/maxresdefault.jpg'),url('https://img.youtube.com/vi/Tf5B1BYsdhw/hqdefault.jpg');">
-              <span class="tag">Format long</span>
-            </div>
-            <div class="filmo-info">
-              <span class="filmo-stat">2,7M vues · janv. 2025</span>
-              <h3>J'ai Acheté 40 Pubs TikTok ! (ARNAQUE OU PAS ?)</h3>
-            </div>
-          </a>
-
           <a class="filmo-card" data-video="0jKBCpaKfzk" href="https://www.youtube.com/watch?v=0jKBCpaKfzk" target="_blank" rel="noopener">
             <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/0jKBCpaKfzk/maxresdefault.jpg'),url('https://img.youtube.com/vi/0jKBCpaKfzk/hqdefault.jpg');">
               <span class="tag">Format long</span>
@@ -945,17 +932,6 @@
               <h3>24h Avec Des Transports Notés 1 Étoile ★☆☆☆☆</h3>
             </div>
           </a>
-
-          <a class="filmo-card" data-video="1GHVXnZpZ2U" href="https://www.youtube.com/watch?v=1GHVXnZpZ2U" target="_blank" rel="noopener">
-            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/1GHVXnZpZ2U/maxresdefault.jpg'),url('https://img.youtube.com/vi/1GHVXnZpZ2U/hqdefault.jpg');">
-              <span class="tag">Format long</span>
-            </div>
-            <div class="filmo-info">
-              <span class="filmo-stat">1,8M vues · juin 2026</span>
-              <h3>J'ai Enquêté Sur 30 Objets Générés Par IA !</h3>
-            </div>
-          </a>
-
           <a class="filmo-card" data-video="hn2mCUPy4jg" href="https://www.youtube.com/watch?v=hn2mCUPy4jg" target="_blank" rel="noopener">
             <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/hn2mCUPy4jg/maxresdefault.jpg'),url('https://img.youtube.com/vi/hn2mCUPy4jg/hqdefault.jpg');">
               <span class="tag">Format long</span>
@@ -965,7 +941,15 @@
               <h3>J'ai Testé 10 Promesses De Publicités !</h3>
             </div>
           </a>
-
+          <a class="filmo-card" data-video="Tf5B1BYsdhw" href="https://www.youtube.com/watch?v=Tf5B1BYsdhw" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/Tf5B1BYsdhw/maxresdefault.jpg'),url('https://img.youtube.com/vi/Tf5B1BYsdhw/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">2,7M vues · janv. 2025</span>
+              <h3>J'ai Acheté 40 Pubs TikTok ! (ARNAQUE OU PAS ?)</h3>
+            </div>
+          </a>
           <a class="filmo-card" data-video="wXl8qlIrwEI" href="https://www.youtube.com/watch?v=wXl8qlIrwEI" target="_blank" rel="noopener">
             <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/wXl8qlIrwEI/maxresdefault.jpg'),url('https://img.youtube.com/vi/wXl8qlIrwEI/hqdefault.jpg');">
               <span class="tag">Format long</span>
@@ -975,27 +959,6 @@
               <h3>VRAI OU PAS ? (J'ai Testé 40 Lifehacks TikTok !)</h3>
             </div>
           </a>
-
-          <a class="filmo-card" data-video="CSU471M_GNE" href="https://www.youtube.com/watch?v=CSU471M_GNE" target="_blank" rel="noopener">
-            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/CSU471M_GNE/maxresdefault.jpg'),url('https://img.youtube.com/vi/CSU471M_GNE/hqdefault.jpg');">
-              <span class="tag">Format long</span>
-            </div>
-            <div class="filmo-info">
-              <span class="filmo-stat">1,5M vues · févr. 2026</span>
-              <h3>J'ai Testé 15 Astuces Illégales Pour Gagner De l'Argent !</h3>
-            </div>
-          </a>
-
-          <a class="filmo-card" data-video="oDYJLvC_C0c" href="https://www.youtube.com/watch?v=oDYJLvC_C0c" target="_blank" rel="noopener">
-            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/oDYJLvC_C0c/maxresdefault.jpg'),url('https://img.youtube.com/vi/oDYJLvC_C0c/hqdefault.jpg');">
-              <span class="tag">Format long</span>
-            </div>
-            <div class="filmo-info">
-              <span class="filmo-stat">3,8M vues · juin 2025</span>
-              <h3>Billet D'Avion Le Moins Cher VS Le Plus Cher !</h3>
-            </div>
-          </a>
-
           <a class="filmo-card" data-video="ge5zXFjYsws" href="https://www.youtube.com/watch?v=ge5zXFjYsws" target="_blank" rel="noopener">
             <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/ge5zXFjYsws/maxresdefault.jpg'),url('https://img.youtube.com/vi/ge5zXFjYsws/hqdefault.jpg');">
               <span class="tag">Format long</span>
@@ -1005,7 +968,15 @@
               <h3>TIKTOK M'A FAIT ACHETER ÇA ! (40 Arnaques Ou Pas ?)</h3>
             </div>
           </a>
-
+          <a class="filmo-card" data-video="ZGwLEZptsLo" href="https://www.youtube.com/watch?v=ZGwLEZptsLo" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/ZGwLEZptsLo/maxresdefault.jpg'),url('https://img.youtube.com/vi/ZGwLEZptsLo/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">2,3M vues · sept. 2026</span>
+              <h3>Le Siège d'Avion Qui Coûte 15 000€ (Première Class Air France)</h3>
+            </div>
+          </a>
           <a class="filmo-card" data-video="KKqa5tO4Ss8" href="https://www.youtube.com/watch?v=KKqa5tO4Ss8" target="_blank" rel="noopener">
             <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/KKqa5tO4Ss8/maxresdefault.jpg'),url('https://img.youtube.com/vi/KKqa5tO4Ss8/hqdefault.jpg');">
               <span class="tag">Format long</span>
@@ -1015,7 +986,15 @@
               <h3>J'ai Testé 20 Astuces De Rat ! (GRATUIT OU PAS ?)</h3>
             </div>
           </a>
-
+          <a class="filmo-card" data-video="4tHTBw8zQJs" href="https://www.youtube.com/watch?v=4tHTBw8zQJs" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/4tHTBw8zQJs/maxresdefault.jpg'),url('https://img.youtube.com/vi/4tHTBw8zQJs/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">2,3M vues · déc. 2025</span>
+              <h3>J’ai Enquêté Sur 10 Lieux Ouverts 24h/24</h3>
+            </div>
+          </a>
           <a class="filmo-card" data-video="M3GUup5V1Zw" href="https://www.youtube.com/watch?v=M3GUup5V1Zw" target="_blank" rel="noopener">
             <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/M3GUup5V1Zw/maxresdefault.jpg'),url('https://img.youtube.com/vi/M3GUup5V1Zw/hqdefault.jpg');">
               <span class="tag">Format long</span>
@@ -1025,7 +1004,6 @@
               <h3>J'ai Arnaqué Un Serrurier "Arnaqueur"</h3>
             </div>
           </a>
-
           <a class="filmo-card" data-video="fTDf6WoIvqI" href="https://www.youtube.com/watch?v=fTDf6WoIvqI" target="_blank" rel="noopener">
             <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/fTDf6WoIvqI/maxresdefault.jpg'),url('https://img.youtube.com/vi/fTDf6WoIvqI/hqdefault.jpg');">
               <span class="tag">Format long</span>
@@ -1035,37 +1013,33 @@
               <h3>J'ai Testé 30 Lifehacks TikTok ! (VRAI OU PAS ?)</h3>
             </div>
           </a>
-
-          <a class="filmo-card" data-video="a43RYL_dYKo" href="https://www.youtube.com/watch?v=a43RYL_dYKo" target="_blank" rel="noopener">
-            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/a43RYL_dYKo/maxresdefault.jpg'),url('https://img.youtube.com/vi/a43RYL_dYKo/hqdefault.jpg');">
-              <span class="tag">Format long</span>
-            </div>
-            <div class="filmo-info">
-              <span class="filmo-stat">2M vues · nov. 2025</span>
-              <h3>J'ai Acheté 25 Objets Bannis ! (ILLÉGAL)</h3>
-            </div>
-          </a>
-
           <a class="filmo-card" data-video="7xYBHMMJDEc" href="https://www.youtube.com/watch?v=7xYBHMMJDEc" target="_blank" rel="noopener">
             <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/7xYBHMMJDEc/maxresdefault.jpg'),url('https://img.youtube.com/vi/7xYBHMMJDEc/hqdefault.jpg');">
               <span class="tag">Format long</span>
             </div>
             <div class="filmo-info">
-              <span class="filmo-stat">2M vues · mai 2026</span>
+              <span class="filmo-stat">2,1M vues · mai 2026</span>
               <h3>J'ai Testé 30 Lifehacks TikTok ! (VRAI OU PAS ?)</h3>
             </div>
           </a>
-
+          <a class="filmo-card" data-video="a43RYL_dYKo" href="https://www.youtube.com/watch?v=a43RYL_dYKo" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/a43RYL_dYKo/maxresdefault.jpg'),url('https://img.youtube.com/vi/a43RYL_dYKo/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">2,1M vues · nov. 2025</span>
+              <h3>J'ai Acheté 25 Objets Bannis ! (ILLÉGAL)</h3>
+            </div>
+          </a>
           <a class="filmo-card" data-video="xUEBuj27GMA" href="https://www.youtube.com/watch?v=xUEBuj27GMA" target="_blank" rel="noopener">
             <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/xUEBuj27GMA/maxresdefault.jpg'),url('https://img.youtube.com/vi/xUEBuj27GMA/hqdefault.jpg');">
               <span class="tag">Format long</span>
             </div>
             <div class="filmo-info">
-              <span class="filmo-stat">1,9M vues · janv. 2026</span>
+              <span class="filmo-stat">2M vues · janv. 2026</span>
               <h3>J'ai Testé 10 Lieux Notés 1 Étoile ★☆☆☆☆</h3>
             </div>
           </a>
-
           <a class="filmo-card" data-video="Pt7ETvLG6R0" href="https://www.youtube.com/watch?v=Pt7ETvLG6R0" target="_blank" rel="noopener">
             <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/Pt7ETvLG6R0/maxresdefault.jpg'),url('https://img.youtube.com/vi/Pt7ETvLG6R0/hqdefault.jpg');">
               <span class="tag">Format long</span>
@@ -1075,7 +1049,15 @@
               <h3>J'ai Testé 10 Lieux Notés 5 Étoiles ! ★★★★★</h3>
             </div>
           </a>
-
+          <a class="filmo-card" data-video="c3CdBVVSKKg" href="https://www.youtube.com/watch?v=c3CdBVVSKKg" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/c3CdBVVSKKg/maxresdefault.jpg'),url('https://img.youtube.com/vi/c3CdBVVSKKg/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">1,9M vues · juil. 2026</span>
+              <h3>J'ai Testé 30 Astuces De Rat !</h3>
+            </div>
+          </a>
           <a class="filmo-card" data-video="6iEaCzkKjvc" href="https://www.youtube.com/watch?v=6iEaCzkKjvc" target="_blank" rel="noopener">
             <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/6iEaCzkKjvc/maxresdefault.jpg'),url('https://img.youtube.com/vi/6iEaCzkKjvc/hqdefault.jpg');">
               <span class="tag">Format long</span>
@@ -1085,7 +1067,33 @@
               <h3>ARNAQUE OU PAS ? (J'ai Acheté 30 Pubs TikTok)</h3>
             </div>
           </a>
-
+          <a class="filmo-card" data-video="tUSQV3_GTXM" href="https://www.youtube.com/watch?v=tUSQV3_GTXM" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/tUSQV3_GTXM/maxresdefault.jpg'),url('https://img.youtube.com/vi/tUSQV3_GTXM/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">1,9M vues · mars 2026</span>
+              <h3>Est-Il Possible De Renta Un Hôtel All Inclusive ?</h3>
+            </div>
+          </a>
+          <a class="filmo-card" data-video="uTY4SIAoHF8" href="https://www.youtube.com/watch?v=uTY4SIAoHF8" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/uTY4SIAoHF8/maxresdefault.jpg'),url('https://img.youtube.com/vi/uTY4SIAoHF8/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">1,8M vues · juil. 2025</span>
+              <h3>J’ai Essayé De Casser 20 Objets Incassables</h3>
+            </div>
+          </a>
+          <a class="filmo-card" data-video="1GHVXnZpZ2U" href="https://www.youtube.com/watch?v=1GHVXnZpZ2U" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/1GHVXnZpZ2U/maxresdefault.jpg'),url('https://img.youtube.com/vi/1GHVXnZpZ2U/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">1,8M vues · juin 2026</span>
+              <h3>J'ai Enquêté Sur 30 Objets Générés Par IA !</h3>
+            </div>
+          </a>
           <a class="filmo-card" data-video="hJQdfSEXMhg" href="https://www.youtube.com/watch?v=hJQdfSEXMhg" target="_blank" rel="noopener">
             <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/hJQdfSEXMhg/maxresdefault.jpg'),url('https://img.youtube.com/vi/hJQdfSEXMhg/hqdefault.jpg');">
               <span class="tag">Format long</span>
@@ -1095,7 +1103,15 @@
               <h3>Je Teste 5 Lieux Interdits ! (ILLÉGAL)</h3>
             </div>
           </a>
-
+          <a class="filmo-card" data-video="9vSxvlybJnQ" href="https://www.youtube.com/watch?v=9vSxvlybJnQ" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/9vSxvlybJnQ/maxresdefault.jpg'),url('https://img.youtube.com/vi/9vSxvlybJnQ/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">1,7M vues · août 2026</span>
+              <h3>J'ai Testé 15 Promesses De Publicités !</h3>
+            </div>
+          </a>
           <a class="filmo-card" data-video="9tWN9X502RQ" href="https://www.youtube.com/watch?v=9tWN9X502RQ" target="_blank" rel="noopener">
             <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/9tWN9X502RQ/maxresdefault.jpg'),url('https://img.youtube.com/vi/9tWN9X502RQ/hqdefault.jpg');">
               <span class="tag">Format long</span>
@@ -1105,24 +1121,67 @@
               <h3>J'ai Testé 100 Ans De Jouets Pour Enfant !</h3>
             </div>
           </a>
-
+          <a class="filmo-card" data-video="CSU471M_GNE" href="https://www.youtube.com/watch?v=CSU471M_GNE" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/CSU471M_GNE/maxresdefault.jpg'),url('https://img.youtube.com/vi/CSU471M_GNE/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">1,6M vues · févr. 2026</span>
+              <h3>J'ai Testé 15 Astuces Illégales Pour Gagner De l'Argent !</h3>
+            </div>
+          </a>
+          <a class="filmo-card" data-video="m7pRqa0-YbM" href="https://www.youtube.com/watch?v=m7pRqa0-YbM" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/m7pRqa0-YbM/maxresdefault.jpg'),url('https://img.youtube.com/vi/m7pRqa0-YbM/hqdefault.jpg');">
+              <span class="tag">Brand content</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">1,5M vues · juin 2025</span>
+              <h3>DEVINE LE PRIX SINON T'ACHÈTES AVEC TA CARTE BLEUE</h3>
+            </div>
+          </a>
+          <a class="filmo-card" data-video="yXlRm-ztEc4" href="https://www.youtube.com/watch?v=yXlRm-ztEc4" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/yXlRm-ztEc4/maxresdefault.jpg'),url('https://img.youtube.com/vi/yXlRm-ztEc4/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">1,2M vues · mai 2026</span>
+              <h3>J’ai Testé Les 10 Pires Hôtels De France ★☆☆☆☆</h3>
+            </div>
+          </a>
+          <a class="filmo-card" data-video="fWkllJQMLHE" href="https://www.youtube.com/watch?v=fWkllJQMLHE" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/fWkllJQMLHE/maxresdefault.jpg'),url('https://img.youtube.com/vi/fWkllJQMLHE/hqdefault.jpg');">
+              <span class="tag">Format long</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">1,1M vues · sept. 2026</span>
+              <h3>J’ai Acheté 20 Objets Bannis À l’École ! (ILLÉGAL)</h3>
+            </div>
+          </a>
           <a class="filmo-card" data-video="Shf06f_3PiQ" href="https://www.youtube.com/watch?v=Shf06f_3PiQ" target="_blank" rel="noopener">
             <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/Shf06f_3PiQ/maxresdefault.jpg'),url('https://img.youtube.com/vi/Shf06f_3PiQ/hqdefault.jpg');">
               <span class="tag">Format long</span>
             </div>
             <div class="filmo-info">
-              <span class="filmo-stat">910K vues · juil. 2026</span>
+              <span class="filmo-stat">991K vues · juil. 2026</span>
               <h3>24h Pour Renta 10 000€ De Colis Perdus ! (feat Mentalow)</h3>
             </div>
           </a>
-
-          <a class="filmo-card" data-video="9vSxvlybJnQ" href="https://www.youtube.com/watch?v=9vSxvlybJnQ" target="_blank" rel="noopener">
-            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/9vSxvlybJnQ/maxresdefault.jpg'),url('https://img.youtube.com/vi/9vSxvlybJnQ/hqdefault.jpg');">
-              <span class="tag">Format long</span>
+          <a class="filmo-card" data-video="5utMKWsHplY" href="https://www.youtube.com/watch?v=5utMKWsHplY" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/5utMKWsHplY/maxresdefault.jpg'),url('https://img.youtube.com/vi/5utMKWsHplY/hqdefault.jpg');">
+              <span class="tag">Brand content</span>
             </div>
             <div class="filmo-info">
-              <span class="filmo-stat">1,6M vues · août 2026</span>
-              <h3>J'ai Testé 15 Promesses De Publicités !</h3>
+              <span class="filmo-stat">314K vues · juil. 2025</span>
+              <h3>TU PERDS, TU OFFRES 1 VOITURE DE LUXE ! (ft Cossi)</h3>
+            </div>
+          </a>
+          <a class="filmo-card" data-video="Dx_YBpTiLX8" href="https://www.youtube.com/watch?v=Dx_YBpTiLX8" target="_blank" rel="noopener">
+            <div class="filmo-thumb" style="background-image:url('https://img.youtube.com/vi/Dx_YBpTiLX8/maxresdefault.jpg'),url('https://img.youtube.com/vi/Dx_YBpTiLX8/hqdefault.jpg');">
+              <span class="tag">Court métrage</span>
+            </div>
+            <div class="filmo-info">
+              <span class="filmo-stat">Second assistant réal · nov. 2025</span>
+              <h3>L'Autruche</h3>
             </div>
           </a>
 
@@ -1137,29 +1196,35 @@
     <div class="vert-block">
       <div class="vert-head">Formats verticaux</div>
       <div class="vert-grid">
-
-        <a class="vert-card" href="https://www.youtube.com/shorts/QtBg7Ic6JX4" target="_blank" rel="noopener">
-          <div class="vert-thumb" style="background-image:url('assets/vert-short.jpg');"></div>
+        <a class="vert-card" href="https://www.youtube.com/shorts/hNdEuHtM1k8" target="_blank" rel="noopener">
+          <div class="vert-thumb" style="background-image:url('https://i.ytimg.com/vi/hNdEuHtM1k8/oardefault.jpg');"></div>
           <span class="vert-tag">Short</span>
-          <span class="vert-stat">216K vues</span>
+          <span class="vert-stat">961K vues</span>
         </a>
-
-        <a class="vert-card" href="https://www.instagram.com/reel/DRh1kXTAi3f/" target="_blank" rel="noopener">
-          <div class="vert-thumb" style="background-image:url('assets/vert-reel-a.jpg');"></div>
-          <span class="vert-tag">Reel</span>
-          <span class="vert-stat">103K vues</span>
-        </a>
-
         <a class="vert-card" href="https://www.instagram.com/reel/DLKzmFRoLZa/" target="_blank" rel="noopener">
           <div class="vert-thumb" style="background-image:url('assets/vert-reel-b.jpg');"></div>
           <span class="vert-tag">Reel</span>
           <span class="vert-stat">478K vues</span>
         </a>
-
-        <div class="vert-card pending" aria-label="9 formats en livraison">
+        <a class="vert-card" href="https://www.youtube.com/shorts/QtBg7Ic6JX4" target="_blank" rel="noopener">
+          <div class="vert-thumb" style="background-image:url('assets/vert-short.jpg');"></div>
+          <span class="vert-tag">Short</span>
+          <span class="vert-stat">237K vues</span>
+        </a>
+        <a class="vert-card" href="https://www.youtube.com/shorts/9Ys8PgXlCDk" target="_blank" rel="noopener">
+          <div class="vert-thumb" style="background-image:url('https://i.ytimg.com/vi/9Ys8PgXlCDk/oardefault.jpg');"></div>
+          <span class="vert-tag">Short</span>
+          <span class="vert-stat">170K vues</span>
+        </a>
+        <a class="vert-card" href="https://www.instagram.com/reel/DRh1kXTAi3f/" target="_blank" rel="noopener">
+          <div class="vert-thumb" style="background-image:url('assets/vert-reel-a.jpg');"></div>
+          <span class="vert-tag">Reel</span>
+          <span class="vert-stat">103K vues</span>
+        </a>
+        <div class="vert-card pending" aria-label="7 formats en livraison">
           <div class="pending-inner">
             <span class="pending-dot"></span>
-            <span class="pending-num">9</span>
+            <span class="pending-num">7</span>
             <span class="pending-txt">en livraison</span>
           </div>
         </div>
@@ -1197,7 +1262,7 @@
         <h3>Chargé de Production YouTube</h3>
         <div class="job-meta">
           <span>Oct. 2024 — aujourd'hui</span>
-          <span>1 an 10 mois · alternance puis CDI</span>
+          <span>2 ans · alternance puis CDI</span>
           <span>Paris · Hybride</span>
         </div>
         <ul>
@@ -1206,18 +1271,18 @@
           <li>Création de scripts, happenings et mécaniques vidéo.</li>
           <li>Gestion de production : budgets, contrats, facturation et casting.</li>
           <li>Organisation des productions : repérages, décors, logistique plateau et supports de production.</li>
-          <li>Mise en place des collaborations et coordination des guests.</li>
+          <li>Mise en place des collaborations, sponsorisations/OP et coordination des guests.</li>
           <li>Supervision des tournages et coordination des intervenants.</li>
-          <li>Installation technique et cadrage.</li>
+          <li>Installation technique, cadrage et suivi de la post-production.</li>
         </ul>
-        <span class="job-stat">+30 tournages · +45M vues/an cumulées</span>
+        <span class="job-stat">+40 productions · +50M vues/an cumulées</span>
       </div>
     </div>
 
     <div class="job-card">
       <div class="job-slate"><span class="job-logo pub"><img src="assets/publicis.png" alt="Publicis Groupe"></span><span class="job-co">Allezgo Production × Publicis</span></div>
       <div class="job-body">
-        <h3>Chargé de Production</h3>
+        <h3>Assistant de Production</h3>
         <div class="job-meta">
           <span>Sept. — Oct. 2024</span>
           <span>2 mois · Freelance</span>
@@ -1241,7 +1306,7 @@
         </div>
         <ul>
           <li>Production audiovisuelle et stratégie opérationnelle d'un établissement.</li>
-          <li>Gestion multi-casquette : coordination d'équipe, exploitation et responsable du bon déroulement des évènements.</li>
+          <li>Gestion multi-casquette : coordination d'équipe (+10 salariés), exploitation et responsable du bon déroulement des évènements.</li>
           <li>Accueil et gestion des guests.</li>
         </ul>
       </div>
@@ -1407,7 +1472,7 @@
           <div class="soft-item"><span class="soft-icon ic-ps">Ps</span><div class="soft-txt"><b>Photoshop</b><small>Intermédiaire</small></div></div>
           <div class="soft-item"><span class="soft-icon ic-id">Id</span><div class="soft-txt"><b>InDesign</b><small>Intermédiaire</small></div></div>
           <div class="soft-item"><span class="soft-icon ic-pr">Pr</span><div class="soft-txt"><b>Premiere Pro</b><small>Intermédiaire</small></div></div>
-          <div class="soft-item"><span class="soft-icon ic-au">Au</span><div class="soft-txt"><b>Audition</b><small>Intermédiaire</small></div></div>
+          <div class="soft-item"><span class="soft-icon ic-obs"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12,24C5.383,24,0,18.617,0,12S5.383,0,12,0s12,5.383,12,12S18.617,24,12,24z M12,1.109 C5.995,1.109,1.11,5.995,1.11,12C1.11,18.005,5.995,22.89,12,22.89S22.89,18.005,22.89,12C22.89,5.995,18.005,1.109,12,1.109z M6.182,5.99c0.352-1.698,1.503-3.229,3.05-3.996c-0.269,0.273-0.595,0.483-0.844,0.78c-1.02,1.1-1.48,2.692-1.199,4.156 c0.355,2.235,2.455,4.06,4.732,4.028c1.765,0.079,3.485-0.937,4.348-2.468c1.848,0.063,3.645,1.017,4.7,2.548 c0.54,0.799,0.962,1.736,0.991,2.711c-0.342-1.295-1.202-2.446-2.375-3.095c-1.135-0.639-2.529-0.802-3.772-0.425 c-1.56,0.448-2.849,1.723-3.293,3.293c-0.377,1.25-0.216,2.628,0.377,3.772c-0.825,1.429-2.315,2.449-3.932,2.756 c-1.244,0.261-2.551,0.059-3.709-0.464c1.036,0.302,2.161,0.355,3.191-0.011c1.381-0.457,2.522-1.567,3.024-2.935 c0.556-1.49,0.345-3.261-0.591-4.54c-0.7-1.007-1.803-1.717-3.002-1.969c-0.38-0.068-0.764-0.098-1.148-0.134 c-0.611-1.231-0.834-2.66-0.528-3.996L6.182,5.99z"/></svg></span><div class="soft-txt"><b>OBS Studio</b><small>Intermédiaire</small></div></div>
           <div class="soft-item"><span class="soft-icon ic-ae">Ae</span><div class="soft-txt"><b>After Effects</b><small>Intermédiaire</small></div></div>
           <div class="soft-item"><span class="soft-icon ic-office"><svg width="22" height="22" viewBox="0 0 21 21"><rect width="10" height="10" fill="#f25022"/><rect x="11" width="10" height="10" fill="#7fba00"/><rect y="11" width="10" height="10" fill="#00a4ef"/><rect x="11" y="11" width="10" height="10" fill="#ffb900"/></svg></span><div class="soft-txt"><b>Pack Office</b><small>Maîtrisé</small></div></div>
           <div class="soft-item"><span class="soft-icon ic-notion">N</span><div class="soft-txt"><b>Notion</b><small>Maîtrisé</small></div></div>
